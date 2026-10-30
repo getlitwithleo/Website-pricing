@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400..500&family=Schibsted+Grotesk:wght@400..700&display=swap">
 <style>
   :root {
-    /* Layout: a studio pricing page. Split hero with a responsive mockup, three main packages led by the recommended Pro, smaller jobs beneath, then compare, add-ons, quote, process and FAQ. */
+    /* Layout: a studio pricing page. Split hero with a responsive mockup, then ten packages in three groups. Each package is its own kind of site with its own color and a preview of what it looks like, followed by a fit guide, add-ons, quote, process and FAQ. */
     --bg: #F5F6F8;
     --surface: #FFFFFF;
     --ink: #0D1117;
@@ -33,6 +33,17 @@
     --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.05);
     --shadow: 0 1px 2px rgba(13, 17, 23, 0.04), 0 18px 40px -22px rgba(13, 17, 23, 0.2);
     --shadow-lg: 0 2px 4px rgba(13, 17, 23, 0.04), 0 36px 70px -34px rgba(13, 17, 23, 0.38);
+
+    /* One color per package */
+    --hue-slate: #5B6576;
+    --hue-rose: #D23F6B;
+    --hue-ember: #DC6232;
+    --hue-violet: #6847D4;
+    --hue-teal: #0E8A80;
+    --hue-amber: #B97F0E;
+    --hue-green: #2C9150;
+    --hue-blue: #2E46D9;
+    --hue-sky: #2582CC;
 
     --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
@@ -68,6 +79,15 @@
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -22px rgba(0, 0, 0, 0.7);
       --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 36px 70px -34px rgba(0, 0, 0, 0.85);
+      --hue-slate: #A3ADBD;
+      --hue-rose: #F07399;
+      --hue-ember: #F08A5D;
+      --hue-violet: #A48FFF;
+      --hue-teal: #3FC4B6;
+      --hue-amber: #E9B54C;
+      --hue-green: #5CCB86;
+      --hue-blue: #8D9BFF;
+      --hue-sky: #6CB8F4;
       color-scheme: dark;
     }
   }
@@ -94,6 +114,15 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 40px -22px rgba(0, 0, 0, 0.7);
     --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 36px 70px -34px rgba(0, 0, 0, 0.85);
+    --hue-slate: #A3ADBD;
+    --hue-rose: #F07399;
+    --hue-ember: #F08A5D;
+    --hue-violet: #A48FFF;
+    --hue-teal: #3FC4B6;
+    --hue-amber: #E9B54C;
+    --hue-green: #5CCB86;
+    --hue-blue: #8D9BFF;
+    --hue-sky: #6CB8F4;
     color-scheme: dark;
   }
 
@@ -111,14 +140,14 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; }
+  h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; }
   h1 em, h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
   p { margin: 0; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   .wrap {
-    max-width: 72rem;
+    max-width: 74rem;
     margin-inline: auto;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -147,6 +176,7 @@
   .btn--light { background: var(--deep-fg); color: var(--deep); }
   .btn--outline-dark { color: var(--deep-fg); border-color: var(--deep-line); }
   .btn--block { width: 100%; }
+  .btn--sm { padding: 0.55rem 1rem; font-size: var(--t-sm); }
   @media (prefers-reduced-motion: no-preference) {
     .btn { transition: transform 0.15s ease, filter 0.15s ease, border-color 0.15s ease; }
     .btn:hover { transform: translateY(-1px); }
@@ -163,7 +193,6 @@
   .nav { display: flex; gap: 1.9rem; font-size: var(--t-sm); color: var(--muted); }
   .nav a { text-decoration: none; }
   .nav a:hover { color: var(--ink); }
-  .topbar .btn { padding: 0.55rem 1rem; font-size: var(--t-sm); }
   @media (max-width: 760px) { .nav { display: none; } }
 
   /* Hero */
@@ -189,39 +218,53 @@
   .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #22A05A; box-shadow: 0 0 0 3px rgba(34, 160, 90, 0.18); }
   .hero h1 { font-size: var(--t-hero); letter-spacing: -0.04em; line-height: 1.02; }
   .hero h1 em { color: var(--accent); }
-  .lede { max-width: 31rem; font-size: var(--t-lg); color: var(--muted); }
+  .lede { max-width: 32rem; font-size: var(--t-lg); color: var(--muted); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .assure { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; font-size: var(--t-sm); color: var(--muted); }
   .assure li { display: inline-flex; align-items: center; gap: 0.45rem; }
   .assure svg { width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Responsive mockup */
+  /* Wireframe pieces for the hero mockup and package previews */
   .showcase { position: relative; min-width: 0; padding-bottom: 2.25rem; }
   .desk { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-lg); }
-  .bar { display: flex; align-items: center; gap: 5px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
-  .bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--mock-2); }
-  .bar b { width: 38%; height: 14px; margin-inline: auto; border-radius: 6px; background: var(--mock); }
-  .pg { display: grid; align-content: start; gap: 14px; padding: 16px 18px 20px; }
-  .r { display: flex; align-items: center; gap: 8px; }
+  .bar { display: flex; align-items: center; gap: 5px; padding: 8px 11px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .bar i { width: 7px; height: 7px; border-radius: 50%; background: var(--mock-2); }
+  .bar b { width: 38%; height: 12px; margin-inline: auto; border-radius: 6px; background: var(--mock); }
+  .pg { display: grid; align-content: start; gap: 10px; padding: 12px 14px 16px; min-width: 0; }
+  .desk .pg { gap: 14px; padding: 16px 18px 20px; }
+  .r { display: flex; align-items: center; gap: 7px; }
   .sb { justify-content: space-between; }
-  .stack { display: grid; align-content: center; gap: 8px; }
-  .cols { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 10px; }
-  .ln { display: block; width: var(--w, 60%); height: var(--lh, 7px); border-radius: 4px; background: var(--mock-2); }
-  .ln--ink { --lh: 13px; background: var(--ink); }
+  .stack { display: grid; align-content: center; gap: 7px; min-width: 0; }
+  .cols { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: var(--g, 8px); }
+  .ln { display: block; width: var(--w, 60%); height: var(--lh, 6px); border-radius: 4px; background: var(--mock-2); }
+  .ln--ink { --lh: 10px; background: var(--ink); }
   .ln--accent { background: var(--accent); }
-  .pill { display: block; width: var(--w, 56px); height: var(--ph, 20px); border-radius: 6px; background: var(--accent); }
+  .ln--hue { background: var(--hue); }
+  .ln--light { --lh: 10px; background: #FFFFFF; }
+  .pill { display: block; width: var(--w, 56px); height: var(--ph, 16px); border-radius: 6px; background: var(--hue, var(--accent)); }
   .pill--line { background: transparent; border: 1.5px solid var(--line-strong); }
-  .logo { width: 14px; height: 14px; border-radius: 4px; background: var(--ink); }
+  .pill--ink { background: var(--ink); }
+  .logo { width: 12px; height: 12px; border-radius: 3px; background: var(--ink); }
+  .bx { display: block; height: var(--h, 40px); border-radius: 4px; background: var(--mock); }
   .mini-card { display: grid; gap: 7px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; }
   .mini-icon { width: 18px; height: 18px; border-radius: 5px; background: var(--accent-soft); }
   .aurora {
-    border-radius: 8px;
+    border-radius: 6px;
     background:
       radial-gradient(110% 90% at 12% 18%, var(--accent) 0%, transparent 58%),
       radial-gradient(80% 80% at 88% 28%, var(--ember) 0%, transparent 58%),
       radial-gradient(90% 90% at 55% 105%, var(--sky) 0%, transparent 62%),
       #0D1117;
   }
+  .thumb {
+    display: block;
+    height: var(--h, 40px);
+    border-radius: 4px;
+    background: var(--mock-2);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--hue) 78%, var(--surface)), color-mix(in srgb, var(--hue) 22%, var(--surface)));
+  }
+  .thumb.t2 { background: var(--mock); background: linear-gradient(200deg, color-mix(in srgb, var(--hue) 40%, var(--surface)), color-mix(in srgb, var(--hue) 10%, var(--surface))); }
+  .thumb.t3 { background: var(--mock-2); background: linear-gradient(160deg, color-mix(in srgb, var(--hue) 55%, var(--ink)), color-mix(in srgb, var(--hue) 65%, var(--surface))); }
   .phone {
     position: absolute;
     right: 0;
@@ -263,137 +306,243 @@
 
   /* Sections */
   .sec { padding-block: clamp(4.5rem, 9vw, 7rem) 0; scroll-margin-top: 1rem; }
-  .section-head { display: grid; gap: 0.85rem; max-width: 42rem; margin-bottom: 3rem; }
+  .section-head { display: grid; gap: 0.85rem; max-width: 44rem; margin-bottom: 2.25rem; }
   .section-head h2 { font-size: var(--t-2xl); }
-  .section-head p:last-child:not(.eyebrow) { font-size: var(--t-lg); color: var(--muted); }
+  .section-head > p:not(.eyebrow) { font-size: var(--t-lg); color: var(--muted); }
 
-  /* Main packages */
-  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); gap: 1.5rem 1.25rem; align-items: start; }
-  .plan {
-    position: relative;
+  .jump { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.5rem; }
+  .jump a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.5rem 0.95rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: var(--t-sm);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .jump a span { font-weight: 400; color: var(--muted); }
+  .jump a:hover { border-color: var(--line-strong); }
+
+  .group { scroll-margin-top: 1.5rem; }
+  .group-head {
     display: grid;
-    grid-row: span 5;
-    grid-template-rows: subgrid;
-    row-gap: 1.5rem;
-    padding: 2.1rem 1.8rem 2rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 0.35rem 1.5rem;
+    margin: 3.75rem 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .group-head h3 { font-size: 1.6rem; letter-spacing: -0.03em; }
+  .group-head p { grid-column: 1; color: var(--muted); }
+  .group-range { grid-column: 2; grid-row: 1 / span 2; font-size: var(--t-sm); font-weight: 600; color: var(--muted); white-space: nowrap; }
+
+  /* Package cards */
+  .pkgs { display: grid; gap: 1.25rem; }
+  .pkgs--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pkgs--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pkg {
+    --hue: var(--accent);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
     scroll-margin-top: 2rem;
   }
-  .plan-head { display: grid; gap: 0.45rem; align-content: start; }
-  .plan h3 { font-size: 1.3rem; letter-spacing: -0.02em; }
-  .plan-desc { font-size: 0.9375rem; color: var(--muted); }
-  .plan-price { display: flex; align-items: baseline; gap: 0.5rem; }
-  .amount { font-size: 3.25rem; font-weight: 600; line-height: 1; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
-  .per { font-size: var(--t-sm); color: var(--muted); }
-  .meta { display: grid; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .meta div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.6rem; border-bottom: 1px solid var(--line); font-size: 0.9375rem; }
-  .meta dt { color: var(--muted); }
-  .meta dd { margin: 0; font-weight: 500; text-align: right; }
-  .features { display: grid; gap: 0.75rem; align-content: start; }
-  .features-lead { font-size: var(--t-sm); font-weight: 600; }
-  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; font-size: 0.9375rem; }
-  .ticks li { position: relative; padding-left: 1.75rem; }
-  .ticks li::before { content: ""; position: absolute; left: 0; top: 0.18em; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--accent-soft); }
-  .ticks li::after { content: ""; position: absolute; left: 0.42rem; top: 0.37em; width: 0.3rem; height: 0.55rem; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
-  .badge {
-    position: absolute;
-    top: 0;
-    left: 1.8rem;
-    transform: translateY(-50%);
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
-    font-size: var(--t-xs);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    white-space: nowrap;
+  @media (prefers-reduced-motion: no-preference) {
+    .pkg { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .pkg:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .preview .browser, .preview .phone-mini { transition: transform 0.3s ease; }
+    .pkg:hover .preview .browser, .pkg:hover .preview .phone-mini { transform: translateY(-4px); }
   }
-
-  .plan--rec { border: 1.5px solid var(--accent); box-shadow: var(--shadow-lg); }
-  .plan--rec .badge { background: var(--accent); color: var(--on-accent); }
-
-  .plan--top { overflow: hidden; background: var(--deep); color: var(--deep-fg); border-color: var(--deep-line); box-shadow: var(--shadow-lg); }
-  .plan--top::before {
-    content: "";
-    position: absolute;
-    inset: -40% -30% auto auto;
-    width: 90%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 40% 45%, var(--accent) 0%, transparent 55%),
-      radial-gradient(circle at 65% 30%, var(--ember) 0%, transparent 45%);
-    filter: blur(40px);
-    opacity: 0.45;
-    pointer-events: none;
+  .preview {
+    position: relative;
+    flex: none;
+    height: 172px;
+    padding: 18px 20px 0;
+    overflow: hidden;
+    background: var(--mock);
+    background: color-mix(in srgb, var(--hue) 13%, var(--surface));
+    border-bottom: 1px solid var(--line);
   }
-  .plan--top > * { position: relative; }
-  .plan--top .badge { position: absolute; top: 1.4rem; left: auto; right: 1.5rem; transform: none; background: rgba(255, 255, 255, 0.1); color: var(--deep-fg); border: 1px solid rgba(255, 255, 255, 0.18); }
-  .plan--top .plan-desc, .plan--top .per, .plan--top .meta dt { color: var(--deep-muted); }
-  .plan--top .meta, .plan--top .meta div { border-color: var(--deep-line); }
-  .plan--top .ticks li::before { background: rgba(255, 255, 255, 0.1); }
-  .plan--top .ticks li::after { border-color: var(--deep-accent); }
-
-  @media (max-width: 960px) {
-    .plans { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 2rem; max-width: 34rem; }
-    .plan { grid-row: auto; grid-template-rows: none; }
-  }
-
-  /* Smaller jobs */
-  .jobs-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1rem; margin: 4rem 0 1.25rem; }
-  .jobs-head h3 { font-size: 1.35rem; letter-spacing: -0.02em; }
-  .jobs-head p { color: var(--muted); }
-  .jobs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-  .job {
+  .preview .browser {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1rem 1.5rem;
-    padding: 1.6rem 1.7rem;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 16px;
-    scroll-margin-top: 2rem;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    box-shadow: var(--shadow);
   }
-  .job-info { display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
-  .job h4 { margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
-  .job-desc { font-size: 0.9375rem; color: var(--muted); }
-  .job-meta { font-size: var(--t-sm); font-weight: 500; }
-  .job-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: var(--t-sm); color: var(--muted); }
-  .job-list li { position: relative; padding-left: 0.85rem; }
-  .job-list li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
-  .job-buy { display: grid; justify-items: end; align-content: space-between; gap: 1rem; }
-  .job-buy .amount { font-size: 2.25rem; }
-  .link-cta { display: inline-flex; align-items: center; gap: 0.35rem; font-size: var(--t-sm); font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
-  .link-cta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .link-cta:hover { text-decoration: underline; text-underline-offset: 3px; }
-  @media (max-width: 860px) { .jobs { grid-template-columns: minmax(0, 1fr); max-width: 34rem; } }
-  @media (max-width: 440px) {
-    .job { grid-template-columns: minmax(0, 1fr); }
-    .job-buy { grid-auto-flow: column; justify-content: space-between; align-items: center; }
+  .pkg-body { display: flex; flex: 1; flex-direction: column; gap: 1rem; padding: 1.4rem 1.5rem 1.5rem; }
+  .pkg-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  .pkg h4 { font-size: 1.25rem; letter-spacing: -0.02em; }
+  .pkg-price { font-size: 1.85rem; font-weight: 600; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .best { font-size: 0.9375rem; color: var(--muted); }
+  .best b { font-weight: 600; color: var(--ink); }
+  .specs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .specs li {
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    background: var(--mock);
+    background: color-mix(in srgb, var(--hue) 11%, var(--surface));
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; font-size: 0.9375rem; }
+  .ticks li { position: relative; padding-left: 1.7rem; }
+  .ticks li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: var(--mock);
+    background: color-mix(in srgb, var(--hue) 16%, var(--surface));
+  }
+  .ticks li::after { content: ""; position: absolute; left: 0.4rem; top: 0.38em; width: 0.29rem; height: 0.53rem; border: solid var(--hue); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .pkg-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1rem; margin-top: auto; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+  .incl-note { font-size: var(--t-sm); color: var(--muted); }
+  .badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  /* Comparison */
+  /* Business group: preview beside the details on wide screens */
+  @media (min-width: 1000px) {
+    .pkg--side { flex-direction: row; }
+    .pkg--side .preview { width: 40%; height: auto; padding: 22px 0 0 22px; border-bottom: 0; border-right: 1px solid var(--line); }
+    .pkg--side .preview .browser { border-right: 0; border-radius: 8px 0 0 0; }
+  }
+
+  .pkg--rec { border: 1.5px solid var(--accent); box-shadow: var(--shadow-lg); }
+  .pkg--top { background: var(--deep); color: var(--deep-fg); border-color: var(--deep-line); box-shadow: var(--shadow-lg); }
+  .pkg--top .preview { background: var(--deep); border-bottom-color: var(--deep-line); }
+  .pkg--top .preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(70% 90% at 15% 20%, var(--accent) 0%, transparent 60%),
+      radial-gradient(60% 80% at 90% 10%, var(--ember) 0%, transparent 60%);
+    opacity: 0.55;
+  }
+  .pkg--top .preview .browser { position: relative; border-color: transparent; }
+  .pkg--top .best, .pkg--top .incl-note { color: var(--deep-muted); }
+  .pkg--top .best b { color: var(--deep-fg); }
+  .pkg--top .specs li { background: rgba(255, 255, 255, 0.08); }
+  .pkg--top .ticks li::before { background: rgba(255, 255, 255, 0.1); }
+  .pkg--top .ticks li::after { border-color: var(--deep-accent); }
+  .pkg--top .pkg-foot { border-top-color: var(--deep-line); }
+  .pkg--top .badge { background: rgba(255, 255, 255, 0.14); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.22); }
+
+  @media (max-width: 1000px) {
+    .pkgs--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pkgs--3 > .pkg:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 680px) {
+    .pkgs--3, .pkgs--2 { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* Preview details, one per kind of site */
+  .edit { position: relative; display: grid; gap: 6px; padding: 9px 8px; border: 1.5px dashed var(--hue); border-radius: 5px; }
+  .edit-tag { position: absolute; top: 0; right: 8px; transform: translateY(-55%); padding: 1px 6px; border-radius: 4px; background: var(--hue); color: var(--surface); font-size: 9px; font-weight: 600; line-height: 1.5; }
+  .preview--center { display: flex; justify-content: center; }
+  .phone-mini {
+    display: grid;
+    align-content: start;
+    gap: 7px;
+    width: 128px;
+    height: calc(100% + 10px);
+    padding: 14px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 18px 18px 0 0;
+    box-shadow: var(--shadow);
+  }
+  .avatar { width: 34px; height: 34px; margin: 0 auto 2px; border-radius: 50%; background: var(--hue); background: linear-gradient(135deg, var(--hue), color-mix(in srgb, var(--hue) 30%, var(--surface))); }
+  .phone-mini .ln { margin-inline: auto; }
+  .link-btn { height: 15px; border-radius: 6px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
+  .link-btn.on { background: var(--hue); border-color: var(--hue); }
+  .stat-card { position: absolute; right: 9%; bottom: 26px; display: grid; gap: 6px; padding: 9px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+  .bars { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
+  .bars i { width: 7px; height: var(--v); border-radius: 2px; background: var(--hue); }
+  .bars i:nth-child(odd) { opacity: 0.45; }
+  .hero-band { display: grid; justify-items: center; gap: 7px; padding: 13px; border-radius: 6px; background: var(--mock); background: color-mix(in srgb, var(--hue) 14%, var(--surface)); }
+  .countdown { display: flex; justify-content: center; gap: 6px; }
+  .countdown span { display: grid; place-items: center; width: 30px; height: 20px; border-radius: 5px; background: var(--ink); color: var(--surface); font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .masonry { columns: 3; column-gap: 6px; }
+  .masonry .thumb { margin-bottom: 6px; break-inside: avoid; }
+  .map {
+    position: relative;
+    background-color: var(--mock);
+    background-image: linear-gradient(var(--mock-2) 1px, transparent 1px), linear-gradient(90deg, var(--mock-2) 1px, transparent 1px);
+    background-size: 13px 13px;
+  }
+  .map-pin { position: absolute; left: 52%; top: 30%; width: 13px; height: 13px; border-radius: 50% 50% 50% 0; background: var(--hue); transform: rotate(-45deg); }
+  .stars { font-size: 10px; letter-spacing: 1px; line-height: 1; color: var(--hue); }
+  .tab { width: 17px; height: 6px; border-radius: 99px; background: var(--mock-2); }
+  .tab.on { background: var(--hue); }
+  .menu-item { display: flex; align-items: center; gap: 5px; }
+  .menu-item i { flex: 1; border-bottom: 1.5px dotted var(--line-strong); }
+  .plate { width: 100%; max-width: 70px; aspect-ratio: 1; margin-inline: auto; border-radius: 50%; border: 4px solid var(--surface); box-shadow: 0 0 0 1px var(--line), var(--shadow); }
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+  .cal i { aspect-ratio: 1; border-radius: 3px; background: var(--mock); }
+  .cal i.on { background: var(--hue); }
+  .cal i.ring { box-shadow: inset 0 0 0 1.5px var(--hue); background: transparent; }
+  .slot { height: 13px; border-radius: 4px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
+  .slot.on { background: var(--hue); border-color: var(--hue); }
+  .chart { height: 42px; padding: 4px; border: 1px solid var(--line); border-radius: 6px; }
+  .chart svg { display: block; width: 100%; height: 100%; }
+  .chart polyline { fill: none; stroke: var(--hue); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .chart polygon { fill: var(--hue); opacity: 0.14; }
+  .field { flex: 1; height: 14px; border: 1px solid var(--mock-2); border-radius: 3px; }
+  .cart { position: relative; width: 13px; height: 11px; border: 1.5px solid var(--ink); border-top-width: 0; border-radius: 0 0 3px 3px; }
+  .cart::after { content: ""; position: absolute; top: -6px; right: -7px; width: 9px; height: 9px; border-radius: 50%; background: var(--hue); }
+
+  /* Fit guide */
   .table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
-  table { width: 100%; min-width: 48rem; border-collapse: collapse; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
-  th, td { padding: 0.9rem 1.1rem; text-align: center; border-bottom: 1px solid var(--line); }
+  table { width: 100%; min-width: 52rem; border-collapse: collapse; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+  th, td { padding: 0.85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--line); }
   tbody tr:last-child > * { border-bottom: 0; }
-  thead th { padding-block: 1.25rem 1rem; vertical-align: bottom; font-weight: 600; line-height: 1.3; }
-  thead th small { display: block; margin-top: 0.15rem; font-size: var(--t-sm); font-weight: 400; color: var(--muted); }
-  thead th:first-child, tbody th { position: sticky; left: 0; z-index: 1; text-align: left; background: var(--surface); }
-  tbody th { font-weight: 500; }
-  .rec { background: var(--accent-soft); }
-  thead .rec small { color: var(--accent); font-weight: 600; }
-  .y, .n { font-size: 0; }
-  .y::before { content: "✓"; content: "✓" / ""; font-size: 1rem; font-weight: 700; color: var(--accent); }
-  .n::before { content: "—"; content: "—" / ""; font-size: 0.9375rem; color: var(--line-strong); }
+  thead th { font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  thead th:first-child, tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+  tbody th { font-weight: 400; color: var(--muted); }
+  td.num { text-align: right; font-weight: 600; white-space: nowrap; }
+  thead th.num { text-align: right; }
+  .pkg-link { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .pkg-link::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--hue); }
+  .pkg-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  tr.rec-row > * { background: var(--accent-soft); }
+  .rec-tag { margin-left: 0.4rem; font-size: var(--t-xs); font-weight: 600; color: var(--accent); }
 
   /* Add-ons */
   .panel { padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 4vw, 2.5rem); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
   .addons { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3.5rem; }
-  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 1.25rem; padding-block: 1.15rem; border-bottom: 1px solid var(--line); }
+  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 1.25rem; padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
   .addons li:nth-last-child(-n + 2) { border-bottom: 0; }
   .addon b { font-weight: 600; }
   .addon span { grid-column: 1; font-size: var(--t-sm); color: var(--muted); }
@@ -406,15 +555,17 @@
   /* Quote builder */
   .quote { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; gap: 2.5rem 3.5rem; }
   .quote form { display: grid; gap: 2.25rem; min-width: 0; }
-  fieldset { display: grid; gap: 0.55rem; min-width: 0; margin: 0; padding: 0; border: 0; }
+  fieldset { display: grid; gap: 0.5rem; min-width: 0; margin: 0; padding: 0; border: 0; }
   legend { margin-bottom: 0.75rem; padding: 0; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .opt-group { margin-top: 0.6rem; font-size: var(--t-sm); font-weight: 600; color: var(--muted); }
+  .opt-group:first-of-type { margin-top: 0; }
   input[type="radio"], input[type="checkbox"] { width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--accent); }
   .opt {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.9rem;
-    padding: 0.9rem 1.1rem;
+    padding: 0.8rem 1.05rem;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -464,6 +615,7 @@
   .sum-lines { list-style: none; margin: 0; padding: 1.1rem 0 0; display: grid; gap: 0.65rem; border-top: 1px solid var(--line); font-size: 0.9375rem; }
   .sum-lines li, .sum-row { display: flex; justify-content: space-between; gap: 1rem; }
   .sum-lines li span:last-child, .sum-row span:last-child { white-space: nowrap; }
+  .sum-lines li.inc span:last-child { color: var(--muted); }
   .sum-total { display: grid; gap: 0.4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
   .sum-total .sum-row:first-child { align-items: baseline; font-weight: 600; }
   .sum-total .sum-row:first-child span:last-child { font-size: 2.25rem; letter-spacing: -0.04em; }
@@ -542,8 +694,8 @@
   }
 
   @media print {
-    .showcase, #quote, .cta-actions, .topbar .btn, .nav { display: none; }
-    .plan, .job, .addon, .step, tr, details { break-inside: avoid; }
+    .showcase, .preview, #quote, .cta-actions, .topbar .btn, .nav, .jump { display: none; }
+    .pkg, .addon, .step, tr, details { break-inside: avoid; }
     .table-wrap { overflow: visible; }
     table { min-width: 0; }
   }
@@ -554,12 +706,12 @@
 <header class="wrap topbar">
   <a class="brand" href="#top" id="top"><span class="logo-mark" aria-hidden="true"></span>Website Design</a>
   <nav class="nav" aria-label="Sections">
-    <a href="#pricing">Pricing</a>
-    <a href="#compare">Compare</a>
+    <a href="#packages">Packages</a>
+    <a href="#fit">Find your fit</a>
     <a href="#process">Process</a>
     <a href="#faq">FAQ</a>
   </nav>
-  <a class="btn btn--secondary" href="#quote">Get a quote</a>
+  <a class="btn btn--secondary btn--sm" href="#quote">Get a quote</a>
 </header>
 
 <main>
@@ -567,9 +719,9 @@
     <div class="hero-copy">
       <span class="status"><span class="status-dot" aria-hidden="true"></span>Now booking new projects</span>
       <h1>Websites built to <em>win</em> you customers.</h1>
-      <p class="lede">I design and build fast, modern websites for small businesses and independent brands. Clear packages from $20 to $400, with no hourly billing and no surprises.</p>
+      <p class="lede">I design and build fast, modern websites for small businesses, creators and independent brands. Ten packages from $20 to $400, each built for a different kind of business, with one flat price.</p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href="#pricing">View pricing <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--primary" href="#packages">See the packages <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--secondary" href="#quote">Build a quote</a>
       </div>
       <ul class="assure">
@@ -583,19 +735,19 @@
       <div class="desk">
         <div class="bar"><i></i><i></i><i></i><b></b></div>
         <div class="pg">
-          <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span></span><span class="pill" style="--w:52px; --ph:18px"></span></div>
-          <div class="cols" style="--n:2; gap:18px; align-items:center">
-            <div class="stack">
-              <span class="ln ln--accent" style="--w:32%; --lh:6px"></span>
-              <span class="ln ln--ink" style="--w:95%"></span>
-              <span class="ln ln--ink" style="--w:72%"></span>
-              <span class="ln" style="--w:88%; margin-top:4px"></span>
-              <span class="ln" style="--w:64%"></span>
-              <span class="r" style="margin-top:8px"><span class="pill" style="--w:64px"></span><span class="pill pill--line" style="--w:54px"></span></span>
+          <div class="r sb"><span class="logo" style="width:14px; height:14px"></span><span class="r"><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span></span><span class="pill" style="--w:52px; --ph:18px"></span></div>
+          <div class="cols" style="--n:2; --g:18px; align-items:center">
+            <div class="stack" style="gap:8px">
+              <span class="ln ln--accent" style="--w:32%"></span>
+              <span class="ln ln--ink" style="--w:95%; --lh:13px"></span>
+              <span class="ln ln--ink" style="--w:72%; --lh:13px"></span>
+              <span class="ln" style="--w:88%; --lh:7px; margin-top:4px"></span>
+              <span class="ln" style="--w:64%; --lh:7px"></span>
+              <span class="r" style="margin-top:8px"><span class="pill" style="--w:64px; --ph:20px"></span><span class="pill pill--line" style="--w:54px; --ph:20px"></span></span>
             </div>
             <span class="aurora" style="display:block; height:150px"></span>
           </div>
-          <div class="cols">
+          <div class="cols" style="--g:10px">
             <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:70%; --lh:8px"></span><span class="ln" style="--w:92%"></span><span class="ln" style="--w:60%"></span></div>
             <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:62%; --lh:8px"></span><span class="ln" style="--w:88%"></span><span class="ln" style="--w:70%"></span></div>
             <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:74%; --lh:8px"></span><span class="ln" style="--w:85%"></span><span class="ln" style="--w:55%"></span></div>
@@ -637,165 +789,370 @@
     </div>
   </section>
 
-  <section class="wrap sec" id="pricing" aria-labelledby="pricing-title">
+  <section class="wrap sec" id="packages" aria-labelledby="packages-title">
     <div class="section-head">
-      <p class="eyebrow">Pricing</p>
-      <h2 id="pricing-title">Clear packages. <em>Flat</em> prices.</h2>
-      <p>Every package is a one-time price for the work listed. You'll know the full cost before anything starts.</p>
+      <p class="eyebrow">Packages</p>
+      <h2 id="packages-title">Ten kinds of website. <em>One</em> flat price each.</h2>
+      <p>Every package is built around how that kind of business actually works, with features you won't find in the others.</p>
+    </div>
+    <nav class="jump" aria-label="Package groups">
+      <a href="#quick">Quick jobs <span>$20–$75</span></a>
+      <a href="#business">Business websites <span>$125–$200</span></a>
+      <a href="#premium">Premium builds <span>$250–$400</span></a>
+    </nav>
+
+    <!-- Quick jobs -->
+    <div class="group" id="quick">
+      <div class="group-head">
+        <h3>Quick jobs</h3>
+        <p>Fast, focused projects you can have live within a week.</p>
+        <span class="group-range">$20–$75</span>
+      </div>
+      <div class="pkgs pkgs--3">
+
+        <article class="pkg" id="pkg-tune-up" style="--hue: var(--hue-slate)" aria-labelledby="n-1">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:20px"></span><span class="ln" style="--w:20px"></span><span class="ln" style="--w:20px"></span></span></div>
+                <span class="ln ln--ink" style="--w:58%"></span>
+                <div class="edit"><span class="ln" style="--w:88%"></span><span class="ln" style="--w:62%"></span><span class="edit-tag">Updated</span></div>
+                <div class="cols"><span class="bx" style="--h:26px"></span><span class="bx" style="--h:26px"></span><span class="bx" style="--h:26px"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-1">Tune-Up</h4><p class="pkg-price">$20</p></div>
+            <p class="best"><b>Best for</b> a site that needs fixes, not a rebuild.</p>
+            <ul class="specs"><li>Your current site</li><li>2 days</li><li>1 revision</li></ul>
+            <ul class="ticks">
+              <li>Update text, photos, prices or hours</li>
+              <li>Fix broken links, buttons and images</li>
+              <li>Refresh colors, fonts and spacing on one page</li>
+              <li>Speed and mobile check, with a short list of what to fix next</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Works on most site builders</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="1">Choose</a></div>
+          </div>
+        </article>
+
+        <article class="pkg" id="pkg-link-in-bio" style="--hue: var(--hue-rose)" aria-labelledby="n-2">
+          <div class="preview preview--center" aria-hidden="true">
+            <div class="phone-mini">
+              <span class="avatar"></span>
+              <span class="ln ln--ink" style="--w:55%; --lh:8px"></span>
+              <span class="ln" style="--w:75%; --lh:5px"></span>
+              <span class="link-btn on"></span>
+              <span class="link-btn"></span>
+              <span class="link-btn"></span>
+              <span class="link-btn"></span>
+            </div>
+            <div class="stat-card"><span class="ln" style="--w:36px; --lh:5px"></span><div class="bars"><i style="--v:40%"></i><i style="--v:75%"></i><i style="--v:55%"></i><i style="--v:95%"></i></div></div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-2">Link-in-Bio</h4><p class="pkg-price">$40</p></div>
+            <p class="best"><b>Best for</b> creators, artists and side hustles who live on social media.</p>
+            <ul class="specs"><li>1 mobile page</li><li>3 days</li><li>1 revision</li><li>7 days support</li></ul>
+            <ul class="ticks">
+              <li>Your photo, short bio and up to 10 link buttons</li>
+              <li>Embedded video, music or latest posts</li>
+              <li>Styled in your brand colors</li>
+              <li>Click tracking to see which links get tapped</li>
+              <li>Ready for your Instagram, TikTok and YouTube bios</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup +$20</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="2">Choose</a></div>
+          </div>
+        </article>
+
+        <article class="pkg" id="pkg-landing-page" style="--hue: var(--hue-ember)" aria-labelledby="n-3">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg" style="gap:8px">
+                <div class="r sb"><span class="logo"></span><span class="pill" style="--w:34px; --ph:12px"></span></div>
+                <div class="hero-band" style="gap:6px; padding:9px"><span class="ln ln--ink" style="--w:68%; --lh:11px"></span><span class="ln" style="--w:48%"></span><span class="pill" style="--w:58px"></span></div>
+                <div class="countdown"><span>12</span><span>08</span><span>45</span><span>30</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-3">Landing Page</h4><p class="pkg-price">$75</p></div>
+            <p class="best"><b>Best for</b> launching a product, event or new business.</p>
+            <ul class="specs"><li>1 page</li><li>5 days</li><li>1 revision</li><li>7 days support</li></ul>
+            <ul class="ticks">
+              <li>One scrolling page with up to 6 sections</li>
+              <li>Headline and call to action written to convert</li>
+              <li>Sign-up, RSVP or contact form</li>
+              <li>Countdown timer or event details</li>
+              <li>Social links and basic search setup</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup +$20</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="3">Choose</a></div>
+          </div>
+        </article>
+
+      </div>
     </div>
 
-    <div class="plans">
-      <article class="plan" id="level-3" aria-labelledby="plan-3">
-        <div class="plan-head">
-          <h3 id="plan-3">Small Business</h3>
-          <p class="plan-desc">A complete website for an established local business.</p>
-        </div>
-        <p class="plan-price"><span class="amount">$150</span><span class="per">one-time</span></p>
-        <a class="btn btn--secondary btn--block" href="#quote" data-pick="3">Choose Small Business</a>
-        <dl class="meta">
-          <div><dt>Pages</dt><dd>Up to 5</dd></div>
-          <div><dt>Turnaround</dt><dd>10 days</dd></div>
-          <div><dt>Revisions</dt><dd>2 rounds</dd></div>
-        </dl>
-        <div class="features">
-          <p class="features-lead">Everything in One-Pager, plus:</p>
-          <ul class="ticks">
-            <li>Custom color palette and typography</li>
-            <li>Map, hours, and a services or gallery page</li>
-            <li>Search setup on every page</li>
-            <li>Domain and hosting setup</li>
-            <li>7 days of support after launch</li>
-          </ul>
-        </div>
-      </article>
+    <!-- Business websites -->
+    <div class="group" id="business">
+      <div class="group-head">
+        <h3>Business websites</h3>
+        <p>Full sites shaped around how your type of business runs.</p>
+        <span class="group-range">$125–$200</span>
+      </div>
+      <div class="pkgs pkgs--2">
 
-      <article class="plan plan--rec" id="level-4" aria-labelledby="plan-4">
-        <span class="badge">Recommended</span>
-        <div class="plan-head">
-          <h3 id="plan-4">Pro</h3>
-          <p class="plan-desc">A growth-ready site built to turn visitors into customers.</p>
-        </div>
-        <p class="plan-price"><span class="amount">$250</span><span class="per">one-time</span></p>
-        <a class="btn btn--primary btn--block" href="#quote" data-pick="4">Choose Pro</a>
-        <dl class="meta">
-          <div><dt>Pages</dt><dd>Up to 8</dd></div>
-          <div><dt>Turnaround</dt><dd>14 days</dd></div>
-          <div><dt>Revisions</dt><dd>3 rounds</dd></div>
-        </dl>
-        <div class="features">
-          <p class="features-lead">Everything in Small Business, plus:</p>
-          <ul class="ticks">
-            <li>Blog or news section you can manage</li>
-            <li>Booking, quote request or sign-up form</li>
-            <li>Speed optimization</li>
-            <li>Visitor analytics</li>
-            <li>14 days of support after launch</li>
-          </ul>
-        </div>
-      </article>
+        <article class="pkg pkg--side" id="pkg-portfolio" style="--hue: var(--hue-violet)" aria-labelledby="n-4">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="ln ln--ink" style="--w:56px; --lh:8px"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span></span></div>
+                <div class="masonry">
+                  <span class="thumb" style="--h:58px"></span><span class="thumb t2" style="--h:34px"></span><span class="thumb t3" style="--h:72px"></span><span class="thumb t2" style="--h:46px"></span><span class="thumb" style="--h:30px"></span><span class="thumb t3" style="--h:42px"></span><span class="thumb t2" style="--h:52px"></span><span class="thumb" style="--h:40px"></span><span class="thumb t3" style="--h:36px"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-4">Portfolio</h4><p class="pkg-price">$125</p></div>
+            <p class="best"><b>Best for</b> photographers, artists, designers and makers.</p>
+            <ul class="specs"><li>Up to 4 pages</li><li>7 days</li><li>2 revisions</li><li>7 days support</li></ul>
+            <ul class="ticks">
+              <li>Full-screen gallery with click-to-enlarge photos</li>
+              <li>Project pages that tell the story behind the work</li>
+              <li>About page with your story and photo</li>
+              <li>Inquiry form for commissions and bookings</li>
+              <li>Image optimization so big photos still load fast</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="4">Choose</a></div>
+          </div>
+        </article>
 
-      <article class="plan plan--top" id="level-5" aria-labelledby="plan-5">
-        <span class="badge">Fully custom</span>
-        <div class="plan-head">
-          <h3 id="plan-5">Masterpiece</h3>
-          <p class="plan-desc">A one-of-a-kind website, designed from scratch around your brand.</p>
-        </div>
-        <p class="plan-price"><span class="amount">$400</span><span class="per">one-time</span></p>
-        <a class="btn btn--light btn--block" href="#quote" data-pick="5">Choose Masterpiece</a>
-        <dl class="meta">
-          <div><dt>Pages</dt><dd>Up to 12</dd></div>
-          <div><dt>Turnaround</dt><dd>21 days</dd></div>
-          <div><dt>Revisions</dt><dd>5 rounds</dd></div>
-        </dl>
-        <div class="features">
-          <p class="features-lead">Everything in Pro, plus:</p>
-          <ul class="ticks">
-            <li>Two original design concepts to choose from</li>
-            <li>Custom graphics, icons and animation</li>
-            <li>Online store (up to 15 products) or advanced booking</li>
-            <li>Advanced search optimization</li>
-            <li>30 days of priority support</li>
-            <li>1-hour walkthrough of your new site</li>
-          </ul>
-        </div>
-      </article>
+        <article class="pkg pkg--side" id="pkg-small-business" style="--hue: var(--hue-teal)" aria-labelledby="n-5">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="r" style="gap:4px"><span class="tab on"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span></span></div>
+                <div class="cols" style="--n:2; --g:10px">
+                  <div class="stack"><span class="ln ln--ink" style="--w:90%"></span><span class="ln ln--ink" style="--w:62%"></span><span class="ln" style="--w:88%"></span><span class="ln" style="--w:70%"></span><span class="stars">★★★★★</span></div>
+                  <span class="bx map" style="--h:78px"><i class="map-pin"></i></span>
+                </div>
+                <div class="cols" style="--n:3"><span class="bx" style="--h:22px"></span><span class="bx" style="--h:22px"></span><span class="bx" style="--h:22px"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-5">Small Business</h4><p class="pkg-price">$150</p></div>
+            <p class="best"><b>Best for</b> local shops and service businesses.</p>
+            <ul class="specs"><li>Up to 5 pages</li><li>10 days</li><li>2 revisions</li><li>7 days support</li></ul>
+            <ul class="ticks">
+              <li>Services page with clear pricing</li>
+              <li>Map, opening hours and tap-to-call</li>
+              <li>Customer reviews section</li>
+              <li>Google Business Profile setup</li>
+              <li>Custom color palette and typography</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="5">Choose</a></div>
+          </div>
+        </article>
+
+        <article class="pkg pkg--side" id="pkg-restaurant" style="--hue: var(--hue-amber)" aria-labelledby="n-6">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="pill" style="--w:44px; --ph:12px"></span></div>
+                <div class="cols" style="--n:2; --g:12px; align-items:center">
+                  <div class="stack" style="gap:9px">
+                    <span class="ln ln--ink" style="--w:50%; --lh:8px"></span>
+                    <div class="menu-item"><span class="ln" style="--w:40%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
+                    <div class="menu-item"><span class="ln" style="--w:52%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
+                    <div class="menu-item"><span class="ln" style="--w:34%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
+                    <div class="menu-item"><span class="ln" style="--w:46%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
+                  </div>
+                  <span class="plate thumb"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-6">Restaurant &amp; Café</h4><p class="pkg-price">$175</p></div>
+            <p class="best"><b>Best for</b> restaurants, cafés, bakeries and food trucks.</p>
+            <ul class="specs"><li>Up to 5 pages</li><li>10 days</li><li>2 revisions</li><li>14 days support</li></ul>
+            <ul class="ticks">
+              <li>Easy-to-read menu with prices and dietary tags</li>
+              <li>Links to online ordering and delivery apps</li>
+              <li>Reservation button or booking form</li>
+              <li>Food photo gallery and a daily specials banner</li>
+              <li>Google Business Profile setup</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="6">Choose</a></div>
+          </div>
+        </article>
+
+        <article class="pkg pkg--side" id="pkg-booking" style="--hue: var(--hue-green)" aria-labelledby="n-7">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="pill pill--ink" style="--w:40px; --ph:12px"></span></div>
+                <div class="cols" style="--n:2; --g:12px; grid-template-columns: 1.3fr 1fr">
+                  <div class="stack" style="gap:6px">
+                    <span class="ln ln--ink" style="--w:55%; --lh:8px"></span>
+                    <div class="cal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i class="ring"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="stack" style="gap:6px; align-content:start; padding-top:15px"><span class="slot"></span><span class="slot on"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-7">Booking Site</h4><p class="pkg-price">$200</p></div>
+            <p class="best"><b>Best for</b> salons, trainers, tutors, coaches and consultants.</p>
+            <ul class="specs"><li>Up to 6 pages</li><li>12 days</li><li>3 revisions</li><li>14 days support</li></ul>
+            <ul class="ticks">
+              <li>Online booking calendar synced to your schedule</li>
+              <li>Services menu with prices and session lengths</li>
+              <li>New-client intake form</li>
+              <li>Automatic email confirmations and reminders</li>
+              <li>Reviews and a before-and-after gallery</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="7">Choose</a></div>
+          </div>
+        </article>
+
+      </div>
     </div>
 
-    <div class="jobs-head">
-      <h3>Smaller jobs</h3>
-      <p>For quick fixes and simple sites.</p>
-    </div>
-    <div class="jobs">
-      <article class="job" id="level-1" aria-labelledby="job-1">
-        <div class="job-info">
-          <h4 id="job-1">Tune-Up</h4>
-          <p class="job-desc">Updates and fixes for a website you already have.</p>
-          <p class="job-meta">Your current site · 2 days · 1 revision</p>
-          <ul class="job-list">
-            <li>Text, photo and price updates</li>
-            <li>Broken link fixes</li>
-            <li>Style refresh on one page</li>
-            <li>Mobile check</li>
-          </ul>
-        </div>
-        <div class="job-buy">
-          <p class="plan-price"><span class="amount">$20</span></p>
-          <a class="link-cta" href="#quote" data-pick="1">Choose <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
-      <article class="job" id="level-2" aria-labelledby="job-2">
-        <div class="job-info">
-          <h4 id="job-2">One-Pager</h4>
-          <p class="job-desc">A polished single-page site to get you online fast.</p>
-          <p class="job-meta">1 page · 5 days · 1 revision</p>
-          <ul class="job-list">
-            <li>Up to 5 sections</li>
-            <li>Mobile-friendly</li>
-            <li>Contact form or call button</li>
-            <li>Social links</li>
-            <li>Basic search setup</li>
-          </ul>
-        </div>
-        <div class="job-buy">
-          <p class="plan-price"><span class="amount">$75</span></p>
-          <a class="link-cta" href="#quote" data-pick="2">Choose <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
+    <!-- Premium builds -->
+    <div class="group" id="premium">
+      <div class="group-head">
+        <h3>Premium builds</h3>
+        <p>For growing brands, online sales and fully custom work.</p>
+        <span class="group-range">$250–$400</span>
+      </div>
+      <div class="pkgs pkgs--3">
+
+        <article class="pkg pkg--rec" id="pkg-growth" style="--hue: var(--hue-blue)" aria-labelledby="n-8">
+          <span class="badge">Recommended</span>
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="pill" style="--w:30px; --ph:11px"></span></span></div>
+                <div class="cols">
+                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:30px"></span><span class="ln ln--ink" style="--w:80%; --lh:6px"></span><span class="ln" style="--w:60%; --lh:5px"></span></div>
+                  <div class="stack" style="gap:5px"><span class="thumb t2" style="--h:30px"></span><span class="ln ln--ink" style="--w:70%; --lh:6px"></span><span class="ln" style="--w:85%; --lh:5px"></span></div>
+                  <div class="stack" style="gap:5px"><span class="thumb t3" style="--h:30px"></span><span class="ln ln--ink" style="--w:75%; --lh:6px"></span><span class="ln" style="--w:50%; --lh:5px"></span></div>
+                </div>
+                <div class="cols" style="--n:2; align-items:center">
+                  <div class="chart"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polygon points="0,30 0,26 16,22 32,24 48,15 64,17 80,8 100,3 100,30"/><polyline points="0,26 16,22 32,24 48,15 64,17 80,8 100,3"/></svg></div>
+                  <div class="stack" style="gap:6px"><span class="field" style="flex:none"></span><span class="pill" style="--w:100%; --ph:13px"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-8">Growth</h4><p class="pkg-price">$250</p></div>
+            <p class="best"><b>Best for</b> businesses ready to bring in steady leads.</p>
+            <ul class="specs"><li>Up to 8 pages</li><li>14 days</li><li>3 revisions</li><li>14 days support</li></ul>
+            <ul class="ticks">
+              <li>Blog or news section you can update yourself</li>
+              <li>Quote request and lead capture forms</li>
+              <li>Newsletter signup connected to your email list</li>
+              <li>Visitor analytics with a simple monthly snapshot</li>
+              <li>Speed optimization for higher search rankings</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--primary btn--sm" href="#quote" data-pick="8">Choose Growth</a></div>
+          </div>
+        </article>
+
+        <article class="pkg" id="pkg-store" style="--hue: var(--hue-sky)" aria-labelledby="n-9">
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="r" style="gap:10px"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="cart"></span></span></div>
+                <div class="cols" style="--n:4; --g:7px">
+                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:42px"></span><span class="ln ln--ink" style="--w:80%; --lh:5px"></span><span class="ln ln--hue" style="--w:40%; --lh:5px"></span></div>
+                  <div class="stack" style="gap:5px"><span class="thumb t2" style="--h:42px"></span><span class="ln ln--ink" style="--w:70%; --lh:5px"></span><span class="ln ln--hue" style="--w:45%; --lh:5px"></span></div>
+                  <div class="stack" style="gap:5px"><span class="thumb t3" style="--h:42px"></span><span class="ln ln--ink" style="--w:85%; --lh:5px"></span><span class="ln ln--hue" style="--w:35%; --lh:5px"></span></div>
+                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:42px"></span><span class="ln ln--ink" style="--w:65%; --lh:5px"></span><span class="ln ln--hue" style="--w:42%; --lh:5px"></span></div>
+                </div>
+                <div class="r sb" style="margin-top:4px"><span class="ln" style="--w:40%"></span><span class="pill pill--ink" style="--w:64px; --ph:15px"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-9">Online Store</h4><p class="pkg-price">$325</p></div>
+            <p class="best"><b>Best for</b> selling products online.</p>
+            <ul class="specs"><li>Up to 25 products</li><li>18 days</li><li>3 revisions</li><li>21 days support</li></ul>
+            <ul class="ticks">
+              <li>Product pages with photos, sizes and options</li>
+              <li>Cart and secure checkout</li>
+              <li>Shipping, tax and discount code setup</li>
+              <li>Order and inventory email alerts</li>
+              <li>Training so you can add products yourself</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="9">Choose</a></div>
+          </div>
+        </article>
+
+        <article class="pkg pkg--top" id="pkg-masterpiece" aria-labelledby="n-10">
+          <span class="badge">Fully custom</span>
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <div class="pg">
+                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span></span></div>
+                <div class="aurora stack" style="height:74px; padding:12px; align-content:end; justify-items:start; gap:6px"><span class="ln ln--light" style="--w:62%"></span><span class="ln ln--light" style="--w:40%; --lh:6px; opacity:0.7"></span></div>
+                <div class="cols" style="--n:3; --g:7px"><span class="aurora" style="display:block; height:30px"></span><span class="aurora" style="display:block; height:30px; filter:hue-rotate(40deg)"></span><span class="aurora" style="display:block; height:30px; filter:hue-rotate(-30deg)"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-top"><h4 id="n-10">Masterpiece</h4><p class="pkg-price">$400</p></div>
+            <p class="best"><b>Best for</b> brands that want something nobody else has.</p>
+            <ul class="specs"><li>Up to 12 pages</li><li>21 days</li><li>5 revisions</li><li>30 days priority support</li></ul>
+            <ul class="ticks">
+              <li>Two original design concepts to choose from</li>
+              <li>Custom illustrations, icons and animation</li>
+              <li>Online store or booking built in</li>
+              <li>Advanced search optimization</li>
+              <li>1-hour walkthrough of your new site</li>
+            </ul>
+            <div class="pkg-foot"><span class="incl-note">Domain setup included</span><a class="btn btn--light btn--sm" href="#quote" data-pick="10">Choose Masterpiece</a></div>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 
-  <section class="wrap sec" id="compare" aria-labelledby="compare-title">
+  <section class="wrap sec" id="fit" aria-labelledby="fit-title">
     <div class="section-head">
-      <p class="eyebrow">Compare</p>
-      <h2 id="compare-title">Every package, side by side</h2>
+      <p class="eyebrow">Find your fit</p>
+      <h2 id="fit-title">Not sure which one? Start here.</h2>
+      <p>Find the line that sounds like you.</p>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr>
-            <th scope="col"><span class="sr-only">Feature</span></th>
-            <th scope="col">Tune-Up<small>$20</small></th>
-            <th scope="col">One-Pager<small>$75</small></th>
-            <th scope="col">Small Business<small>$150</small></th>
-            <th scope="col" class="rec">Pro<small>$250 · Recommended</small></th>
-            <th scope="col">Masterpiece<small>$400</small></th>
-          </tr>
+          <tr><th scope="col">If you…</th><th scope="col">Package</th><th scope="col">Pages</th><th scope="col">Ready in</th><th scope="col">Revisions</th><th scope="col">Support</th><th scope="col" class="num">Price</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Pages</th><td>Current site</td><td>1</td><td>Up to 5</td><td class="rec">Up to 8</td><td>Up to 12</td></tr>
-          <tr><th scope="row">Turnaround</th><td>2 days</td><td>5 days</td><td>10 days</td><td class="rec">14 days</td><td>21 days</td></tr>
-          <tr><th scope="row">Revision rounds</th><td>1</td><td>1</td><td>2</td><td class="rec">3</td><td>5</td></tr>
-          <tr><th scope="row">Mobile-friendly</th><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Contact form or call button</th><td class="n">Not included</td><td class="y">Included</td><td class="y">Included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Search setup</th><td class="n">Not included</td><td>Basic</td><td>Every page</td><td class="rec">Every page</td><td>Advanced</td></tr>
-          <tr><th scope="row">Custom colors and typography</th><td class="n">Not included</td><td class="n">Not included</td><td class="y">Included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Domain and hosting setup</th><td>$20 add-on</td><td>$20 add-on</td><td class="y">Included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Blog and booking form</th><td class="n">Not included</td><td class="n">Not included</td><td class="n">Not included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Analytics and speed optimization</th><td class="n">Not included</td><td class="n">Not included</td><td class="n">Not included</td><td class="rec y">Included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Custom graphics and animation</th><td class="n">Not included</td><td class="n">Not included</td><td class="n">Not included</td><td class="rec n">Not included</td><td class="y">Included</td></tr>
-          <tr><th scope="row">Online store</th><td class="n">Not included</td><td class="n">Not included</td><td class="n">Not included</td><td class="rec n">Not included</td><td>Up to 15 products</td></tr>
-          <tr><th scope="row">Support after launch</th><td class="n">Not included</td><td class="n">Not included</td><td>7 days</td><td class="rec">14 days</td><td>30 days, priority</td></tr>
-          <tr><th scope="row">Walkthrough of your site</th><td class="n">Not included</td><td class="n">Not included</td><td class="n">Not included</td><td class="rec n">Not included</td><td>1 hour</td></tr>
+          <tr><th scope="row">need fixes on your current site</th><td><a class="pkg-link" style="--hue: var(--hue-slate)" href="#pkg-tune-up">Tune-Up</a></td><td>Current site</td><td>2 days</td><td>1</td><td>None</td><td class="num">$20</td></tr>
+          <tr><th scope="row">want one link for your social bios</th><td><a class="pkg-link" style="--hue: var(--hue-rose)" href="#pkg-link-in-bio">Link-in-Bio</a></td><td>1 mobile page</td><td>3 days</td><td>1</td><td>7 days</td><td class="num">$40</td></tr>
+          <tr><th scope="row">are launching a product or event</th><td><a class="pkg-link" style="--hue: var(--hue-ember)" href="#pkg-landing-page">Landing Page</a></td><td>1</td><td>5 days</td><td>1</td><td>7 days</td><td class="num">$75</td></tr>
+          <tr><th scope="row">want to show off your work</th><td><a class="pkg-link" style="--hue: var(--hue-violet)" href="#pkg-portfolio">Portfolio</a></td><td>Up to 4</td><td>7 days</td><td>2</td><td>7 days</td><td class="num">$125</td></tr>
+          <tr><th scope="row">run a local shop or service</th><td><a class="pkg-link" style="--hue: var(--hue-teal)" href="#pkg-small-business">Small Business</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>7 days</td><td class="num">$150</td></tr>
+          <tr><th scope="row">run a restaurant or café</th><td><a class="pkg-link" style="--hue: var(--hue-amber)" href="#pkg-restaurant">Restaurant &amp; Café</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>14 days</td><td class="num">$175</td></tr>
+          <tr><th scope="row">take appointments</th><td><a class="pkg-link" style="--hue: var(--hue-green)" href="#pkg-booking">Booking Site</a></td><td>Up to 6</td><td>12 days</td><td>3</td><td>14 days</td><td class="num">$200</td></tr>
+          <tr class="rec-row"><th scope="row">want steady leads and a blog</th><td><a class="pkg-link" style="--hue: var(--hue-blue)" href="#pkg-growth">Growth</a><span class="rec-tag">Recommended</span></td><td>Up to 8</td><td>14 days</td><td>3</td><td>14 days</td><td class="num">$250</td></tr>
+          <tr><th scope="row">want to sell products online</th><td><a class="pkg-link" style="--hue: var(--hue-sky)" href="#pkg-store">Online Store</a></td><td>Up to 25 products</td><td>18 days</td><td>3</td><td>21 days</td><td class="num">$325</td></tr>
+          <tr><th scope="row">want something nobody else has</th><td><a class="pkg-link" style="--hue: var(--ink)" href="#pkg-masterpiece">Masterpiece</a></td><td>Up to 12</td><td>21 days</td><td>5</td><td>30 days, priority</td><td class="num">$400</td></tr>
         </tbody>
       </table>
     </div>
@@ -804,8 +1161,8 @@
   <section class="wrap sec" aria-labelledby="addons-title">
     <div class="section-head">
       <p class="eyebrow">Add-ons</p>
-      <h2 id="addons-title">Tailor any package</h2>
-      <p>Add exactly what you need, priced per item.</p>
+      <h2 id="addons-title">Make any package your own</h2>
+      <p>Mix and match extras with any package.</p>
     </div>
     <div class="panel">
       <ul class="addons">
@@ -813,7 +1170,11 @@
         <li class="addon"><b>Extra revision round</b><span>More rounds of changes.</span><strong>$15 each</strong></li>
         <li class="addon"><b>Copywriting</b><span>Professional copy, written for you.</span><strong>$10 / page</strong></li>
         <li class="addon"><b>Logo design</b><span>Two concepts plus final files.</span><strong>$40</strong></li>
-        <li class="addon"><b>Domain and hosting setup</b><span>Included with Small Business and up.</span><strong>$20</strong></li>
+        <li class="addon"><b>Social media kit</b><span>Profile image and matching banners for 3 platforms.</span><strong>$30</strong></li>
+        <li class="addon"><b>Booking calendar</b><span>Add online booking to any package.</span><strong>$35</strong></li>
+        <li class="addon"><b>Google Business Profile</b><span>Set up so you show on Google Maps.</span><strong>$25</strong></li>
+        <li class="addon"><b>Newsletter signup</b><span>Connected to your email list.</span><strong>$15</strong></li>
+        <li class="addon"><b>Domain and hosting setup</b><span>Included with every package from $125 up.</span><strong>$20</strong></li>
         <li class="addon"><b>Business email</b><span>Up to 3 addresses on your domain.</span><strong>$15</strong></li>
         <li class="addon"><b>Rush delivery</b><span>About half the standard turnaround.</span><strong>+$30</strong></li>
         <li class="addon"><b>Monthly care plan</b><span>Backups, updates and 30 minutes of edits a month.</span><strong>$25 / month</strong></li>
@@ -831,21 +1192,33 @@
       <form id="quote-form" novalidate>
         <fieldset>
           <legend>Package</legend>
+          <p class="opt-group">Quick jobs</p>
           <label class="opt"><input type="radio" name="level" id="pick-1" value="1"><span class="opt-name">Tune-Up</span><span class="opt-price">$20</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-2" value="2"><span class="opt-name">One-Pager</span><span class="opt-price">$75</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-3" value="3"><span class="opt-name">Small Business</span><span class="opt-price">$150</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-4" value="4" checked><span class="opt-name">Pro<span class="opt-tag">Recommended</span></span><span class="opt-price">$250</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-5" value="5"><span class="opt-name">Masterpiece</span><span class="opt-price">$400</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-2" value="2"><span class="opt-name">Link-in-Bio</span><span class="opt-price">$40</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-3" value="3"><span class="opt-name">Landing Page</span><span class="opt-price">$75</span></label>
+          <p class="opt-group">Business websites</p>
+          <label class="opt"><input type="radio" name="level" id="pick-4" value="4"><span class="opt-name">Portfolio</span><span class="opt-price">$125</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-5" value="5"><span class="opt-name">Small Business</span><span class="opt-price">$150</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-6" value="6"><span class="opt-name">Restaurant &amp; Café</span><span class="opt-price">$175</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-7" value="7"><span class="opt-name">Booking Site</span><span class="opt-price">$200</span></label>
+          <p class="opt-group">Premium builds</p>
+          <label class="opt"><input type="radio" name="level" id="pick-8" value="8" checked><span class="opt-name">Growth<span class="opt-tag">Recommended</span></span><span class="opt-price">$250</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-9" value="9"><span class="opt-name">Online Store</span><span class="opt-price">$325</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-10" value="10"><span class="opt-name">Masterpiece</span><span class="opt-price">$400</span></label>
         </fieldset>
         <fieldset>
           <legend>Add-ons</legend>
           <div class="opt opt--step"><span class="opt-name" id="lbl-pages">Extra pages<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-pages" data-step="-1" aria-label="One fewer extra page">−</button><input type="number" id="addon-pages" aria-labelledby="lbl-pages" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-pages" data-step="1" aria-label="One more extra page">+</button></span></div>
           <div class="opt opt--step"><span class="opt-name" id="lbl-revisions">Extra revision rounds<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-revisions" data-step="-1" aria-label="One fewer revision round">−</button><input type="number" id="addon-revisions" aria-labelledby="lbl-revisions" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-revisions" data-step="1" aria-label="One more revision round">+</button></span></div>
           <div class="opt opt--step"><span class="opt-name" id="lbl-copy">Pages of copywriting<small>$10 per page</small></span><span class="stepper"><button type="button" data-target="addon-copy" data-step="-1" aria-label="One fewer page of copywriting">−</button><input type="number" id="addon-copy" aria-labelledby="lbl-copy" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-copy" data-step="1" aria-label="One more page of copywriting">+</button></span></div>
-          <label class="opt"><input type="checkbox" id="addon-logo"><span class="opt-name">Logo design</span><span class="opt-price">$40</span></label>
-          <label class="opt"><input type="checkbox" id="addon-domain"><span class="opt-name">Domain and hosting setup</span><span class="opt-price" id="addon-domain-price">$20</span></label>
-          <label class="opt"><input type="checkbox" id="addon-email"><span class="opt-name">Business email</span><span class="opt-price">$15</span></label>
-          <label class="opt"><input type="checkbox" id="addon-rush"><span class="opt-name">Rush delivery</span><span class="opt-price">+$30</span></label>
+          <label class="opt"><input type="checkbox" id="addon-logo"><span class="opt-name">Logo design</span><span class="opt-price" id="price-logo">$40</span></label>
+          <label class="opt"><input type="checkbox" id="addon-social"><span class="opt-name">Social media kit</span><span class="opt-price" id="price-social">$30</span></label>
+          <label class="opt"><input type="checkbox" id="addon-booking"><span class="opt-name">Booking calendar</span><span class="opt-price" id="price-booking">$35</span></label>
+          <label class="opt"><input type="checkbox" id="addon-google"><span class="opt-name">Google Business Profile</span><span class="opt-price" id="price-google">$25</span></label>
+          <label class="opt"><input type="checkbox" id="addon-newsletter"><span class="opt-name">Newsletter signup</span><span class="opt-price" id="price-newsletter">$15</span></label>
+          <label class="opt"><input type="checkbox" id="addon-domain"><span class="opt-name">Domain and hosting setup</span><span class="opt-price" id="price-domain">$20</span></label>
+          <label class="opt"><input type="checkbox" id="addon-email"><span class="opt-name">Business email</span><span class="opt-price" id="price-email">$15</span></label>
+          <label class="opt"><input type="checkbox" id="addon-rush"><span class="opt-name">Rush delivery</span><span class="opt-price" id="price-rush">+$30</span></label>
           <label class="opt"><input type="checkbox" id="addon-care"><span class="opt-name">Monthly care plan</span><span class="opt-price">$25 / month</span></label>
         </fieldset>
       </form>
@@ -889,6 +1262,10 @@
     <div class="faq-grid">
       <div class="faq">
         <details open>
+          <summary>Can I mix features from different packages?</summary>
+          <p>Yes. Pick the package closest to what you need and add the rest from the add-ons, like a booking calendar on a Portfolio. Anything not listed gets quoted before work starts.</p>
+        </details>
+        <details>
           <summary>Do I need my text and photos ready?</summary>
           <p>It helps, but it isn't required. Copywriting is available for $10 a page. Your turnaround begins once all of your content has been received.</p>
         </details>
@@ -898,11 +1275,11 @@
         </details>
         <details>
           <summary>Is hosting included?</summary>
-          <p>Setup is included with Small Business and above, and is a $20 add-on for smaller jobs. The hosting plan and domain name are paid directly to the provider.</p>
+          <p>Setup is included with every package from $125 up, and is a $20 add-on below that. The hosting plan and domain name are paid directly to the provider.</p>
         </details>
         <details>
           <summary>Can I upgrade later?</summary>
-          <p>Yes. You can move to a larger package at any time and pay only the difference between the two.</p>
+          <p>Yes. You can move to a bigger package at any time and pay only the difference between the two.</p>
         </details>
         <details>
           <summary>How does payment work?</summary>
@@ -914,7 +1291,7 @@
         <ul>
           <li>Prices are in US dollars and cover the work listed in each package.</li>
           <li>Turnaround begins once your text, photos and logo are received.</li>
-          <li>Domain names, hosting plans, paid plugins and stock photos are billed at cost.</li>
+          <li>Domain names, hosting plans, paid plugins, store fees and stock photos are billed at cost.</li>
           <li>Work outside the listed scope is quoted before it begins.</li>
           <li>Quotes are valid for 30 days.</li>
         </ul>
@@ -929,12 +1306,12 @@
     <p>Tell me about your business and what you need. I'll recommend the right package, with no pressure and no obligation.</p>
     <div class="cta-actions">
       <a class="btn btn--light" href="#quote">Build your quote</a>
-      <a class="btn btn--outline-dark" href="#pricing">View pricing</a>
+      <a class="btn btn--outline-dark" href="#fit">Find your fit</a>
     </div>
   </div>
   <div class="wrap">
     <div class="foot">
-      <span>Website Design · Pricing</span>
+      <span>Website Design · Packages and pricing</span>
       <span>Prices in US dollars · Updated October 2026</span>
     </div>
   </div>
@@ -942,14 +1319,28 @@
 
 <script>
   (function () {
-    var LEVELS = {
-      1: { name: "Tune-Up", price: 20 },
-      2: { name: "One-Pager", price: 75 },
-      3: { name: "Small Business", price: 150 },
-      4: { name: "Pro", price: 250 },
-      5: { name: "Masterpiece", price: 400 }
+    var PACKAGES = {
+      1: { name: "Tune-Up", price: 20, includes: [] },
+      2: { name: "Link-in-Bio", price: 40, includes: [] },
+      3: { name: "Landing Page", price: 75, includes: [] },
+      4: { name: "Portfolio", price: 125, includes: ["domain"] },
+      5: { name: "Small Business", price: 150, includes: ["domain", "google"] },
+      6: { name: "Restaurant & Café", price: 175, includes: ["domain", "google"] },
+      7: { name: "Booking Site", price: 200, includes: ["domain", "booking"] },
+      8: { name: "Growth", price: 250, includes: ["domain", "newsletter"] },
+      9: { name: "Online Store", price: 325, includes: ["domain"] },
+      10: { name: "Masterpiece", price: 400, includes: ["domain", "booking"] }
     };
-    var DOMAIN_INCLUDED_FROM = 3;
+    var EXTRAS = [
+      { id: "logo", label: "Logo design", price: 40 },
+      { id: "social", label: "Social media kit", price: 30 },
+      { id: "booking", label: "Booking calendar", price: 35 },
+      { id: "google", label: "Google Business Profile", price: 25 },
+      { id: "newsletter", label: "Newsletter signup", price: 15 },
+      { id: "domain", label: "Domain and hosting setup", price: 20 },
+      { id: "email", label: "Business email", price: 15 },
+      { id: "rush", label: "Rush delivery", price: 30, prefix: "+" }
+    ];
 
     var form = document.getElementById("quote-form");
     var linesEl = document.getElementById("quote-lines");
@@ -957,11 +1348,9 @@
     var depositEl = document.getElementById("quote-deposit");
     var balanceEl = document.getElementById("quote-balance");
     var careEl = document.getElementById("quote-care");
-    var domainBox = document.getElementById("addon-domain");
-    var domainPrice = document.getElementById("addon-domain-price");
     var copyBtn = document.getElementById("copy-quote");
     var copyStatus = document.getElementById("copy-status");
-    var domainWanted = false;
+    var wanted = {};
     var current = { lines: [], total: 0, deposit: 0, balance: 0, care: false };
 
     document.getElementById("sum-date").textContent =
@@ -976,13 +1365,12 @@
       return Number.isFinite(n) ? Math.min(Math.max(n, 0), 20) : 0;
     }
     function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
-    function checked(id) { return document.getElementById(id).checked; }
 
     function update() {
       var picked = form.querySelector('input[name="level"]:checked');
-      var levelId = picked ? Number(picked.value) : 4;
-      var level = LEVELS[levelId];
-      var lines = [{ label: level.name + " package", amount: level.price }];
+      var pkgId = picked ? Number(picked.value) : 8;
+      var pkg = PACKAGES[pkgId];
+      var lines = [{ label: pkg.name + " package", amount: pkg.price }];
 
       var pages = count("addon-pages");
       if (pages) lines.push({ label: plural(pages, "extra page"), amount: pages * 15 });
@@ -990,21 +1378,23 @@
       if (revisions) lines.push({ label: plural(revisions, "extra revision round"), amount: revisions * 15 });
       var copy = count("addon-copy");
       if (copy) lines.push({ label: "Copywriting, " + plural(copy, "page"), amount: copy * 10 });
-      if (checked("addon-logo")) lines.push({ label: "Logo design", amount: 40 });
 
-      var domainIncluded = levelId >= DOMAIN_INCLUDED_FROM;
-      domainBox.disabled = domainIncluded;
-      domainBox.checked = domainIncluded || domainWanted;
-      domainPrice.textContent = domainIncluded ? "Included" : "$20";
-      if (domainIncluded) lines.push({ label: "Domain and hosting setup", amount: 0 });
-      else if (domainWanted) lines.push({ label: "Domain and hosting setup", amount: 20 });
-
-      if (checked("addon-email")) lines.push({ label: "Business email", amount: 15 });
-      if (checked("addon-rush")) lines.push({ label: "Rush delivery", amount: 30 });
+      // Extras that come with the chosen package show as included and can't be unticked
+      EXTRAS.forEach(function (extra) {
+        var box = document.getElementById("addon-" + extra.id);
+        var price = document.getElementById("price-" + extra.id);
+        var included = pkg.includes.indexOf(extra.id) !== -1;
+        if (!box.disabled) wanted[extra.id] = box.checked;
+        box.disabled = included;
+        box.checked = included || !!wanted[extra.id];
+        price.textContent = included ? "Included" : (extra.prefix || "") + money.format(extra.price);
+        if (included) lines.push({ label: extra.label, amount: 0 });
+        else if (wanted[extra.id]) lines.push({ label: extra.label, amount: extra.price });
+      });
 
       var total = lines.reduce(function (sum, line) { return sum + line.amount; }, 0);
       var deposit = Math.round(total * 50) / 100;
-      var care = checked("addon-care");
+      var care = document.getElementById("addon-care").checked;
       current = { lines: lines, total: total, deposit: deposit, balance: total - deposit, care: care };
 
       linesEl.replaceChildren.apply(linesEl, lines.map(function (line) {
@@ -1013,6 +1403,7 @@
         var amount = document.createElement("span");
         name.textContent = line.label;
         amount.textContent = line.amount ? money.format(line.amount) : "Included";
+        if (!line.amount) li.className = "inc";
         li.append(name, amount);
         return li;
       }));
@@ -1061,9 +1452,6 @@
     });
     form.addEventListener("focusout", function (e) {
       if (e.target.type === "number") e.target.value = count(e.target.id);
-    });
-    domainBox.addEventListener("change", function () {
-      if (!domainBox.disabled) domainWanted = domainBox.checked;
     });
     form.addEventListener("input", update);
     form.addEventListener("change", update);
