@@ -14,27 +14,27 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 | Business websites | Portfolio | $125 | Photographers, artists, makers | Up to 4 | 7 days | 2 | 7 days |
 | Business websites | Small Business | $150 | Local shops and services | Up to 5 | 10 days | 2 | 7 days |
 | Business websites | Restaurant & Café | $175 | Restaurants, cafés, food trucks | Up to 5 | 10 days | 2 | 14 days |
-| Business websites | Appointment Site | $200 | Salons, trainers, coaches | Up to 6 | 12 days | 3 | 14 days |
+| Business websites | Booking Site | $200 | Salons, trainers, coaches | Up to 6 | 12 days | 3 | 14 days |
 | Premium builds | Growth (recommended) | $250 | Steady leads and a blog | Up to 8 | 14 days | 3 | 14 days |
 | Premium builds | Product Catalog | $325 | Shops that sell by message or in person | Up to 25 products | 18 days | 3 | 21 days |
 | Premium builds | Masterpiece | $400 | Fully custom, one of a kind | Up to 12 | 21 days | 5 | 30 days |
 
 ## Add-ons
 
-| Add-on | Price |
-|---|---|
-| Extra page | $15 each |
-| Extra revision round | $15 each |
-| Copywriting | $10 per page |
-| Blog post | $15 each |
-| Logo design | $40 |
-| Social media kit | $30 |
-| Custom icon set | $20 |
-| Rush delivery | +$30 |
+| Add-on | Price | Included with |
+|---|---|---|
+| Extra page | $15 each | |
+| Extra revision round | $15 each | |
+| Copywriting | $10 per page | |
+| Logo design | $40 | |
+| Social media kit | $30 | |
+| Booking calendar | $35 | Booking Site, Masterpiece |
+| Newsletter signup | $15 | Growth |
+| Rush delivery | +$30 | |
 
 ## Scope
 
-Everything listed can be built with Claude alone, with no outside services to sign up for or connect. There is no on-site checkout, booking system, form service, newsletter or analytics: customers order, book and get in touch through buttons that open a pre-filled email, text or phone call. Links to a client's existing pages (ordering apps, social profiles, videos) are fine. Buying domains, business email, Google Business Profile, calls and care plans are not offered.
+Everything listed is work that can be built with Claude. Forms, booking, newsletter signup and analytics are built into the site and connected to an outside tool (for example Formspree, Calendly, Mailchimp, Google Analytics), all of which have free plans; the client pays for any paid plan directly. There is no on-site checkout: the Product Catalog takes orders through buttons that open a pre-filled text or email. Buying domains, setting up business email, Google Business Profile, calls and ongoing care plans are not offered.
 
 ## What's on the page
 
@@ -45,4 +45,4 @@ Everything listed can be built with Claude alone, with no outside services to si
 
 ## Editing prices
 
-Prices appear in the hero, the package cards, the "Find your fit" table, the add-ons list and the quote builder. If you change one, update each spot, plus the `PACKAGES` and `EXTRAS` lists in the `<script>` at the bottom of `index.html`.
+Prices appear in the hero, the package cards, the "Find your fit" table, the add-ons list and the quote builder. If you change one, update each spot, plus the `PACKAGES` and `EXTRAS` lists in the `<script>` at the bottom of `index.html` (they also control which add-ons each package includes).
