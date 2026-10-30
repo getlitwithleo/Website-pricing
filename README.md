@@ -6,7 +6,7 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 
 ## Packages
 
-| Group | Package | Price | Best for | Pages | Turnaround | Revisions | Free fixes |
+| Group | Package | Price | Best for | Pages | Max turnaround | Revisions | Free fixes |
 |---|---|---|---|---|---|---|---|
 | Quick jobs | Tune-Up | $20 | Fixes to a site you have the files for | Current site | 2 days | 1 | None |
 | Quick jobs | Link-in-Bio | $40 | Creators and social media | 1 mobile page | 3 days | 1 | 7 days |
