@@ -27,6 +27,7 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 | Extra revision round | $15 each | |
 | Copywriting | $10 per page | |
 | Logo design | $40 | |
+| Business cards (design only, printing not included) | $15 | |
 | Social media kit | $30 | |
 | Booking calendar | $35 | Booking Site, Masterpiece |
 | Newsletter signup | $15 | Growth |

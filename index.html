@@ -541,13 +541,13 @@
   .panel { padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 4vw, 2.5rem); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
   .addons { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3.5rem; }
   .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 1.25rem; padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
-  .addons li:nth-last-child(-n + 2) { border-bottom: 0; }
+  .addons li:last-child, .addons li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
   .addon b { font-weight: 600; }
   .addon span { grid-column: 1; font-size: var(--t-sm); color: var(--muted); }
   .addon strong { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
   @media (max-width: 720px) {
     .addons { grid-template-columns: minmax(0, 1fr); }
-    .addons li:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+    .addons li:nth-last-child(2):nth-child(odd) { border-bottom: 1px solid var(--line); }
   }
 
   /* Quote builder */
@@ -1167,6 +1167,7 @@
         <li class="addon"><b>Extra revision round</b><span>More rounds of changes.</span><strong>$15 each</strong></li>
         <li class="addon"><b>Copywriting</b><span>Professional copy, written for you.</span><strong>$10 / page</strong></li>
         <li class="addon"><b>Logo design</b><span>Two concepts plus final files.</span><strong>$40</strong></li>
+        <li class="addon"><b>Business cards</b><span>Front and back design, print-ready files. Printing not included.</span><strong>$15</strong></li>
         <li class="addon"><b>Social media kit</b><span>Profile image and matching banners for 3 platforms.</span><strong>$30</strong></li>
         <li class="addon"><b>Booking calendar</b><span>Add online booking to any package.</span><strong>$35</strong></li>
         <li class="addon"><b>Newsletter signup</b><span>Connected to your email list.</span><strong>$15</strong></li>
@@ -1205,6 +1206,7 @@
           <div class="opt opt--step"><span class="opt-name" id="lbl-revisions">Extra revision rounds<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-revisions" data-step="-1" aria-label="One fewer revision round">−</button><input type="number" id="addon-revisions" aria-labelledby="lbl-revisions" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-revisions" data-step="1" aria-label="One more revision round">+</button></span></div>
           <div class="opt opt--step"><span class="opt-name" id="lbl-copy">Pages of copywriting<small>$10 per page</small></span><span class="stepper"><button type="button" data-target="addon-copy" data-step="-1" aria-label="One fewer page of copywriting">−</button><input type="number" id="addon-copy" aria-labelledby="lbl-copy" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-copy" data-step="1" aria-label="One more page of copywriting">+</button></span></div>
           <label class="opt"><input type="checkbox" id="addon-logo"><span class="opt-name">Logo design</span><span class="opt-price" id="price-logo">$40</span></label>
+          <label class="opt"><input type="checkbox" id="addon-cards"><span class="opt-name">Business cards</span><span class="opt-price" id="price-cards">$15</span></label>
           <label class="opt"><input type="checkbox" id="addon-social"><span class="opt-name">Social media kit</span><span class="opt-price" id="price-social">$30</span></label>
           <label class="opt"><input type="checkbox" id="addon-booking"><span class="opt-name">Booking calendar</span><span class="opt-price" id="price-booking">$35</span></label>
           <label class="opt"><input type="checkbox" id="addon-newsletter"><span class="opt-name">Newsletter signup</span><span class="opt-price" id="price-newsletter">$15</span></label>
@@ -1321,6 +1323,7 @@
     };
     var EXTRAS = [
       { id: "logo", label: "Logo design", price: 40 },
+      { id: "cards", label: "Business cards", price: 15 },
       { id: "social", label: "Social media kit", price: 30 },
       { id: "booking", label: "Booking calendar", price: 35 },
       { id: "newsletter", label: "Newsletter signup", price: 15 },
