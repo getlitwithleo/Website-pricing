@@ -6,9 +6,9 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 
 ## Packages
 
-| Group | Package | Price | Best for | Pages | Turnaround | Revisions | Support |
+| Group | Package | Price | Best for | Pages | Turnaround | Revisions | Free fixes |
 |---|---|---|---|---|---|---|---|
-| Quick jobs | Tune-Up | $20 | Fixes on an existing site | Current site | 2 days | 1 | None |
+| Quick jobs | Tune-Up | $20 | Fixes to a site you have the files for | Current site | 2 days | 1 | None |
 | Quick jobs | Link-in-Bio | $40 | Creators and social media | 1 mobile page | 3 days | 1 | 7 days |
 | Quick jobs | Landing Page | $75 | Launching a product or event | 1 | 5 days | 1 | 7 days |
 | Business websites | Portfolio | $125 | Photographers, artists, makers | Up to 4 | 7 days | 2 | 7 days |
@@ -17,7 +17,7 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 | Business websites | Booking Site | $200 | Salons, trainers, coaches | Up to 6 | 12 days | 3 | 14 days |
 | Premium builds | Growth (recommended) | $250 | Steady leads and a blog | Up to 8 | 14 days | 3 | 14 days |
 | Premium builds | Online Store | $325 | Selling products online | Up to 25 products | 18 days | 3 | 21 days |
-| Premium builds | Masterpiece | $400 | Fully custom, one of a kind | Up to 12 | 21 days | 5 | 30 days, priority |
+| Premium builds | Masterpiece | $400 | Fully custom, one of a kind | Up to 12 | 21 days | 5 | 30 days |
 
 ## Add-ons
 
@@ -29,12 +29,12 @@ Open `index.html` in a browser to view it. It's a single self-contained file, so
 | Logo design | $40 | |
 | Social media kit | $30 | |
 | Booking calendar | $35 | Booking Site, Masterpiece |
-| Google Business Profile | $25 | Small Business, Restaurant & Café |
 | Newsletter signup | $15 | Growth |
-| Domain and hosting setup | $20 | Every package from $125 up |
-| Business email | $15 | |
 | Rush delivery | +$30 | |
-| Monthly care plan | $25 / month | |
+
+## Scope
+
+Everything listed is work that can be built with Claude. Forms, checkout, booking, newsletter signup and analytics are built into the site and connected to an outside tool (for example Formspree, Shopify or Stripe, Calendly, Mailchimp, Google Analytics); the client pays for those tools directly. Buying domains, setting up business email, Google Business Profile, calls and ongoing care plans are not offered.
 
 ## What's on the page
 
