@@ -456,7 +456,7 @@
   .pkg--top .ticks li::before { background: rgba(255, 255, 255, 0.1); }
   .pkg--top .ticks li::after { border-color: var(--deep-accent); }
   .pkg--top .pkg-foot { border-top-color: var(--deep-line); }
-  .pkg--top .badge { background: rgba(255, 255, 255, 0.14); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.22); }
+  .pkg--top .badge { background: var(--deep); color: var(--deep-fg); border: 1px solid var(--deep-line); }
 
   @media (max-width: 1000px) {
     .pkgs--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -487,10 +487,7 @@
   .phone-mini .ln { margin-inline: auto; }
   .link-btn { height: 15px; border-radius: 6px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
   .link-btn.on { background: var(--hue); border-color: var(--hue); }
-  .stat-card { position: absolute; right: 9%; bottom: 26px; display: grid; gap: 6px; padding: 9px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
-  .bars { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
-  .bars i { width: 7px; height: var(--v); border-radius: 2px; background: var(--hue); }
-  .bars i:nth-child(odd) { opacity: 0.45; }
+  .soc { width: 10px; height: 10px; border-radius: 50%; background: var(--mock-2); }
   .hero-band { display: grid; justify-items: center; gap: 7px; padding: 13px; border-radius: 6px; background: var(--mock); background: color-mix(in srgb, var(--hue) 14%, var(--surface)); }
   .countdown { display: flex; justify-content: center; gap: 6px; }
   .countdown span { display: grid; place-items: center; width: 30px; height: 20px; border-radius: 5px; background: var(--ink); color: var(--surface); font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -515,13 +512,6 @@
   .cal i.ring { box-shadow: inset 0 0 0 1.5px var(--hue); background: transparent; }
   .slot { height: 13px; border-radius: 4px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
   .slot.on { background: var(--hue); border-color: var(--hue); }
-  .chart { height: 42px; padding: 4px; border: 1px solid var(--line); border-radius: 6px; }
-  .chart svg { display: block; width: 100%; height: 100%; }
-  .chart polyline { fill: none; stroke: var(--hue); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .chart polygon { fill: var(--hue); opacity: 0.14; }
-  .field { flex: 1; height: 14px; border: 1px solid var(--mock-2); border-radius: 3px; }
-  .cart { position: relative; width: 13px; height: 11px; border: 1.5px solid var(--ink); border-top-width: 0; border-radius: 0 0 3px 3px; }
-  .cart::after { content: ""; position: absolute; top: -6px; right: -7px; width: 9px; height: 9px; border-radius: 50%; background: var(--hue); }
 
   /* Fit guide */
   .table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
@@ -615,7 +605,6 @@
   .sum-lines { list-style: none; margin: 0; padding: 1.1rem 0 0; display: grid; gap: 0.65rem; border-top: 1px solid var(--line); font-size: 0.9375rem; }
   .sum-lines li, .sum-row { display: flex; justify-content: space-between; gap: 1rem; }
   .sum-lines li span:last-child, .sum-row span:last-child { white-space: nowrap; }
-  .sum-lines li.inc span:last-child { color: var(--muted); }
   .sum-total { display: grid; gap: 0.4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
   .sum-total .sum-row:first-child { align-items: baseline; font-weight: 600; }
   .sum-total .sum-row:first-child span:last-child { font-size: 2.25rem; letter-spacing: -0.04em; }
@@ -845,8 +834,8 @@
               <span class="link-btn"></span>
               <span class="link-btn"></span>
               <span class="link-btn"></span>
+              <span class="r" style="justify-content:center; gap:6px; margin-top:2px"><i class="soc"></i><i class="soc"></i><i class="soc"></i></span>
             </div>
-            <div class="stat-card"><span class="ln" style="--w:36px; --lh:5px"></span><div class="bars"><i style="--v:40%"></i><i style="--v:75%"></i><i style="--v:55%"></i><i style="--v:95%"></i></div></div>
           </div>
           <div class="pkg-body">
             <div class="pkg-top"><h4 id="n-2">Link-in-Bio</h4><p class="pkg-price">$40</p></div>
@@ -856,7 +845,7 @@
               <li>Your photo, short bio and up to 10 link buttons</li>
               <li>Embedded video, music or latest posts</li>
               <li>Styled in your brand colors</li>
-              <li>Click tracking to see which links get tapped</li>
+              <li>A featured link that stands out for your latest drop</li>
               <li>Ready for your Instagram, TikTok and YouTube bios</li>
             </ul>
             <div class="pkg-foot"><span class="incl-note">$20 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="2">Choose</a></div>
@@ -881,7 +870,7 @@
             <ul class="ticks">
               <li>One scrolling page with up to 6 sections</li>
               <li>Headline and call to action written to convert</li>
-              <li>Sign-up, RSVP or contact form</li>
+              <li>RSVP and contact buttons that open a ready-to-send email or text</li>
               <li>Countdown timer or event details</li>
               <li>Social links and basic search setup</li>
             </ul>
@@ -921,7 +910,7 @@
               <li>Full-screen gallery with click-to-enlarge photos</li>
               <li>Project pages that tell the story behind the work</li>
               <li>About page with your story and photo</li>
-              <li>Inquiry form for commissions and bookings</li>
+              <li>Inquiry button that opens a pre-filled email</li>
               <li>Image optimization so big photos still load fast</li>
             </ul>
             <div class="pkg-foot"><span class="incl-note">$62.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="4">Choose</a></div>
@@ -948,7 +937,7 @@
             <ul class="specs"><li>Up to 5 pages</li><li>10 days</li><li>2 revisions</li><li>7 days of fixes</li></ul>
             <ul class="ticks">
               <li>Services page with clear pricing</li>
-              <li>Map, opening hours and tap-to-call</li>
+              <li>Opening hours, directions button and tap-to-call</li>
               <li>Customer reviews section</li>
               <li>FAQ section with answers written for you</li>
               <li>Custom color palette and typography</li>
@@ -982,8 +971,8 @@
             <ul class="specs"><li>Up to 5 pages</li><li>10 days</li><li>2 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
               <li>Easy-to-read menu with prices and dietary tags</li>
-              <li>Links to online ordering and delivery apps</li>
-              <li>Reservation button or booking form</li>
+              <li>Links to your existing ordering and delivery pages</li>
+              <li>Call or text to reserve buttons</li>
               <li>Food photo gallery and a daily specials banner</li>
               <li>Events and catering page</li>
             </ul>
@@ -1008,14 +997,14 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-7">Booking Site</h4><p class="pkg-price">$200</p></div>
+            <div class="pkg-top"><h4 id="n-7">Appointment Site</h4><p class="pkg-price">$200</p></div>
             <p class="best"><b>Best for</b> salons, trainers, tutors, coaches and consultants.</p>
             <ul class="specs"><li>Up to 6 pages</li><li>12 days</li><li>3 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
-              <li>Online booking calendar synced to your schedule</li>
               <li>Services menu with prices and session lengths</li>
-              <li>New-client intake form</li>
-              <li>Automatic email confirmations and reminders</li>
+              <li>Weekly hours and open times on a calendar view</li>
+              <li>Request-a-booking buttons that send a pre-filled text or email</li>
+              <li>New-client page with what to expect and how to prepare</li>
               <li>Reviews and a before-and-after gallery</li>
             </ul>
             <div class="pkg-foot"><span class="incl-note">$100 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="7">Choose</a></div>
@@ -1029,7 +1018,7 @@
     <div class="group" id="premium">
       <div class="group-head">
         <h3>Premium builds</h3>
-        <p>For growing brands, online sales and fully custom work.</p>
+        <p>For growing brands, product lines and fully custom work.</p>
         <span class="group-range">$250–$400</span>
       </div>
       <div class="pkgs pkgs--3">
@@ -1047,8 +1036,8 @@
                   <div class="stack" style="gap:5px"><span class="thumb t3" style="--h:30px"></span><span class="ln ln--ink" style="--w:75%; --lh:6px"></span><span class="ln" style="--w:50%; --lh:5px"></span></div>
                 </div>
                 <div class="cols" style="--n:2; align-items:center">
-                  <div class="chart"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polygon points="0,30 0,26 16,22 32,24 48,15 64,17 80,8 100,3 100,30"/><polyline points="0,26 16,22 32,24 48,15 64,17 80,8 100,3"/></svg></div>
-                  <div class="stack" style="gap:6px"><span class="field" style="flex:none"></span><span class="pill" style="--w:100%; --ph:13px"></span></div>
+                  <div class="mini-card" style="gap:5px; padding:7px"><span class="ln ln--hue" style="--w:22%; --lh:5px"></span><span class="ln" style="--w:92%; --lh:5px"></span><span class="ln" style="--w:68%; --lh:5px"></span></div>
+                  <span class="pill" style="--w:100%; --ph:16px"></span>
                 </div>
               </div>
             </div>
@@ -1058,10 +1047,10 @@
             <p class="best"><b>Best for</b> businesses ready to bring in steady leads.</p>
             <ul class="specs"><li>Up to 8 pages</li><li>14 days</li><li>3 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
-              <li>Blog or news section you can update yourself</li>
-              <li>Quote request and lead capture forms</li>
-              <li>Newsletter signup connected to your email list</li>
-              <li>Visitor analytics setup</li>
+              <li>Blog or news section with 3 starter posts written for you</li>
+              <li>Request-a-quote buttons that open a pre-filled email</li>
+              <li>Case study pages that show your results</li>
+              <li>Testimonials section to build trust</li>
               <li>Speed optimization for fast page loads</li>
             </ul>
             <div class="pkg-foot"><span class="incl-note">$125 deposit to start</span><a class="btn btn--primary btn--sm" href="#quote" data-pick="8">Choose Growth</a></div>
@@ -1073,7 +1062,7 @@
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r" style="gap:10px"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="cart"></span></span></div>
+                <div class="r sb"><span class="logo"></span><span class="r" style="gap:10px"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="pill" style="--w:30px; --ph:11px"></span></span></div>
                 <div class="cols" style="--n:4; --g:7px">
                   <div class="stack" style="gap:5px"><span class="thumb" style="--h:42px"></span><span class="ln ln--ink" style="--w:80%; --lh:5px"></span><span class="ln ln--hue" style="--w:40%; --lh:5px"></span></div>
                   <div class="stack" style="gap:5px"><span class="thumb t2" style="--h:42px"></span><span class="ln ln--ink" style="--w:70%; --lh:5px"></span><span class="ln ln--hue" style="--w:45%; --lh:5px"></span></div>
@@ -1085,14 +1074,14 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-9">Online Store</h4><p class="pkg-price">$325</p></div>
-            <p class="best"><b>Best for</b> selling products online.</p>
+            <div class="pkg-top"><h4 id="n-9">Product Catalog</h4><p class="pkg-price">$325</p></div>
+            <p class="best"><b>Best for</b> makers and shops who sell by message, at markets or in person.</p>
             <ul class="specs"><li>Up to 25 products</li><li>18 days</li><li>3 revisions</li><li>21 days of fixes</li></ul>
             <ul class="ticks">
               <li>Product pages with photos, sizes and options</li>
-              <li>Cart and secure checkout</li>
-              <li>Shipping, tax and discount code setup</li>
-              <li>Order and inventory email alerts</li>
+              <li>Order buttons that send a pre-filled text or email with the item and size</li>
+              <li>Search and category filters</li>
+              <li>New arrival and sale badges</li>
               <li>Written guide to adding your own products</li>
             </ul>
             <div class="pkg-foot"><span class="incl-note">$162.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="9">Choose</a></div>
@@ -1118,7 +1107,7 @@
             <ul class="ticks">
               <li>Two original design concepts to choose from</li>
               <li>Custom graphics, icons and animation</li>
-              <li>Online store or booking built in</li>
+              <li>Product catalog or appointment pages built in</li>
               <li>Advanced search optimization</li>
               <li>Step-by-step guide to editing your site</li>
             </ul>
@@ -1148,9 +1137,9 @@
           <tr><th scope="row">want to show off your work</th><td><a class="pkg-link" style="--hue: var(--hue-violet)" href="#pkg-portfolio">Portfolio</a></td><td>Up to 4</td><td>7 days</td><td>2</td><td>7 days</td><td class="num">$125</td></tr>
           <tr><th scope="row">run a local shop or service</th><td><a class="pkg-link" style="--hue: var(--hue-teal)" href="#pkg-small-business">Small Business</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>7 days</td><td class="num">$150</td></tr>
           <tr><th scope="row">run a restaurant or café</th><td><a class="pkg-link" style="--hue: var(--hue-amber)" href="#pkg-restaurant">Restaurant &amp; Café</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>14 days</td><td class="num">$175</td></tr>
-          <tr><th scope="row">take appointments</th><td><a class="pkg-link" style="--hue: var(--hue-green)" href="#pkg-booking">Booking Site</a></td><td>Up to 6</td><td>12 days</td><td>3</td><td>14 days</td><td class="num">$200</td></tr>
+          <tr><th scope="row">take appointments</th><td><a class="pkg-link" style="--hue: var(--hue-green)" href="#pkg-booking">Appointment Site</a></td><td>Up to 6</td><td>12 days</td><td>3</td><td>14 days</td><td class="num">$200</td></tr>
           <tr class="rec-row"><th scope="row">want steady leads and a blog</th><td><a class="pkg-link" style="--hue: var(--hue-blue)" href="#pkg-growth">Growth</a><span class="rec-tag">Recommended</span></td><td>Up to 8</td><td>14 days</td><td>3</td><td>14 days</td><td class="num">$250</td></tr>
-          <tr><th scope="row">want to sell products online</th><td><a class="pkg-link" style="--hue: var(--hue-sky)" href="#pkg-store">Online Store</a></td><td>Up to 25 products</td><td>18 days</td><td>3</td><td>21 days</td><td class="num">$325</td></tr>
+          <tr><th scope="row">want to show products people can order</th><td><a class="pkg-link" style="--hue: var(--hue-sky)" href="#pkg-store">Product Catalog</a></td><td>Up to 25 products</td><td>18 days</td><td>3</td><td>21 days</td><td class="num">$325</td></tr>
           <tr><th scope="row">want something nobody else has</th><td><a class="pkg-link" style="--hue: var(--ink)" href="#pkg-masterpiece">Masterpiece</a></td><td>Up to 12</td><td>21 days</td><td>5</td><td>30 days</td><td class="num">$400</td></tr>
         </tbody>
       </table>
@@ -1170,8 +1159,8 @@
         <li class="addon"><b>Copywriting</b><span>Professional copy, written for you.</span><strong>$10 / page</strong></li>
         <li class="addon"><b>Logo design</b><span>Two concepts plus final files.</span><strong>$40</strong></li>
         <li class="addon"><b>Social media kit</b><span>Profile image and matching banners for 3 platforms.</span><strong>$30</strong></li>
-        <li class="addon"><b>Booking calendar</b><span>Add online booking to any package.</span><strong>$35</strong></li>
-        <li class="addon"><b>Newsletter signup</b><span>Connected to your email list.</span><strong>$15</strong></li>
+        <li class="addon"><b>Blog post</b><span>Written and added to your site.</span><strong>$15 each</strong></li>
+        <li class="addon"><b>Custom icon set</b><span>Up to 12 icons drawn in your brand style.</span><strong>$20</strong></li>
         <li class="addon"><b>Rush delivery</b><span>About half the standard turnaround.</span><strong>+$30</strong></li>
       </ul>
     </div>
@@ -1195,10 +1184,10 @@
           <label class="opt"><input type="radio" name="level" id="pick-4" value="4"><span class="opt-name">Portfolio</span><span class="opt-price">$125</span></label>
           <label class="opt"><input type="radio" name="level" id="pick-5" value="5"><span class="opt-name">Small Business</span><span class="opt-price">$150</span></label>
           <label class="opt"><input type="radio" name="level" id="pick-6" value="6"><span class="opt-name">Restaurant &amp; Café</span><span class="opt-price">$175</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-7" value="7"><span class="opt-name">Booking Site</span><span class="opt-price">$200</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-7" value="7"><span class="opt-name">Appointment Site</span><span class="opt-price">$200</span></label>
           <p class="opt-group">Premium builds</p>
           <label class="opt"><input type="radio" name="level" id="pick-8" value="8" checked><span class="opt-name">Growth<span class="opt-tag">Recommended</span></span><span class="opt-price">$250</span></label>
-          <label class="opt"><input type="radio" name="level" id="pick-9" value="9"><span class="opt-name">Online Store</span><span class="opt-price">$325</span></label>
+          <label class="opt"><input type="radio" name="level" id="pick-9" value="9"><span class="opt-name">Product Catalog</span><span class="opt-price">$325</span></label>
           <label class="opt"><input type="radio" name="level" id="pick-10" value="10"><span class="opt-name">Masterpiece</span><span class="opt-price">$400</span></label>
         </fieldset>
         <fieldset>
@@ -1206,11 +1195,11 @@
           <div class="opt opt--step"><span class="opt-name" id="lbl-pages">Extra pages<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-pages" data-step="-1" aria-label="One fewer extra page">−</button><input type="number" id="addon-pages" aria-labelledby="lbl-pages" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-pages" data-step="1" aria-label="One more extra page">+</button></span></div>
           <div class="opt opt--step"><span class="opt-name" id="lbl-revisions">Extra revision rounds<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-revisions" data-step="-1" aria-label="One fewer revision round">−</button><input type="number" id="addon-revisions" aria-labelledby="lbl-revisions" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-revisions" data-step="1" aria-label="One more revision round">+</button></span></div>
           <div class="opt opt--step"><span class="opt-name" id="lbl-copy">Pages of copywriting<small>$10 per page</small></span><span class="stepper"><button type="button" data-target="addon-copy" data-step="-1" aria-label="One fewer page of copywriting">−</button><input type="number" id="addon-copy" aria-labelledby="lbl-copy" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-copy" data-step="1" aria-label="One more page of copywriting">+</button></span></div>
-          <label class="opt"><input type="checkbox" id="addon-logo"><span class="opt-name">Logo design</span><span class="opt-price" id="price-logo">$40</span></label>
-          <label class="opt"><input type="checkbox" id="addon-social"><span class="opt-name">Social media kit</span><span class="opt-price" id="price-social">$30</span></label>
-          <label class="opt"><input type="checkbox" id="addon-booking"><span class="opt-name">Booking calendar</span><span class="opt-price" id="price-booking">$35</span></label>
-          <label class="opt"><input type="checkbox" id="addon-newsletter"><span class="opt-name">Newsletter signup</span><span class="opt-price" id="price-newsletter">$15</span></label>
-          <label class="opt"><input type="checkbox" id="addon-rush"><span class="opt-name">Rush delivery</span><span class="opt-price" id="price-rush">+$30</span></label>
+          <div class="opt opt--step"><span class="opt-name" id="lbl-posts">Blog posts<small>$15 each</small></span><span class="stepper"><button type="button" data-target="addon-posts" data-step="-1" aria-label="One fewer blog post">−</button><input type="number" id="addon-posts" aria-labelledby="lbl-posts" min="0" max="20" step="1" value="0" inputmode="numeric"><button type="button" data-target="addon-posts" data-step="1" aria-label="One more blog post">+</button></span></div>
+          <label class="opt"><input type="checkbox" id="addon-logo"><span class="opt-name">Logo design</span><span class="opt-price">$40</span></label>
+          <label class="opt"><input type="checkbox" id="addon-social"><span class="opt-name">Social media kit</span><span class="opt-price">$30</span></label>
+          <label class="opt"><input type="checkbox" id="addon-icons"><span class="opt-name">Custom icon set</span><span class="opt-price">$20</span></label>
+          <label class="opt"><input type="checkbox" id="addon-rush"><span class="opt-name">Rush delivery</span><span class="opt-price">+$30</span></label>
         </fieldset>
       </form>
 
@@ -1253,7 +1242,7 @@
       <div class="faq">
         <details open>
           <summary>Can I mix features from different packages?</summary>
-          <p>Yes. Pick the package closest to what you need and add the rest from the add-ons, like a booking calendar on a Portfolio. Anything not listed gets quoted before work starts.</p>
+          <p>Yes. Pick the package closest to what you need and add the rest from the add-ons, like a logo and extra pages on a Portfolio. Anything not listed gets quoted before work starts.</p>
         </details>
         <details>
           <summary>Do I need my text and photos ready?</summary>
@@ -1281,7 +1270,7 @@
         <ul>
           <li>Prices are in US dollars and cover the work listed in each package.</li>
           <li>Turnaround begins once your text, photos and logo are received.</li>
-          <li>Domain names, hosting plans, stock photos and any booking, store or email tools are paid directly by you to the provider.</li>
+          <li>Domain names, hosting plans and stock photos are paid directly by you to the provider.</li>
           <li>Work outside the listed scope is quoted before it begins.</li>
           <li>Quotes are valid for 30 days.</li>
         </ul>
@@ -1310,23 +1299,22 @@
 <script>
   (function () {
     var PACKAGES = {
-      1: { name: "Tune-Up", price: 20, includes: [] },
-      2: { name: "Link-in-Bio", price: 40, includes: [] },
-      3: { name: "Landing Page", price: 75, includes: [] },
-      4: { name: "Portfolio", price: 125, includes: [] },
-      5: { name: "Small Business", price: 150, includes: [] },
-      6: { name: "Restaurant & Café", price: 175, includes: [] },
-      7: { name: "Booking Site", price: 200, includes: ["booking"] },
-      8: { name: "Growth", price: 250, includes: ["newsletter"] },
-      9: { name: "Online Store", price: 325, includes: [] },
-      10: { name: "Masterpiece", price: 400, includes: ["booking"] }
+      1: { name: "Tune-Up", price: 20 },
+      2: { name: "Link-in-Bio", price: 40 },
+      3: { name: "Landing Page", price: 75 },
+      4: { name: "Portfolio", price: 125 },
+      5: { name: "Small Business", price: 150 },
+      6: { name: "Restaurant & Café", price: 175 },
+      7: { name: "Appointment Site", price: 200 },
+      8: { name: "Growth", price: 250 },
+      9: { name: "Product Catalog", price: 325 },
+      10: { name: "Masterpiece", price: 400 }
     };
     var EXTRAS = [
       { id: "logo", label: "Logo design", price: 40 },
       { id: "social", label: "Social media kit", price: 30 },
-      { id: "booking", label: "Booking calendar", price: 35 },
-      { id: "newsletter", label: "Newsletter signup", price: 15 },
-      { id: "rush", label: "Rush delivery", price: 30, prefix: "+" }
+      { id: "icons", label: "Custom icon set", price: 20 },
+      { id: "rush", label: "Rush delivery", price: 30 }
     ];
 
     var form = document.getElementById("quote-form");
@@ -1336,7 +1324,6 @@
     var balanceEl = document.getElementById("quote-balance");
     var copyBtn = document.getElementById("copy-quote");
     var copyStatus = document.getElementById("copy-status");
-    var wanted = {};
     var current = { lines: [], total: 0, deposit: 0, balance: 0 };
 
     document.getElementById("sum-date").textContent =
@@ -1364,18 +1351,11 @@
       if (revisions) lines.push({ label: plural(revisions, "extra revision round"), amount: revisions * 15 });
       var copy = count("addon-copy");
       if (copy) lines.push({ label: "Copywriting, " + plural(copy, "page"), amount: copy * 10 });
+      var posts = count("addon-posts");
+      if (posts) lines.push({ label: plural(posts, "blog post"), amount: posts * 15 });
 
-      // Extras that come with the chosen package show as included and can't be unticked
       EXTRAS.forEach(function (extra) {
-        var box = document.getElementById("addon-" + extra.id);
-        var price = document.getElementById("price-" + extra.id);
-        var included = pkg.includes.indexOf(extra.id) !== -1;
-        if (!box.disabled) wanted[extra.id] = box.checked;
-        box.disabled = included;
-        box.checked = included || !!wanted[extra.id];
-        price.textContent = included ? "Included" : (extra.prefix || "") + money.format(extra.price);
-        if (included) lines.push({ label: extra.label, amount: 0 });
-        else if (wanted[extra.id]) lines.push({ label: extra.label, amount: extra.price });
+        if (document.getElementById("addon-" + extra.id).checked) lines.push({ label: extra.label, amount: extra.price });
       });
 
       var total = lines.reduce(function (sum, line) { return sum + line.amount; }, 0);
@@ -1387,8 +1367,7 @@
         var name = document.createElement("span");
         var amount = document.createElement("span");
         name.textContent = line.label;
-        amount.textContent = line.amount ? money.format(line.amount) : "Included";
-        if (!line.amount) li.className = "inc";
+        amount.textContent = money.format(line.amount);
         li.append(name, amount);
         return li;
       }));
@@ -1401,7 +1380,7 @@
     function quoteText() {
       var rows = ["Website estimate"];
       current.lines.forEach(function (line) {
-        rows.push(line.label + ": " + (line.amount ? money.format(line.amount) : "Included"));
+        rows.push(line.label + ": " + money.format(line.amount));
       });
       rows.push("Total: " + money.format(current.total));
       rows.push("Deposit to start (50%): " + money.format(current.deposit));
