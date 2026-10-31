@@ -32,29 +32,18 @@
   .btn:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--glow); outline-offset: 3px; }
 
   /* Hero */
-  .hero { position: relative; overflow: hidden; background: radial-gradient(90% 70% at 50% 0%, #2A2F66 0%, transparent 70%), var(--night); }
-  .lanterns { position: absolute; inset: 0; pointer-events: none; }
-  .lantern { position: absolute; top: 0; left: var(--x); width: 2px; height: var(--h); background: rgba(255, 244, 230, 0.25); transform-origin: top center; }
-  .lantern::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: calc(var(--s) * -1);
-    width: var(--s);
-    height: calc(var(--s) * 1.15);
-    border-radius: 45%;
-    background: radial-gradient(circle at 50% 40%, #FFE6B0, var(--lantern) 60%, #B4502A);
-    box-shadow: 0 0 calc(var(--s) * 1.2) calc(var(--s) * 0.2) rgba(240, 138, 75, 0.45);
-    transform: translateX(-50%);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .lantern { animation: sway var(--t, 6s) ease-in-out infinite alternate; }
-    @keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(16, 20, 43, 0.55) 0%, rgba(16, 20, 43, 0.7) 55%, var(--night) 100%),
+      url("img/lp-hero.jpg") center / cover no-repeat,
+      var(--night);
   }
   .hero-inner { position: relative; display: grid; justify-items: center; gap: 1.3rem; padding-block: clamp(7rem, 16vw, 10rem) clamp(3.5rem, 8vw, 5rem); text-align: center; }
   .hero h1 { max-width: 12ch; font: 800 clamp(2.6rem, 7vw + 0.5rem, 5.6rem)/0.98 var(--display); letter-spacing: -0.04em; }
   .hero h1 span { color: var(--lantern); }
-  .hero-lede { max-width: 34rem; font-size: 1.15rem; color: var(--muted); }
+  .hero-lede { max-width: 34rem; font-size: 1.15rem; color: #E4E1EE; }
   .countdown { display: flex; gap: 0.6rem; margin-top: 0.5rem; }
   .unit { display: grid; gap: 0.15rem; min-width: 4.4rem; padding: 0.8rem 0.6rem; border-radius: 14px; background: rgba(26, 32, 69, 0.85); box-shadow: inset 0 0 0 1px var(--line); }
   .unit b { font: 700 clamp(1.6rem, 3vw + 0.8rem, 2.4rem)/1 var(--display); font-variant-numeric: tabular-nums; }
@@ -67,7 +56,8 @@
   .sec-head { display: grid; gap: 0.6rem; max-width: 36rem; margin-bottom: 2rem; }
 
   .whats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .what { display: grid; align-content: start; gap: 0.5rem; padding: 1.5rem; border-radius: 18px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--line); }
+  .what img { display: block; width: calc(100% + 3rem); max-width: none; margin: -1.5rem -1.5rem 0.6rem; aspect-ratio: 3 / 2; object-fit: cover; }
+  .what { display: grid; align-content: start; gap: 0.5rem; overflow: hidden; padding: 1.5rem; border-radius: 18px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--line); }
   .what b { font: 800 2.4rem/1 var(--display); color: var(--glow); }
   .what h3 { font: 700 1.15rem/1.2 var(--display); }
   .what p { color: var(--muted); font-size: 15px; }
@@ -111,18 +101,10 @@
 </div>
 
 <header class="hero">
-  <div class="lanterns" aria-hidden="true">
-    <span class="lantern" style="--x:6%; --h:90px; --s:30px; --t:5s"></span>
-    <span class="lantern" style="--x:17%; --h:150px; --s:22px; --t:7s"></span>
-    <span class="lantern" style="--x:29%; --h:60px; --s:26px; --t:6s"></span>
-    <span class="lantern" style="--x:71%; --h:70px; --s:28px; --t:6.5s"></span>
-    <span class="lantern" style="--x:83%; --h:140px; --s:20px; --t:5.5s"></span>
-    <span class="lantern" style="--x:94%; --h:95px; --s:32px; --t:7.5s"></span>
-  </div>
   <div class="wrap hero-inner">
     <p class="eyebrow" id="event-date">Riverside Park · One night only</p>
     <h1>Lantern <span>Night</span> Market</h1>
-    <p class="hero-lede">40 food stalls, 20 makers and three stages of live music under 400 paper lanterns. Free to get in.</p>
+    <p class="hero-lede">40 food stalls, 20 makers and three stages of live music under the lights. Free to get in.</p>
     <div class="countdown" role="timer" aria-label="Time until the market opens">
       <div class="unit"><b id="cd-days">12</b><span>Days</span></div>
       <div class="unit"><b id="cd-hours">08</b><span>Hours</span></div>
@@ -141,9 +123,9 @@
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow">What's on</p><h2 id="whats-title">Eat, shop and stay for the music</h2></div>
       <div class="whats">
-        <div class="what"><b>40</b><h3>Food stalls</h3><p>Dumplings, tacos, wood-fired flatbreads and a whole row of desserts.</p></div>
-        <div class="what"><b>20</b><h3>Local makers</h3><p>Prints, ceramics, candles and jewelry, all made within 50 miles.</p></div>
-        <div class="what"><b>3</b><h3>Music stages</h3><p>Jazz by the river, a DJ by the food hall and acoustic sets on the lawn.</p></div>
+        <div class="what"><img src="img/lp-food.jpg" alt="Grilled skewers and sides from one of the food stalls" width="900" height="600" loading="lazy"><b>40</b><h3>Food stalls</h3><p>Dumplings, tacos, wood-fired flatbreads and a whole row of desserts.</p></div>
+        <div class="what"><img src="img/lp-makers.jpg" alt="Market stalls under striped awnings" width="900" height="600" loading="lazy"><b>20</b><h3>Local makers</h3><p>Prints, ceramics, candles and jewelry, all made within 50 miles.</p></div>
+        <div class="what"><img src="img/lp-music.jpg" alt="Crowd in front of a lit stage" width="900" height="600" loading="lazy"><b>3</b><h3>Music stages</h3><p>Jazz by the river, a DJ by the food hall and acoustic sets on the lawn.</p></div>
       </div>
     </div>
   </section>
@@ -153,10 +135,10 @@
       <div class="sec-head"><p class="eyebrow">Schedule</p><h2 id="schedule-title">How the night goes</h2></div>
       <ol class="schedule">
         <li class="slot"><time>5:00 pm</time><div><b>Gates open</b><p>Stalls open and the first band starts by the river.</p></div></li>
-        <li class="slot"><time>6:30 pm</time><div><b>Lantern lighting</b><p>All 400 lanterns light up at once. Find a spot on the bridge.</p></div></li>
+        <li class="slot"><time>6:30 pm</time><div><b>Lights on</b><p>Every string light in the park switches on at once. Find a spot on the bridge.</p></div></li>
         <li class="slot"><time>7:00 pm</time><div><b>Headline set</b><p>Live music on the main lawn until 9.</p></div></li>
         <li class="slot"><time>9:30 pm</time><div><b>Fire dancers</b><p>A 20-minute show over the water.</p></div></li>
-        <li class="slot"><time>11:00 pm</time><div><b>Last call</b><p>Stalls close. Lanterns stay lit until midnight.</p></div></li>
+        <li class="slot"><time>11:00 pm</time><div><b>Last call</b><p>Stalls close. The lights stay on until midnight.</p></div></li>
       </ol>
     </div>
   </section>
@@ -166,7 +148,7 @@
       <div class="sec-head">
         <p class="eyebrow">RSVP</p>
         <h2 id="rsvp-title">Save your spot. It's free.</h2>
-        <p class="rsvp-note">RSVPs get in through the fast lane and a free lantern to take home while they last.</p>
+        <p class="rsvp-note">RSVPs get in through the fast lane, plus a free drink token while they last.</p>
       </div>
       <form id="rsvp-form" novalidate>
         <div class="field"><label for="rsvp-name">Name</label><input id="rsvp-name" name="name" data-label="Name" autocomplete="name" required></div>

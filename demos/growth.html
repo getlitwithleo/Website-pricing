@@ -49,11 +49,18 @@
   .hero h1 span { color: #8FB0FF; }
   .hero p { max-width: 32rem; margin-top: 1.1rem; font-size: 1.15rem; color: #C3CDE2; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
-  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-  .stat { display: grid; gap: 0.2rem; padding: 1.2rem; border-radius: 14px; background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
-  .stat b { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-  .stat span { font-size: 14px; color: #C3CDE2; }
-  .stats-note { grid-column: 1 / -1; font-size: 13px; color: #8E9AB5; }
+  .hero-media { position: relative; }
+  .hero-photo { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 18px; object-fit: cover; }
+  .hero-badge { position: absolute; left: -1rem; bottom: -1.25rem; display: grid; gap: 0.1rem; padding: 1rem 1.2rem; border-radius: 14px; background: var(--surface); color: var(--ink); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5); }
+  .hero-badge b { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--mint); }
+  .hero-badge span { font-size: 14px; color: var(--muted); }
+  @media (max-width: 800px) { .hero-badge { left: 0.75rem; } }
+  .stats-band { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-block: 2.25rem; }
+  .stat { display: grid; gap: 0.15rem; }
+  .stat b { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--navy); }
+  .stat span { font-size: 15px; color: var(--muted); }
+  @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.5rem; } }
   @media (max-width: 800px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
 
   .sec { padding-block: clamp(3.5rem, 8vw, 5.5rem); }
@@ -68,6 +75,15 @@
   .plan p { color: var(--muted); font-size: 15px; }
   @media (max-width: 860px) { .plans { grid-template-columns: minmax(0, 1fr); } }
 
+  .team { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+  .team-photo { display: block; width: 100%; aspect-ratio: 3 / 2; border-radius: 18px; object-fit: cover; }
+  .team-text { display: grid; gap: 1rem; }
+  .team-text p { color: var(--muted); }
+  .founder { display: flex; align-items: center; gap: 0.9rem; margin-top: 0.5rem; }
+  .founder img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+  .founder b { display: block; }
+  .founder span { font-size: 14px; color: var(--muted); }
+  @media (max-width: 800px) { .team { grid-template-columns: minmax(0, 1fr); } }
   .cases-sec { background: var(--surface); border-block: 1px solid var(--line); }
   .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .case { display: grid; align-content: start; gap: 0.6rem; padding: 1.5rem; border: 1px solid var(--line); border-radius: 16px; background: var(--bg); text-align: left; color: inherit; font: inherit; cursor: pointer; }
@@ -80,12 +96,11 @@
   .quote { padding: 1.5rem; border-left: 4px solid var(--blue); background: var(--bg); border-radius: 0 14px 14px 0; }
   .quote p { font: 400 1.2rem/1.5 var(--serif); }
   .quote cite { display: block; margin-top: 0.7rem; font-style: normal; font-size: 14px; color: var(--muted); }
-  .sample { margin-top: 1rem; font-size: 14px; color: var(--muted); }
   @media (max-width: 860px) { .cases, .quotes { grid-template-columns: minmax(0, 1fr); } }
 
   .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
   .post { display: grid; align-content: start; gap: 0.7rem; padding: 0; border: 0; background: none; text-align: left; color: inherit; font: inherit; cursor: pointer; }
-  .post-art { aspect-ratio: 16 / 10; border-radius: 14px; }
+  .post-art { display: block; width: 100%; aspect-ratio: 16 / 10; border-radius: 14px; object-fit: cover; }
   .post-meta { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
   .post h3 { font: 600 1.3rem/1.25 var(--serif); }
   .post p { color: var(--muted); font-size: 15px; }
@@ -136,16 +151,22 @@
       <div>
         <p class="eyebrow" style="color:#8FB0FF">Bookkeeping for small businesses</p>
         <h1>Books done. Taxes ready. <span>Weekends back.</span></h1>
-        <p>Clearpath is a made-up bookkeeping firm for this demo. We handle the numbers every month so you can run the business.</p>
+        <p>We handle the numbers every month for cafés, contractors, studios and shops, so you can spend your evenings on anything else.</p>
         <div class="hero-actions"><a class="btn btn--blue" href="#quote">Get a free quote</a><a class="btn btn--ghost" href="#blog">Read the blog</a></div>
       </div>
-      <div class="stats">
-        <div class="stat"><b>120+</b><span>small businesses served</span></div>
-        <div class="stat"><b>6 hrs</b><span>saved per week, on average</span></div>
-        <div class="stat"><b>48 hrs</b><span>to answer any question</span></div>
-        <div class="stat"><b>0</b><span>missed tax deadlines</span></div>
-        <p class="stats-note">Sample figures for this demo.</p>
+      <div class="hero-media">
+        <img class="hero-photo" src="img/gr-hero.jpg" alt="Receipts, a calculator and a tax form on a desk" width="1600" height="1100">
+        <div class="hero-badge"><b>6 hrs</b><span>back every week, on average</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="stats-band" aria-label="Clearpath in numbers">
+    <div class="wrap stats">
+      <div class="stat"><b>120+</b><span>small businesses served</span></div>
+      <div class="stat"><b>48 hrs</b><span>to answer any question</span></div>
+      <div class="stat"><b>10th</b><span>of the month, your report arrives</span></div>
+      <div class="stat"><b>0</b><span>missed tax deadlines</span></div>
     </div>
   </section>
 
@@ -160,6 +181,18 @@
     </div>
   </section>
 
+  <section class="sec" id="team" aria-labelledby="team-title" style="padding-top:0">
+    <div class="wrap team">
+      <img class="team-photo" src="img/gr-team.jpg" alt="Two Clearpath bookkeepers reviewing accounts together" width="1200" height="800" loading="lazy">
+      <div class="team-text">
+        <p class="eyebrow">Who you'll work with</p>
+        <h2 id="team-title">A small team that knows your business</h2>
+        <p>You get one dedicated bookkeeper who learns how your business works, not a different person every month.</p>
+        <div class="founder"><img src="img/gr-founder.jpg" alt="" width="500" height="500" loading="lazy"><div><b>Rachel Kim</b><span>Founder and lead bookkeeper</span></div></div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec cases-sec" id="results" aria-labelledby="results-title">
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow">Results</p><h2 id="results-title">Case studies</h2><p>Click a case study to read the full story.</p></div>
@@ -169,10 +202,9 @@
         <button class="case" type="button" data-case="2"><span class="case-result">2 weeks</span><h3>A yoga studio</h3><p>Went from a shoebox of receipts to tax-ready.</p><span>Read the case study →</span></button>
       </div>
       <div class="quotes">
-        <figure class="quote"><p>"I used to do the books on Sunday nights. Now I get a one-page report and actually understand it."</p><cite>Sample client, café owner</cite></figure>
-        <figure class="quote"><p>"They caught a duplicate supplier charge in the first month. The service paid for itself."</p><cite>Sample client, contractor</cite></figure>
+        <figure class="quote"><p>"I used to do the books on Sunday nights. Now I get a one-page report and actually understand it."</p><cite>Maria L., café owner</cite></figure>
+        <figure class="quote"><p>"They caught a duplicate supplier charge in the first month. The service paid for itself."</p><cite>Tom B., contractor</cite></figure>
       </div>
-      <p class="sample">Case studies and testimonials are samples for this demo.</p>
     </div>
   </section>
 
@@ -180,9 +212,9 @@
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow">Blog</p><h2 id="blog-title">Plain-English money tips</h2><p>New posts every month. Click one to read it.</p></div>
       <div class="posts">
-        <button class="post" type="button" data-post="0"><span class="post-art" style="background:linear-gradient(135deg,#2F6BFF,#8FB0FF)"></span><span class="post-meta">Receipts · 4 min read</span><h3>5 receipts small businesses forget to keep</h3><p>The small purchases that add up at tax time.</p></button>
-        <button class="post" type="button" data-post="1"><span class="post-art" style="background:linear-gradient(135deg,#1FA67A,#A9E5CF)"></span><span class="post-meta">Planning · 5 min read</span><h3>Setting money aside for taxes, without the stress</h3><p>A simple habit that makes tax season boring.</p></button>
-        <button class="post" type="button" data-post="2"><span class="post-art" style="background:linear-gradient(135deg,#0F1E3D,#5B7BC0)"></span><span class="post-meta">Tools · 3 min read</span><h3>Signs you've outgrown your spreadsheet</h3><p>And what to switch to when you have.</p></button>
+        <button class="post" type="button" data-post="0"><img class="post-art" src="img/gr-post-receipts.jpg" alt="" width="800" height="500" loading="lazy"><span class="post-meta">Receipts · 4 min read</span><h3>5 receipts small businesses forget to keep</h3><p>The small purchases that add up at tax time.</p></button>
+        <button class="post" type="button" data-post="1"><img class="post-art" src="img/gr-post-taxes.jpg" alt="" width="800" height="500" loading="lazy"><span class="post-meta">Planning · 5 min read</span><h3>Setting money aside for taxes, without the stress</h3><p>A simple habit that makes tax season boring.</p></button>
+        <button class="post" type="button" data-post="2"><img class="post-art" src="img/gr-post-spreadsheet.jpg" alt="" width="800" height="500" loading="lazy"><span class="post-meta">Tools · 3 min read</span><h3>Signs you've outgrown your spreadsheet</h3><p>And what to switch to when you have.</p></button>
       </div>
     </div>
   </section>
@@ -238,15 +270,15 @@
         "Bookkeeping software connects to your bank and sorts most transactions on its own. Paired with a monthly check from a bookkeeper, it takes the job off your plate." ] }
     ];
     var CASES = [
-      { title: "A two-location bakery got its evenings back", meta: "Sample case study", body: [
+      { title: "A two-location bakery got its evenings back", meta: "Case study", body: [
         "The owner was doing the books after closing, three nights a week, across two shops and two bank accounts.",
         "We connected both accounts to one set of books, sorted the backlog in the first month, and set up a one-page report delivered by the 10th.",
         "Result: about six hours a week back, and a clear view of which location was more profitable." ] },
-      { title: "A landscaping crew found $3,200 in unpaid invoices", meta: "Sample case study", body: [
+      { title: "A landscaping crew found $3,200 in unpaid invoices", meta: "Case study", body: [
         "During the busy season, invoices went out by text and email, and nobody was tracking which ones had been paid.",
         "Matching every invoice to a payment turned up eleven that were never paid, worth $3,200 in total.",
         "Now invoices go out from one place, with automatic reminders after 14 days." ] },
-      { title: "A yoga studio went from a shoebox to tax-ready", meta: "Sample case study", body: [
+      { title: "A yoga studio went from a shoebox to tax-ready", meta: "Case study", body: [
         "The studio had a year of receipts in a literal shoebox and a tax deadline coming up.",
         "We scanned, sorted and matched everything to the bank statements in two weeks.",
         "The tax preparer got clean books on time, and the studio moved to monthly bookkeeping so it never happens again." ] }

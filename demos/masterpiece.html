@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="demo.css">
 <style>
   :root {
-    /* Layout: a fully custom brand site. Animated steam over the hero, a drifting band of tea names, values with custom icons, the story, a collection with order buttons, tasting bookings, journal and newsletter. Two design concepts share one layout. */
+    /* Layout: a fully custom brand site. Full-bleed tea photography in the hero, a drifting band of tea names, values with custom icons, the story, a collection with order buttons, tasting bookings, journal and newsletter. Two design concepts share one layout. */
     --bg: #0E1512;
     --surface: #16201B;
     --ink: #EDE6D6;
@@ -20,6 +20,8 @@
     --jade: #5FB59B;
     --gold: #D4B06A;
     --on-gold: #0E1512;
+    --hero-img: url("img/mp-hero-night.jpg");
+    --hero-shade: rgba(14, 21, 18, 0.8);
     --display: "Bodoni Moda", "Didot", Georgia, serif;
     --body: "Jost", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color-scheme: dark;
@@ -33,6 +35,8 @@
     --jade: #2F7A64;
     --gold: #A8813A;
     --on-gold: #FFFFFF;
+    --hero-img: url("img/mp-hero-day.jpg");
+    --hero-shade: rgba(242, 239, 231, 0.88);
     color-scheme: light;
   }
   body { background: var(--bg); color: var(--ink); font: 300 17.5px/1.65 var(--body); -webkit-font-smoothing: antialiased; }
@@ -54,13 +58,12 @@
   .site-nav a:hover { opacity: 1; color: var(--gold); }
   @media (max-width: 760px) { .site-nav { display: none; } }
 
-  .hero { position: relative; min-height: min(92vh, 820px); display: grid; align-items: end; overflow: hidden; }
-  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero { position: relative; min-height: min(92vh, 820px); display: grid; align-items: end; overflow: hidden; background: linear-gradient(90deg, var(--hero-shade) 0%, var(--hero-shade) 30%, transparent 85%), var(--hero-img) center / cover no-repeat, var(--bg); }
   .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(transparent, var(--bg)); pointer-events: none; }
   .hero-inner { position: relative; z-index: 2; display: grid; gap: 1.5rem; padding-block: 9rem clamp(3rem, 8vw, 5.5rem); }
   .hero h1 { max-width: 11ch; font: 400 clamp(3.2rem, 9vw + 0.5rem, 8.2rem)/0.92 var(--display); letter-spacing: -0.025em; }
   .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero p { max-width: 30rem; font-size: 1.15rem; color: var(--muted); }
+  .hero p { max-width: 30rem; font-size: 1.15rem; color: var(--ink); opacity: 0.85; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
 
   .band { overflow: hidden; border-block: 1px solid var(--line); }
@@ -82,7 +85,9 @@
   .value p { color: var(--muted); }
   @media (max-width: 760px) { .values { grid-template-columns: minmax(0, 1fr); } }
 
-  .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .story { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .story-photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .story-body { display: grid; gap: 2.5rem; }
   .story blockquote { margin: 0; font: italic 400 clamp(1.8rem, 3vw + 0.8rem, 2.8rem)/1.2 var(--display); }
   .story blockquote::before { content: "“"; display: block; height: 0.5em; font-size: 2.4em; line-height: 1; color: var(--gold); }
   .story-text { display: grid; gap: 1rem; color: var(--muted); }
@@ -90,12 +95,12 @@
   @media (max-width: 760px) { .story { grid-template-columns: minmax(0, 1fr); } }
 
   .collection { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
-  .tea { display: grid; gap: 0.8rem; align-content: start; padding: 1.5rem 1.25rem; background: var(--surface); border: 1px solid var(--line); }
+  .tea { display: grid; gap: 0.8rem; align-content: start; overflow: hidden; padding: 1.5rem 1.25rem; background: var(--surface); border: 1px solid var(--line); }
   @media (prefers-reduced-motion: no-preference) {
     .tea { transition: transform 0.3s ease, border-color 0.3s ease; }
     .tea:hover { transform: translateY(-6px); border-color: var(--gold); }
   }
-  .tea svg { width: 100%; height: 150px; }
+  .tea img { display: block; width: calc(100% + 2.5rem); max-width: none; margin: -1.5rem -1.25rem 0.3rem; aspect-ratio: 4 / 5; object-fit: cover; }
   .tea h3 { font: 400 1.6rem/1.05 var(--display); }
   .tea .notes { font-size: 14px; letter-spacing: 0.04em; color: var(--muted); }
   .tea-foot { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-top: 0.3rem; padding-top: 0.9rem; border-top: 1px solid var(--line); }
@@ -106,6 +111,7 @@
   @media (max-width: 520px) { .collection { grid-template-columns: minmax(0, 1fr); } }
 
   .tasting { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .tasting-photo { display: block; width: 100%; aspect-ratio: 4 / 3; margin-top: 1rem; object-fit: cover; }
   .tasting-card { display: grid; gap: 1.1rem; padding: clamp(1.5rem, 4vw, 2.25rem); background: var(--surface); border: 1px solid var(--line); }
   .tasting-card label { display: grid; gap: 0.4rem; font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
   .tasting-card select { width: 100%; padding: 0.85rem 0.9rem; border: 1px solid var(--line); border-radius: 0; background: var(--bg); color: var(--ink); font: 300 16px/1.3 var(--body); letter-spacing: 0; text-transform: none; }
@@ -115,6 +121,7 @@
 
   .journal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
   .entry { display: grid; gap: 0.6rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: inherit; text-decoration: none; }
+  .entry img { display: block; width: 100%; aspect-ratio: 3 / 2; margin-bottom: 0.4rem; object-fit: cover; }
   .entry span { font-size: 12.5px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--jade); }
   .entry h3 { font: 400 1.9rem/1.1 var(--display); }
   .entry:hover h3 { color: var(--gold); }
@@ -166,19 +173,18 @@
 
 <main>
   <section class="hero">
-    <canvas id="steam" aria-hidden="true"></canvas>
     <div class="wrap hero-inner">
-      <p class="eyebrow">Halcyon Tea House · Est. for this demo</p>
+      <p class="eyebrow">Halcyon Tea House · Since 2016</p>
       <h1>Tea, <em>slowed</em> down.</h1>
-      <p>Halcyon is a made-up tea house that sources single-estate leaves from small growers and brews every cup to order.</p>
+      <p>Single-estate leaves from small growers, brewed to order in a quiet room on Linden Street.</p>
       <div class="hero-actions"><a class="btn btn--gold" href="#collection">Explore the collection</a><a class="btn btn--line" href="#tasting">Book a tasting</a></div>
     </div>
   </section>
 
   <div class="band" aria-hidden="true">
     <div class="band-track">
-      <span>Gyokuro</span><span>Phoenix Oolong</span><span>First-flush Darjeeling</span><span>Silver Needle</span><span>Roasted Hojicha</span><span>Aged Pu-erh</span>
-      <span>Gyokuro</span><span>Phoenix Oolong</span><span>First-flush Darjeeling</span><span>Silver Needle</span><span>Roasted Hojicha</span><span>Aged Pu-erh</span>
+      <span>Ceremonial Matcha</span><span>Phoenix Oolong</span><span>First-flush Darjeeling</span><span>Jasmine Silver Needle</span><span>Roasted Hojicha</span><span>Aged Pu-erh</span>
+      <span>Ceremonial Matcha</span><span>Phoenix Oolong</span><span>First-flush Darjeeling</span><span>Jasmine Silver Needle</span><span>Roasted Hojicha</span><span>Aged Pu-erh</span>
     </div>
   </div>
 
@@ -204,11 +210,14 @@
 
   <section class="sec" aria-labelledby="story-title" style="padding-top:0">
     <div class="wrap story">
-      <blockquote>A good cup of tea asks you to sit down for five minutes. We think that's the whole point.</blockquote>
-      <div class="story-text">
+      <img class="story-photo" src="img/mp-story.jpg" alt="A cup of tea beside dried flowers and an open book" width="1000" height="1250" loading="lazy">
+      <div class="story-body">
+        <blockquote>A good cup of tea asks you to sit down for five minutes. We think that's the whole point.</blockquote>
+        <div class="story-text">
         <p class="eyebrow" id="story-title">Our story</p>
         <p><b>Halcyon started with one kettle and a folding table</b> at a weekend market, pouring free tastings of a single green tea.</p>
         <p>Today the tea house serves forty teas from eleven gardens, but the idea hasn't changed: find the best leaves, then get out of their way.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -226,6 +235,7 @@
         <p class="eyebrow">Tastings</p>
         <h2 id="tasting-title">Six teas, <em>one</em> slow hour</h2>
         <p>A guided tasting for up to six guests on Saturday mornings, with small bites and a tin to take home.</p>
+        <img class="tasting-photo" src="img/mp-tasting.jpg" alt="A bowl of brewed tea surrounded by dried leaves and spices" width="1200" height="900" loading="lazy">
       </div>
       <div class="tasting-card">
         <label for="t-date">Date<select id="t-date"></select></label>
@@ -241,8 +251,8 @@
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow">Journal</p><h2 id="journal-title">Notes from the <em>gardens</em></h2></div>
       <div class="journal">
-        <a class="entry" href="#" data-demo="this journal post"><span>Brewing</span><h3>Why water temperature matters more than time</h3><p>A two-degree difference can turn a sweet green tea bitter. Here's how to get it right at home.</p></a>
-        <a class="entry" href="#" data-demo="this journal post"><span>Travel</span><h3>A week in the hills at first flush</h3><p>What it's like when a whole valley picks for ten days straight.</p></a>
+        <a class="entry" href="#" data-demo="this journal post"><img src="img/mp-journal-1.jpg" alt="" width="900" height="600" loading="lazy"><span>Brewing</span><h3>Why water temperature matters more than time</h3><p>A two-degree difference can turn a sweet green tea bitter. Here's how to get it right at home.</p></a>
+        <a class="entry" href="#" data-demo="this journal post"><img src="img/mp-journal-2.jpg" alt="" width="900" height="600" loading="lazy"><span>Travel</span><h3>A week in the hills at first flush</h3><p>What it's like when a whole valley picks for ten days straight.</p></a>
       </div>
     </div>
   </section>
@@ -272,94 +282,44 @@
 <script>
   (function () {
     var root = document.documentElement;
-    function token(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
 
     // Concept switch: same content, two finished designs
     document.querySelectorAll(".concepts button").forEach(function (btn) {
       btn.addEventListener("click", function () {
         root.setAttribute("data-concept", btn.dataset.concept);
         document.querySelectorAll(".concepts button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
-        drawTeas();
-        if (still) drawSteam(0);
         Demo.toast(btn.dataset.concept === "a" ? "Concept A: Night. Dark, moody and gold." : "Concept B: Day. Light, airy and calm.");
       });
     });
 
-    // Steam over the hero: soft drifting lines
-    var canvas = document.getElementById("steam");
-    var ctx = canvas.getContext("2d");
-    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var w = 0, h = 0;
-    function size() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.clientWidth; h = canvas.clientHeight;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function drawSteam(t) {
-      var jade = token("--jade"), gold = token("--gold");
-      ctx.clearRect(0, 0, w, h);
-      var lines = 26;
-      for (var i = 0; i < lines; i++) {
-        var p = i / lines;
-        ctx.beginPath();
-        for (var x = 0; x <= w + 10; x += 10) {
-          var y = h * (0.18 + p * 0.7)
-            + Math.sin(x * 0.004 + t * 0.00025 + i * 0.5) * 40 * (1 - p * 0.4)
-            + Math.sin(x * 0.011 - t * 0.0004 + i) * 14;
-          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = i % 5 === 0 ? gold : jade;
-        ctx.globalAlpha = 0.07 + (i % 5 === 0 ? 0.2 : 0.1) * Math.sin(p * Math.PI);
-        ctx.lineWidth = i % 5 === 0 ? 1.4 : 1;
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-    }
-    function loop(t) { drawSteam(t); requestAnimationFrame(loop); }
-    size();
-    window.addEventListener("resize", function () { size(); if (still) drawSteam(0); });
-    if (still) drawSteam(0); else requestAnimationFrame(loop);
-
     // Collection
     var TEAS = [
-      { name: "Gyokuro", notes: "Sweet · grassy · umami", price: 24, band: "#5FB59B" },
-      { name: "Phoenix Oolong", notes: "Honey · orchid · stone fruit", price: 22, band: "#D4B06A" },
-      { name: "First-flush Darjeeling", notes: "Muscat · bright · floral", price: 19, band: "#C97B5A" },
-      { name: "Silver Needle", notes: "Melon · hay · delicate", price: 28, band: "#B9C4CC" }
+      { name: "Ceremonial Matcha", notes: "Grassy · sweet · creamy", price: 28, img: "mp-matcha", alt: "Matcha powder, a bowl of whisked matcha and a bamboo whisk" },
+      { name: "Jasmine Silver Needle", notes: "Floral · honeyed · light", price: 26, img: "mp-jars", alt: "Glass jars of loose-leaf tea" },
+      { name: "Seasonal Tasting Flight", notes: "Four teas from this harvest", price: 34, img: "mp-spoons", alt: "Spoons of different loose-leaf teas" },
+      { name: "First-flush Darjeeling", notes: "Muscat · bright · brisk", price: 19, img: "mp-glass", alt: "A glass cup of amber tea" }
     ];
-    function tin(band) {
-      var body = token("--surface") === "#FFFFFF" ? "#E7E2D6" : "#202C26";
-      var lid = token("--ink");
-      return '<svg viewBox="0 0 120 150" aria-hidden="true">' +
-        '<ellipse cx="60" cy="140" rx="34" ry="5" fill="rgba(0,0,0,0.18)"/>' +
-        '<rect x="28" y="28" width="64" height="110" rx="6" fill="' + body + '"/>' +
-        '<rect x="28" y="62" width="64" height="44" fill="' + band + '"/>' +
-        '<rect x="26" y="20" width="68" height="14" rx="4" fill="' + lid + '" opacity="0.85"/>' +
-        '<circle cx="60" cy="84" r="11" fill="none" stroke="' + body + '" stroke-width="1.5"/>' +
-        '<path d="M60 75c-4 3-4 15 0 18 4-3 4-15 0-18z" fill="' + body + '"/>' +
-        '<rect x="34" y="32" width="6" height="100" rx="3" fill="rgba(255,255,255,0.12)"/></svg>';
-    }
     var teasEl = document.getElementById("teas");
-    function drawTeas() {
-      teasEl.replaceChildren.apply(teasEl, TEAS.map(function (t) {
-        var card = Demo.el("article", "tea");
-        var art = Demo.el("div");
-        art.innerHTML = tin(t.band);
-        var foot = Demo.el("div", "tea-foot");
-        var btn = Demo.el("button", null, "Order");
-        btn.type = "button";
-        btn.setAttribute("aria-label", "Order " + t.name);
-        btn.addEventListener("click", function () {
-          Demo.message({ via: "email", to: "hello@halcyon.example.com", subject: "Order: " + t.name,
-            body: "Hello Halcyon, I'd like to order one 50 g tin of " + t.name + " ($" + t.price + "). I'd like to pick it up at the tea house." });
-        });
-        foot.append(Demo.el("b", null, "$" + t.price), btn);
-        card.append(art, Demo.el("h3", null, t.name), Demo.el("p", "notes", t.notes), foot);
-        return card;
-      }));
-    }
-    drawTeas();
+    teasEl.replaceChildren.apply(teasEl, TEAS.map(function (t) {
+      var card = Demo.el("article", "tea");
+      var img = Demo.el("img");
+      img.src = "img/" + t.img + ".jpg";
+      img.alt = t.alt;
+      img.width = 700;
+      img.height = 875;
+      img.loading = "lazy";
+      var foot = Demo.el("div", "tea-foot");
+      var btn = Demo.el("button", null, "Order");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Order " + t.name);
+      btn.addEventListener("click", function () {
+        Demo.message({ via: "email", to: "hello@halcyon.example.com", subject: "Order: " + t.name,
+          body: "Hello Halcyon, I'd like to order " + t.name + " ($" + t.price + "). I'd like to pick it up at the tea house." });
+      });
+      foot.append(Demo.el("b", null, "$" + t.price), btn);
+      card.append(img, Demo.el("h3", null, t.name), Demo.el("p", "notes", t.notes), foot);
+      return card;
+    }));
 
     // Tastings on the next four Saturdays
     var dateSel = document.getElementById("t-date");

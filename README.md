@@ -29,6 +29,8 @@ Open `index.html` in a browser to view it.
 | Product Catalog | `demos/product-catalog.html` | A pottery shop with search, filters, glaze options and order-by-message |
 | Masterpiece | `demos/masterpiece.html` | A tea house with animated steam, custom icons and a switch between two full design concepts |
 
+Each demo uses real photos from Unsplash, stored in `demos/img/` (sources are listed in `demos/img/CREDITS.md`). The package cards and hero on the home page show screenshots of the demos.
+
 Each demo has a bar at the top marking it as a demo, linking back to the packages and to the quote builder with that package already chosen. Nothing on a demo is really sent: forms, booking and message buttons show a preview of what would happen on a real site. `demos/demo.css` and `demos/demo.js` hold the parts every demo shares.
 
 ## Adding your own websites

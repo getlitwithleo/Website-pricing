@@ -224,47 +224,12 @@
   .assure li { display: inline-flex; align-items: center; gap: 0.45rem; }
   .assure svg { width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Wireframe pieces for the hero mockup and package previews */
+  /* Browser and phone frames around the demo screenshots */
   .showcase { position: relative; min-width: 0; padding-bottom: 2.25rem; }
   .desk { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-lg); }
   .bar { display: flex; align-items: center; gap: 5px; padding: 8px 11px; border-bottom: 1px solid var(--line); background: var(--surface); }
   .bar i { width: 7px; height: 7px; border-radius: 50%; background: var(--mock-2); }
   .bar b { width: 38%; height: 12px; margin-inline: auto; border-radius: 6px; background: var(--mock); }
-  .pg { display: grid; align-content: start; gap: 10px; padding: 12px 14px 16px; min-width: 0; }
-  .desk .pg { gap: 14px; padding: 16px 18px 20px; }
-  .r { display: flex; align-items: center; gap: 7px; }
-  .sb { justify-content: space-between; }
-  .stack { display: grid; align-content: center; gap: 7px; min-width: 0; }
-  .cols { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: var(--g, 8px); }
-  .ln { display: block; width: var(--w, 60%); height: var(--lh, 6px); border-radius: 4px; background: var(--mock-2); }
-  .ln--ink { --lh: 10px; background: var(--ink); }
-  .ln--accent { background: var(--accent); }
-  .ln--hue { background: var(--hue); }
-  .ln--light { --lh: 10px; background: #FFFFFF; }
-  .pill { display: block; width: var(--w, 56px); height: var(--ph, 16px); border-radius: 6px; background: var(--hue, var(--accent)); }
-  .pill--line { background: transparent; border: 1.5px solid var(--line-strong); }
-  .pill--ink { background: var(--ink); }
-  .logo { width: 12px; height: 12px; border-radius: 3px; background: var(--ink); }
-  .bx { display: block; height: var(--h, 40px); border-radius: 4px; background: var(--mock); }
-  .mini-card { display: grid; gap: 7px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; }
-  .mini-icon { width: 18px; height: 18px; border-radius: 5px; background: var(--accent-soft); }
-  .aurora {
-    border-radius: 6px;
-    background:
-      radial-gradient(110% 90% at 12% 18%, var(--accent) 0%, transparent 58%),
-      radial-gradient(80% 80% at 88% 28%, var(--ember) 0%, transparent 58%),
-      radial-gradient(90% 90% at 55% 105%, var(--sky) 0%, transparent 62%),
-      #0D1117;
-  }
-  .thumb {
-    display: block;
-    height: var(--h, 40px);
-    border-radius: 4px;
-    background: var(--mock-2);
-    background: linear-gradient(135deg, color-mix(in srgb, var(--hue) 78%, var(--surface)), color-mix(in srgb, var(--hue) 22%, var(--surface)));
-  }
-  .thumb.t2 { background: var(--mock); background: linear-gradient(200deg, color-mix(in srgb, var(--hue) 40%, var(--surface)), color-mix(in srgb, var(--hue) 10%, var(--surface))); }
-  .thumb.t3 { background: var(--mock-2); background: linear-gradient(160deg, color-mix(in srgb, var(--hue) 55%, var(--ink)), color-mix(in srgb, var(--hue) 65%, var(--surface))); }
   .phone {
     position: absolute;
     right: 0;
@@ -277,7 +242,9 @@
     border-radius: 24px;
     box-shadow: var(--shadow-lg);
   }
-  .screen { display: grid; align-content: start; gap: 8px; height: 100%; padding: 16px 10px 10px; overflow: hidden; background: var(--surface); border-radius: 19px; }
+  .screen { height: 100%; overflow: hidden; background: var(--surface); border-radius: 19px; }
+  .screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  img.shot { display: block; width: 100%; height: auto; }
 
   /* Includes strip */
   .includes {
@@ -442,6 +409,7 @@
     .pkg--side { flex-direction: row; }
     .pkg--side .preview { width: 40%; height: auto; padding: 22px 0 0 22px; border-bottom: 0; border-right: 1px solid var(--line); }
     .pkg--side .preview .browser { border-right: 0; border-radius: 8px 0 0 0; }
+    .pkg--side .preview img.shot { height: 100%; object-fit: cover; object-position: top left; }
   }
 
   .pkg--rec { border: 1.5px solid var(--accent); box-shadow: var(--shadow-lg); }
@@ -473,61 +441,6 @@
   @media (max-width: 680px) {
     .pkgs--3, .pkgs--2 { grid-template-columns: minmax(0, 1fr); }
   }
-
-  /* Preview details, one per kind of site */
-  .edit { position: relative; display: grid; gap: 6px; padding: 9px 8px; border: 1.5px dashed var(--hue); border-radius: 5px; }
-  .edit-tag { position: absolute; top: 0; right: 8px; transform: translateY(-55%); padding: 1px 6px; border-radius: 4px; background: var(--hue); color: var(--surface); font-size: 9px; font-weight: 600; line-height: 1.5; }
-  .preview--center { display: flex; justify-content: center; }
-  .phone-mini {
-    display: grid;
-    align-content: start;
-    gap: 7px;
-    width: 128px;
-    height: calc(100% + 10px);
-    padding: 14px 12px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-bottom: 0;
-    border-radius: 18px 18px 0 0;
-    box-shadow: var(--shadow);
-  }
-  .avatar { width: 34px; height: 34px; margin: 0 auto 2px; border-radius: 50%; background: var(--hue); background: linear-gradient(135deg, var(--hue), color-mix(in srgb, var(--hue) 30%, var(--surface))); }
-  .phone-mini .ln { margin-inline: auto; }
-  .link-btn { height: 15px; border-radius: 6px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
-  .link-btn.on { background: var(--hue); border-color: var(--hue); }
-  .stat-card { position: absolute; right: 9%; bottom: 26px; display: grid; gap: 6px; padding: 9px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
-  .bars { display: flex; align-items: flex-end; gap: 4px; height: 30px; }
-  .bars i { width: 7px; height: var(--v); border-radius: 2px; background: var(--hue); }
-  .bars i:nth-child(odd) { opacity: 0.45; }
-  .hero-band { display: grid; justify-items: center; gap: 7px; padding: 13px; border-radius: 6px; background: var(--mock); background: color-mix(in srgb, var(--hue) 14%, var(--surface)); }
-  .countdown { display: flex; justify-content: center; gap: 6px; }
-  .countdown span { display: grid; place-items: center; width: 30px; height: 20px; border-radius: 5px; background: var(--ink); color: var(--surface); font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .masonry { columns: 3; column-gap: 6px; }
-  .masonry .thumb { margin-bottom: 6px; break-inside: avoid; }
-  .map {
-    position: relative;
-    background-color: var(--mock);
-    background-image: linear-gradient(var(--mock-2) 1px, transparent 1px), linear-gradient(90deg, var(--mock-2) 1px, transparent 1px);
-    background-size: 13px 13px;
-  }
-  .map-pin { position: absolute; left: 52%; top: 30%; width: 13px; height: 13px; border-radius: 50% 50% 50% 0; background: var(--hue); transform: rotate(-45deg); }
-  .stars { font-size: 10px; letter-spacing: 1px; line-height: 1; color: var(--hue); }
-  .tab { width: 17px; height: 6px; border-radius: 99px; background: var(--mock-2); }
-  .tab.on { background: var(--hue); }
-  .menu-item { display: flex; align-items: center; gap: 5px; }
-  .menu-item i { flex: 1; border-bottom: 1.5px dotted var(--line-strong); }
-  .plate { width: 100%; max-width: 70px; aspect-ratio: 1; margin-inline: auto; border-radius: 50%; border: 4px solid var(--surface); box-shadow: 0 0 0 1px var(--line), var(--shadow); }
-  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
-  .cal i { aspect-ratio: 1; border-radius: 3px; background: var(--mock); }
-  .cal i.on { background: var(--hue); }
-  .cal i.ring { box-shadow: inset 0 0 0 1.5px var(--hue); background: transparent; }
-  .slot { height: 13px; border-radius: 4px; border: 1.5px solid var(--line-strong); border-color: color-mix(in srgb, var(--hue) 45%, var(--surface)); }
-  .slot.on { background: var(--hue); border-color: var(--hue); }
-  .chart { height: 42px; padding: 4px; border: 1px solid var(--line); border-radius: 6px; }
-  .chart svg { display: block; width: 100%; height: 100%; }
-  .chart polyline { fill: none; stroke: var(--hue); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .chart polygon { fill: var(--hue); opacity: 0.14; }
-  .field { flex: 1; height: 14px; border: 1px solid var(--mock-2); border-radius: 3px; }
 
   /* Fit guide */
   .table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
@@ -758,36 +671,10 @@
     <div class="showcase" aria-hidden="true">
       <div class="desk">
         <div class="bar"><i></i><i></i><i></i><b></b></div>
-        <div class="pg">
-          <div class="r sb"><span class="logo" style="width:14px; height:14px"></span><span class="r"><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span><span class="ln" style="--w:28px"></span></span><span class="pill" style="--w:52px; --ph:18px"></span></div>
-          <div class="cols" style="--n:2; --g:18px; align-items:center">
-            <div class="stack" style="gap:8px">
-              <span class="ln ln--accent" style="--w:32%"></span>
-              <span class="ln ln--ink" style="--w:95%; --lh:13px"></span>
-              <span class="ln ln--ink" style="--w:72%; --lh:13px"></span>
-              <span class="ln" style="--w:88%; --lh:7px; margin-top:4px"></span>
-              <span class="ln" style="--w:64%; --lh:7px"></span>
-              <span class="r" style="margin-top:8px"><span class="pill" style="--w:64px; --ph:20px"></span><span class="pill pill--line" style="--w:54px; --ph:20px"></span></span>
-            </div>
-            <span class="aurora" style="display:block; height:150px"></span>
-          </div>
-          <div class="cols" style="--g:10px">
-            <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:70%; --lh:8px"></span><span class="ln" style="--w:92%"></span><span class="ln" style="--w:60%"></span></div>
-            <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:62%; --lh:8px"></span><span class="ln" style="--w:88%"></span><span class="ln" style="--w:70%"></span></div>
-            <div class="mini-card"><span class="mini-icon"></span><span class="ln ln--ink" style="--w:74%; --lh:8px"></span><span class="ln" style="--w:85%"></span><span class="ln" style="--w:55%"></span></div>
-          </div>
-        </div>
+        <img class="shot" src="demos/img/shot-restaurant.jpg" alt="" width="960" height="600">
       </div>
       <div class="phone">
-        <div class="screen">
-          <div class="r sb"><span class="logo" style="width:11px; height:11px"></span><span class="ln" style="--w:16px; --lh:5px"></span></div>
-          <span class="aurora" style="display:block; height:38%"></span>
-          <span class="ln ln--ink" style="--w:90%; --lh:9px"></span>
-          <span class="ln ln--ink" style="--w:65%; --lh:9px"></span>
-          <span class="ln" style="--w:85%; --lh:5px"></span>
-          <span class="ln" style="--w:70%; --lh:5px"></span>
-          <span class="pill" style="--w:100%; --ph:18px; margin-top:4px"></span>
-        </div>
+        <div class="screen"><img src="demos/img/shot-phone-booking.jpg" alt="" width="390" height="800"></div>
       </div>
     </div>
   </section>
@@ -839,12 +726,7 @@
             <a class="preview-link" href="demos/tune-up.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:20px"></span><span class="ln" style="--w:20px"></span><span class="ln" style="--w:20px"></span></span></div>
-                <span class="ln ln--ink" style="--w:58%"></span>
-                <div class="edit"><span class="ln" style="--w:88%"></span><span class="ln" style="--w:62%"></span><span class="edit-tag">Updated</span></div>
-                <div class="cols"><span class="bx" style="--h:26px"></span><span class="bx" style="--h:26px"></span><span class="bx" style="--h:26px"></span></div>
-              </div>
+              <img class="shot" src="demos/img/shot-tune-up.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -862,18 +744,12 @@
         </article>
 
         <article class="pkg" id="pkg-link-in-bio" style="--hue: var(--hue-rose)" aria-labelledby="n-2">
-          <div class="preview preview--center" aria-hidden="true">
+          <div class="preview" aria-hidden="true">
             <a class="preview-link" href="demos/link-in-bio.html" tabindex="-1"><span>View live demo</span></a>
-            <div class="phone-mini">
-              <span class="avatar"></span>
-              <span class="ln ln--ink" style="--w:55%; --lh:8px"></span>
-              <span class="ln" style="--w:75%; --lh:5px"></span>
-              <span class="link-btn on"></span>
-              <span class="link-btn"></span>
-              <span class="link-btn"></span>
-              <span class="link-btn"></span>
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><b></b></div>
+              <img class="shot" src="demos/img/shot-link-in-bio.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
-            <div class="stat-card"><span class="ln" style="--w:36px; --lh:5px"></span><div class="bars"><i style="--v:40%"></i><i style="--v:75%"></i><i style="--v:55%"></i><i style="--v:95%"></i></div></div>
           </div>
           <div class="pkg-body">
             <div class="pkg-top"><h4 id="n-2">Link-in-Bio</h4><p class="pkg-price">$40<small>$20 to start</small></p></div>
@@ -895,11 +771,7 @@
             <a class="preview-link" href="demos/landing-page.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg" style="gap:8px">
-                <div class="r sb"><span class="logo"></span><span class="pill" style="--w:34px; --ph:12px"></span></div>
-                <div class="hero-band" style="gap:6px; padding:9px"><span class="ln ln--ink" style="--w:68%; --lh:11px"></span><span class="ln" style="--w:48%"></span><span class="pill" style="--w:58px"></span></div>
-                <div class="countdown"><span>12</span><span>08</span><span>45</span><span>30</span></div>
-              </div>
+              <img class="shot" src="demos/img/shot-landing-page.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -934,12 +806,7 @@
             <a class="preview-link" href="demos/portfolio.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="ln ln--ink" style="--w:56px; --lh:8px"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span></span></div>
-                <div class="masonry">
-                  <span class="thumb" style="--h:58px"></span><span class="thumb t2" style="--h:34px"></span><span class="thumb t3" style="--h:72px"></span><span class="thumb t2" style="--h:46px"></span><span class="thumb" style="--h:30px"></span><span class="thumb t3" style="--h:42px"></span><span class="thumb t2" style="--h:52px"></span><span class="thumb" style="--h:40px"></span><span class="thumb t3" style="--h:36px"></span>
-                </div>
-              </div>
+              <img class="shot" src="demos/img/shot-portfolio.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -962,14 +829,7 @@
             <a class="preview-link" href="demos/small-business.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r" style="gap:4px"><span class="tab on"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span></span></div>
-                <div class="cols" style="--n:2; --g:10px">
-                  <div class="stack"><span class="ln ln--ink" style="--w:90%"></span><span class="ln ln--ink" style="--w:62%"></span><span class="ln" style="--w:88%"></span><span class="ln" style="--w:70%"></span><span class="stars">★★★★★</span></div>
-                  <span class="bx map" style="--h:78px"><i class="map-pin"></i></span>
-                </div>
-                <div class="cols" style="--n:3"><span class="bx" style="--h:22px"></span><span class="bx" style="--h:22px"></span><span class="bx" style="--h:22px"></span></div>
-              </div>
+              <img class="shot" src="demos/img/shot-small-business.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -992,19 +852,7 @@
             <a class="preview-link" href="demos/restaurant.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="pill" style="--w:44px; --ph:12px"></span></div>
-                <div class="cols" style="--n:2; --g:12px; align-items:center">
-                  <div class="stack" style="gap:9px">
-                    <span class="ln ln--ink" style="--w:50%; --lh:8px"></span>
-                    <div class="menu-item"><span class="ln" style="--w:40%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
-                    <div class="menu-item"><span class="ln" style="--w:52%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
-                    <div class="menu-item"><span class="ln" style="--w:34%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
-                    <div class="menu-item"><span class="ln" style="--w:46%"></span><i></i><span class="ln ln--hue" style="--w:16px"></span></div>
-                  </div>
-                  <span class="plate thumb"></span>
-                </div>
-              </div>
+              <img class="shot" src="demos/img/shot-restaurant.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -1027,16 +875,7 @@
             <a class="preview-link" href="demos/booking.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="pill pill--ink" style="--w:40px; --ph:12px"></span></div>
-                <div class="cols" style="--n:2; --g:12px; grid-template-columns: 1.3fr 1fr">
-                  <div class="stack" style="gap:6px">
-                    <span class="ln ln--ink" style="--w:55%; --lh:8px"></span>
-                    <div class="cal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i class="ring"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                  </div>
-                  <div class="stack" style="gap:6px; align-content:start; padding-top:15px"><span class="slot"></span><span class="slot on"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
-                </div>
-              </div>
+              <img class="shot" src="demos/img/shot-booking.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -1072,18 +911,7 @@
             <a class="preview-link" href="demos/growth.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="pill" style="--w:30px; --ph:11px"></span></span></div>
-                <div class="cols">
-                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:30px"></span><span class="ln ln--ink" style="--w:80%; --lh:6px"></span><span class="ln" style="--w:60%; --lh:5px"></span></div>
-                  <div class="stack" style="gap:5px"><span class="thumb t2" style="--h:30px"></span><span class="ln ln--ink" style="--w:70%; --lh:6px"></span><span class="ln" style="--w:85%; --lh:5px"></span></div>
-                  <div class="stack" style="gap:5px"><span class="thumb t3" style="--h:30px"></span><span class="ln ln--ink" style="--w:75%; --lh:6px"></span><span class="ln" style="--w:50%; --lh:5px"></span></div>
-                </div>
-                <div class="cols" style="--n:2; align-items:center">
-                  <div class="chart"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polygon points="0,30 0,26 16,22 32,24 48,15 64,17 80,8 100,3 100,30"/><polyline points="0,26 16,22 32,24 48,15 64,17 80,8 100,3"/></svg></div>
-                  <div class="stack" style="gap:6px"><span class="field" style="flex:none"></span><span class="pill" style="--w:100%; --ph:13px"></span></div>
-                </div>
-              </div>
+              <img class="shot" src="demos/img/shot-growth.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -1106,16 +934,7 @@
             <a class="preview-link" href="demos/product-catalog.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r" style="gap:10px"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="pill" style="--w:30px; --ph:11px"></span></span></div>
-                <div class="cols" style="--n:4; --g:7px">
-                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:42px"></span><span class="ln ln--ink" style="--w:80%; --lh:5px"></span><span class="ln ln--hue" style="--w:40%; --lh:5px"></span></div>
-                  <div class="stack" style="gap:5px"><span class="thumb t2" style="--h:42px"></span><span class="ln ln--ink" style="--w:70%; --lh:5px"></span><span class="ln ln--hue" style="--w:45%; --lh:5px"></span></div>
-                  <div class="stack" style="gap:5px"><span class="thumb t3" style="--h:42px"></span><span class="ln ln--ink" style="--w:85%; --lh:5px"></span><span class="ln ln--hue" style="--w:35%; --lh:5px"></span></div>
-                  <div class="stack" style="gap:5px"><span class="thumb" style="--h:42px"></span><span class="ln ln--ink" style="--w:65%; --lh:5px"></span><span class="ln ln--hue" style="--w:42%; --lh:5px"></span></div>
-                </div>
-                <div class="r sb" style="margin-top:4px"><span class="ln" style="--w:40%"></span><span class="pill pill--ink" style="--w:64px; --ph:15px"></span></div>
-              </div>
+              <img class="shot" src="demos/img/shot-product-catalog.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">
@@ -1139,11 +958,7 @@
             <a class="preview-link" href="demos/masterpiece.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
-              <div class="pg">
-                <div class="r sb"><span class="logo"></span><span class="r"><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span><span class="ln" style="--w:18px"></span></span></div>
-                <div class="aurora stack" style="height:74px; padding:12px; align-content:end; justify-items:start; gap:6px"><span class="ln ln--light" style="--w:62%"></span><span class="ln ln--light" style="--w:40%; --lh:6px; opacity:0.7"></span></div>
-                <div class="cols" style="--n:3; --g:7px"><span class="aurora" style="display:block; height:30px"></span><span class="aurora" style="display:block; height:30px; filter:hue-rotate(40deg)"></span><span class="aurora" style="display:block; height:30px; filter:hue-rotate(-30deg)"></span></div>
-              </div>
+              <img class="shot" src="demos/img/shot-masterpiece.jpg" alt="" width="960" height="600" loading="lazy">
             </div>
           </div>
           <div class="pkg-body">

@@ -94,18 +94,7 @@
   .new-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 20px; align-items: center; padding: 26px 22px 18px; }
   .new-hero h3 { font: 800 clamp(30px, 4vw, 44px)/0.98 var(--store); font-stretch: 75%; letter-spacing: -0.01em; text-transform: uppercase; }
   .new-hero p { margin-top: 10px; color: #4A5E52; }
-  .new-photo {
-    height: 150px;
-    border-radius: 12px;
-    background:
-      linear-gradient(180deg, transparent 55%, rgba(31, 61, 43, 0.35)),
-      repeating-linear-gradient(90deg, #E6B93A 0 26px, #D9A92B 26px 30px),
-      #E6B93A;
-    position: relative;
-    overflow: hidden;
-  }
-  .new-photo::before { content: ""; position: absolute; left: 12%; right: 12%; bottom: 0; height: 58%; border-radius: 8px 8px 0 0; background: var(--store-green); }
-  .new-photo::after { content: "HARBOR LANE"; position: absolute; left: 0; right: 0; top: 18%; color: var(--store-green); font: 800 15px/1 var(--store); font-stretch: 70%; letter-spacing: 0.2em; text-align: center; }
+  .new-photo { display: block; width: 100%; height: 170px; border-radius: 12px; object-fit: cover; }
   .new-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0 22px; }
   .new-card { padding: 12px; border: 1px solid rgba(31, 61, 43, 0.14); border-radius: 10px; background: #FFFFFF; font-size: 13px; }
   .new-card b { display: block; margin-bottom: 2px; font: 700 15px/1.2 var(--store); font-stretch: 85%; text-transform: uppercase; }
@@ -164,7 +153,7 @@
   <header class="intro">
     <p class="eyebrow">Tune-Up demo · Harbor Lane Hardware</p>
     <h1>Same website. Two days later.</h1>
-    <p>Harbor Lane Hardware is a made-up family store with a website that mostly worked. Here's what a $20 Tune-Up changed. Drag the slider to compare.</p>
+    <p>Harbor Lane Hardware has sold tools on the same corner for 40 years. Their website hadn't been touched since 2019. Here's what a $20 Tune-Up changed. Drag the slider to compare.</p>
   </header>
 
   <section class="compare" aria-label="Before and after comparison">
@@ -191,7 +180,7 @@
               <h3>Everything for the fix-it list.</h3>
               <p>Tools, paint, keys cut while you wait, and advice from people who've done the job before.</p>
             </div>
-            <div class="new-photo" role="img" aria-label="Storefront illustration"></div>
+            <img class="new-photo" src="img/tune-up-tools.jpg" alt="Wall of hand tools at Harbor Lane Hardware" width="1200" height="800">
           </div>
           <div class="new-cards">
             <div class="new-card"><b>Open today</b>Mon–Sat 7:30–6 · Sun 9–3</div>
@@ -230,7 +219,7 @@
         <div class="score"><div class="score-head"><span>Mobile-friendly</span><span>41 → 96</span></div><div class="bar"><i class="a" style="--a:96%"></i><i class="b" style="--b:41%"></i></div></div>
         <div class="score"><div class="score-head"><span>Page speed</span><span>52 → 91</span></div><div class="bar"><i class="a" style="--a:91%"></i><i class="b" style="--b:52%"></i></div></div>
         <div class="score"><div class="score-head"><span>Easy to read</span><span>58 → 94</span></div><div class="bar"><i class="a" style="--a:94%"></i><i class="b" style="--b:58%"></i></div></div>
-        <p class="sample-note">Scores are out of 100. Pink is before, green is after. Sample numbers for this demo.</p>
+        <p class="sample-note">Scores are out of 100. Pink is before, green is after.</p>
       </div>
       <div class="next">
         <h3>What to fix next</h3>
