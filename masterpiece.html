@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Masterpiece Package</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400..500&family=Schibsted+Grotesk:wght@400..700&display=swap">
+<style>
+  :root {
+    /* Layout: one column a customer reads top to bottom. A dark package panel with the key numbers, then what's included, the steps from deposit to launch, extras, and the fine print. Same look as the pricing page. */
+    --bg: #F5F6F8;
+    --surface: #FFFFFF;
+    --ink: #0D1117;
+    --muted: #565D6B;
+    --line: #E3E6EB;
+    --accent: #2E46D9;
+    --accent-soft: #ECEFFD;
+    --ember: #E8774A;
+    --deep: #0D1117;
+    --deep-fg: #F3F4F7;
+    --deep-muted: #A6ADBC;
+    --deep-line: #272D39;
+    --deep-accent: #A3B0FF;
+    --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.05);
+    --shadow-lg: 0 2px 4px rgba(13, 17, 23, 0.04), 0 36px 70px -34px rgba(13, 17, 23, 0.38);
+
+    --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B0D11;
+      --surface: #13161C;
+      --ink: #EDEFF3;
+      --muted: #9AA1AE;
+      --line: #232731;
+      --accent: #8D9BFF;
+      --accent-soft: #1B2142;
+      --ember: #F08A5D;
+      --deep: #1A1E28;
+      --deep-fg: #F3F4F7;
+      --deep-muted: #A6ADBC;
+      --deep-line: #2F3545;
+      --deep-accent: #A3B0FF;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 36px 70px -34px rgba(0, 0, 0, 0.85);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0D11;
+    --surface: #13161C;
+    --ink: #EDEFF3;
+    --muted: #9AA1AE;
+    --line: #232731;
+    --accent: #8D9BFF;
+    --accent-soft: #1B2142;
+    --ember: #F08A5D;
+    --deep: #1A1E28;
+    --deep-fg: #F3F4F7;
+    --deep-muted: #A6ADBC;
+    --deep-line: #2F3545;
+    --deep-accent: #A3B0FF;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.3), 0 36px 70px -34px rgba(0, 0, 0, 0.85);
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+  h1 em, h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  p { margin: 0; }
+
+  .wrap {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .page { display: grid; gap: clamp(3.5rem, 8vw, 5rem); padding-block: 1.25rem clamp(3rem, 7vw, 5rem); }
+  .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+
+  .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 1rem; font-size: 0.875rem; color: var(--muted); }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1rem; font-weight: 600; color: var(--ink); }
+  .logo-mark { position: relative; width: 22px; height: 22px; border-radius: 6px; background: var(--ink); }
+  .logo-mark::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+
+  /* Package panel */
+  .package {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: 2rem;
+    margin-top: -1.5rem;
+    padding: clamp(1.75rem, 5vw, 3rem);
+    background: var(--deep);
+    color: var(--deep-fg);
+    border: 1px solid var(--deep-line);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+  }
+  .package::before {
+    content: "";
+    position: absolute;
+    right: -20%;
+    top: -55%;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 40% 45%, var(--accent) 0%, transparent 55%),
+      radial-gradient(circle at 70% 35%, var(--ember) 0%, transparent 45%);
+    filter: blur(55px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .package > * { position: relative; }
+  .package-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 2.5rem; }
+  .package-title { display: grid; gap: 0.8rem; max-width: 30rem; }
+  .package .eyebrow { color: var(--deep-accent); }
+  .package h1 { font-size: clamp(2.6rem, 5vw + 1rem, 4rem); letter-spacing: -0.04em; }
+  .package h1 em { color: var(--deep-accent); }
+  .package-title p:last-child { font-size: 1.1875rem; color: var(--deep-muted); }
+  .price { display: grid; justify-items: end; gap: 0.2rem; text-align: right; }
+  .price strong { font-size: clamp(3rem, 5vw + 1rem, 4rem); font-weight: 600; line-height: 1; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
+  .price span { font-size: 0.9375rem; color: var(--deep-muted); }
+  .facts { list-style: none; margin: 0; padding: 1.5rem 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; border-top: 1px solid var(--deep-line); }
+  .facts li { display: grid; gap: 0.15rem; }
+  .facts b { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .facts span { font-size: 0.875rem; color: var(--deep-muted); }
+  @media (max-width: 640px) {
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.25rem; }
+    .price { justify-items: start; text-align: left; }
+  }
+
+  /* Sections */
+  .section-head { display: grid; gap: 0.7rem; max-width: 38rem; margin-bottom: 1.75rem; }
+  .section-head h2 { font-size: clamp(1.9rem, 2.5vw + 1rem, 2.5rem); }
+  .section-head p:not(.eyebrow) { color: var(--muted); }
+
+  .groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .group { display: grid; align-content: start; gap: 1rem; padding: 1.6rem 1.6rem 1.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
+  .group h3 { font-size: 1.2rem; letter-spacing: -0.02em; }
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .ticks li { position: relative; padding-left: 1.75rem; }
+  .ticks li::before { content: ""; position: absolute; left: 0; top: 0.2em; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--accent-soft); }
+  .ticks li::after { content: ""; position: absolute; left: 0.42rem; top: 0.38em; width: 0.3rem; height: 0.55rem; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .ticks small { display: block; font-size: 0.9375rem; color: var(--muted); }
+  @media (max-width: 680px) { .groups { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Steps from deposit to launch */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; }
+  .step { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr) auto; gap: 0.25rem 1rem; padding-block: 1.15rem; border-top: 1px solid var(--line); }
+  .step:last-child { border-bottom: 1px solid var(--line); }
+  .step-num { grid-row: span 2; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 0.875rem; font-weight: 600; }
+  .step h3 { font-size: 1.1rem; letter-spacing: -0.02em; align-self: center; }
+  .step p { grid-column: 2; color: var(--muted); font-size: 0.9375rem; }
+  .step-tag { grid-column: 3; grid-row: 1; align-self: center; font-size: 0.875rem; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .steps-note { margin-top: 1rem; font-size: 0.9375rem; color: var(--muted); }
+
+  /* Extras */
+  .panel { padding: 0.5rem clamp(1.25rem, 4vw, 2rem); background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
+  .extras { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
+  .extra { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 0.95rem; border-bottom: 1px solid var(--line); }
+  .extras li:last-child, .extras li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+  .extra span { min-width: 0; }
+  .extra small { display: block; font-size: 0.875rem; color: var(--muted); }
+  .extra strong { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  @media (max-width: 680px) {
+    .extras { grid-template-columns: minmax(0, 1fr); }
+    .extras li:nth-last-child(2):nth-child(odd) { border-bottom: 1px solid var(--line); }
+  }
+
+  /* Fine print */
+  .fine { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 3rem; }
+  .fine h3 { margin-bottom: 0.75rem; font-size: 1.05rem; letter-spacing: -0.02em; }
+  .fine ul { display: grid; gap: 0.55rem; margin: 0; padding-left: 1.1rem; font-size: 0.9375rem; color: var(--muted); }
+  @media (max-width: 680px) { .fine { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Closing */
+  .closing { display: grid; gap: 1.25rem; padding: clamp(1.75rem, 5vw, 2.75rem); background: var(--accent-soft); border-radius: 20px; }
+  .closing h2 { font-size: clamp(1.9rem, 2.5vw + 1rem, 2.5rem); }
+  .closing > p { max-width: 36rem; color: var(--muted); font-size: 1.0625rem; }
+  .totals { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 2.5rem; }
+  .totals li { display: grid; gap: 0.1rem; }
+  .totals span { font-size: 0.875rem; color: var(--muted); }
+  .totals b { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .foot { font-size: 0.875rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main class="wrap page">
+
+  <header class="topbar">
+    <span class="brand"><span class="logo-mark" aria-hidden="true"></span>Website Design</span>
+    <span>Package details · Prices in US dollars</span>
+  </header>
+
+  <section class="package" aria-labelledby="package-title">
+    <div class="package-head">
+      <div class="package-title">
+        <p class="eyebrow">Top-tier website package</p>
+        <h1 id="package-title">The <em>Masterpiece</em></h1>
+        <p>A one-of-a-kind website, designed from scratch around your brand.</p>
+      </div>
+      <p class="price"><strong>$400</strong><span>One-time price · $200 to start</span></p>
+    </div>
+    <ul class="facts">
+      <li><b>12</b><span>pages, at most</span></li>
+      <li><b>21 days</b><span>maximum turnaround</span></li>
+      <li><b>5</b><span>rounds of revisions</span></li>
+      <li><b>30 days</b><span>of free fixes after launch</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="included-title">
+    <div class="section-head">
+      <p class="eyebrow">What's included</p>
+      <h2 id="included-title">Everything your website will do</h2>
+    </div>
+    <div class="groups">
+      <div class="group">
+        <h3>Design made for you</h3>
+        <ul class="ticks">
+          <li>Two original design concepts<small>You choose the direction you like best.</small></li>
+          <li>Designed from scratch<small>No templates. Nobody else will have your site.</small></li>
+          <li>Custom graphics and icons<small>Drawn to match your brand.</small></li>
+          <li>Animation<small>Smooth effects that bring the site to life.</small></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>Built-in features</h3>
+        <ul class="ticks">
+          <li>Up to 12 pages<small>Room for your services, story, gallery and more.</small></li>
+          <li>Product catalog or online booking<small>Customers can order products by text or email, or book appointments on a calendar.</small></li>
+          <li>Advanced search optimization<small>Set up so customers can find you on Google.</small></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>On every page</h3>
+        <ul class="ticks">
+          <li>Works on phones, tablets and computers</li>
+          <li>Fast loading, so visitors never wait</li>
+          <li>Search-ready page titles and descriptions</li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>When it's finished</h3>
+        <ul class="ticks">
+          <li>You approve everything before it goes live</li>
+          <li>Your logins to the site</li>
+          <li>A step-by-step guide to editing your site</li>
+          <li>30 days of free fixes after launch</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="steps-title">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 id="steps-title">From deposit to launch</h2>
+    </div>
+    <ol class="steps">
+      <li class="step"><span class="step-num" aria-hidden="true">1</span><h3>Pay the deposit</h3><span class="step-tag">$200</span><p>Your deposit reserves your spot. Send your text, photos and logo, and work begins.</p></li>
+      <li class="step"><span class="step-num" aria-hidden="true">2</span><h3>Pick a direction</h3><span class="step-tag"></span><p>You get two original design concepts and choose the one you like.</p></li>
+      <li class="step"><span class="step-num" aria-hidden="true">3</span><h3>Build and review</h3><span class="step-tag">5 rounds</span><p>Your full site is built. Send changes in up to 5 revision rounds.</p></li>
+      <li class="step"><span class="step-num" aria-hidden="true">4</span><h3>Launch</h3><span class="step-tag">$200</span><p>Your site goes live and the rest of the payment is due. You get your logins and editing guide.</p></li>
+      <li class="step"><span class="step-num" aria-hidden="true">5</span><h3>Free fixes</h3><span class="step-tag">30 days</span><p>For 30 days after launch, anything that isn't working right gets fixed at no charge.</p></li>
+    </ol>
+    <p class="steps-note">Steps 1 to 4 take 21 days at most, counted from when your text, photos and logo arrive.</p>
+  </section>
+
+  <section aria-labelledby="extras-title">
+    <div class="section-head">
+      <p class="eyebrow">Optional extras</p>
+      <h2 id="extras-title">Add anything you need</h2>
+      <p>None of these are required. A booking calendar is already included.</p>
+    </div>
+    <div class="panel">
+      <ul class="extras">
+        <li class="extra"><span>Extra page<small>Beyond your 12 pages.</small></span><strong>$15 each</strong></li>
+        <li class="extra"><span>Extra revision round<small>Beyond your 5 rounds.</small></span><strong>$15 each</strong></li>
+        <li class="extra"><span>Copywriting<small>Website text written for you.</small></span><strong>$10 / page</strong></li>
+        <li class="extra"><span>Logo design<small>Two concepts plus final files.</small></span><strong>$40</strong></li>
+        <li class="extra"><span>Business cards<small>Print-ready design. Printing not included.</small></span><strong>$15</strong></li>
+        <li class="extra"><span>Social media kit<small>Profile image and banners for 3 platforms.</small></span><strong>$30</strong></li>
+        <li class="extra"><span>Newsletter signup<small>Connected to your email list.</small></span><strong>$15</strong></li>
+        <li class="extra"><span>Rush delivery<small>About half the time: 11 days at most.</small></span><strong>+$30</strong></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="fine-title">
+    <div class="section-head">
+      <p class="eyebrow">Good to know</p>
+      <h2 id="fine-title">The fine print</h2>
+    </div>
+    <div class="fine">
+      <div>
+        <h3>Not included</h3>
+        <ul>
+          <li>Your domain name and hosting plan, which you buy directly from the provider</li>
+          <li>Online card payments. Product orders come to you by text or email.</li>
+          <li>Printing, stock photos and paid plans for any outside tools</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Terms</h3>
+        <ul>
+          <li>50% to start, 50% at launch</li>
+          <li>Work outside this list is quoted before it begins</li>
+          <li>This price is good for 30 days</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="start-title">
+    <h2 id="start-title">Ready to start?</h2>
+    <p>Reply to this message to go ahead, and I'll send the next steps for your deposit.</p>
+    <ul class="totals">
+      <li><span>Total</span><b>$400</b></li>
+      <li><span>Due to start</span><b>$200</b></li>
+      <li><span>Due at launch</span><b>$200</b></li>
+    </ul>
+  </section>
+
+  <p class="foot">Masterpiece package · Updated October 2026</p>
+
+</main>
+</body>
+</html>

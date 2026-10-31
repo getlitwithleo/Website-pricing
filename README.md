@@ -2,7 +2,7 @@
 
 A one-page pricing page for website design work: ten packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
 
-Open `index.html` in a browser to view it. It's a single self-contained file, so you can host it anywhere (for example, GitHub Pages).
+Open `index.html` in a browser to view it. `masterpiece.html` is a page to send a customer that lists everything in the Masterpiece package. It's a single self-contained file, so you can host it anywhere (for example, GitHub Pages).
 
 ## Packages
 
