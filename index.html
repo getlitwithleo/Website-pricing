@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Website Design Rate Card</title>
+<title>LM Web Design</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +19,8 @@
     --muted: #565D6B;
     --line: #E3E6EB;
     --line-strong: #CDD2DA;
-    --accent: #2E46D9;
-    --accent-soft: #ECEFFD;
+    --accent: #0048AC;
+    --accent-soft: #E5EDF8;
     --on-accent: #FFFFFF;
     --ember: #E8774A;
     --sky: #BFD0FF;
@@ -26,7 +28,7 @@
     --deep-fg: #F3F4F7;
     --deep-muted: #9BA2B0;
     --deep-line: #272D39;
-    --deep-accent: #A3B0FF;
+    --deep-accent: #8DB8FA;
     --frame: #0D1117;
     --mock: #EEF0F4;
     --mock-2: #D9DDE4;
@@ -41,7 +43,7 @@
     --hue-teal: #0E8A80;
     --hue-amber: #B97F0E;
     --hue-green: #2C9150;
-    --hue-blue: #2E46D9;
+    --hue-blue: #0048AC;
     --hue-sky: #2582CC;
 
     --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -62,8 +64,8 @@
       --muted: #9AA1AE;
       --line: #232731;
       --line-strong: #333945;
-      --accent: #8D9BFF;
-      --accent-soft: #1B2142;
+      --accent: #6EA2F5;
+      --accent-soft: #10233F;
       --on-accent: #0B0D11;
       --ember: #F08A5D;
       --sky: #3A4C8F;
@@ -71,7 +73,7 @@
       --deep-fg: #F3F4F7;
       --deep-muted: #A6ADBC;
       --deep-line: #2F3545;
-      --deep-accent: #A3B0FF;
+      --deep-accent: #8DB8FA;
       --frame: #2A2F3A;
       --mock: #1D2129;
       --mock-2: #2B303B;
@@ -84,7 +86,7 @@
       --hue-teal: #3FC4B6;
       --hue-amber: #E9B54C;
       --hue-green: #5CCB86;
-      --hue-blue: #8D9BFF;
+      --hue-blue: #6EA2F5;
       --hue-sky: #6CB8F4;
       color-scheme: dark;
     }
@@ -96,8 +98,8 @@
     --muted: #9AA1AE;
     --line: #232731;
     --line-strong: #333945;
-    --accent: #8D9BFF;
-    --accent-soft: #1B2142;
+    --accent: #6EA2F5;
+    --accent-soft: #10233F;
     --on-accent: #0B0D11;
     --ember: #F08A5D;
     --sky: #3A4C8F;
@@ -105,7 +107,7 @@
     --deep-fg: #F3F4F7;
     --deep-muted: #A6ADBC;
     --deep-line: #2F3545;
-    --deep-accent: #A3B0FF;
+    --deep-accent: #8DB8FA;
     --frame: #2A2F3A;
     --mock: #1D2129;
     --mock-2: #2B303B;
@@ -118,7 +120,7 @@
     --hue-teal: #3FC4B6;
     --hue-amber: #E9B54C;
     --hue-green: #5CCB86;
-    --hue-blue: #8D9BFF;
+    --hue-blue: #6EA2F5;
     --hue-sky: #6CB8F4;
     color-scheme: dark;
   }
@@ -185,8 +187,14 @@
   /* Header */
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.1rem; }
   .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; letter-spacing: -0.01em; text-decoration: none; }
-  .logo-mark { position: relative; width: 22px; height: 22px; border-radius: 6px; background: var(--ink); }
-  .logo-mark::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+  .brand-logo { display: block; width: auto; height: var(--logo-h, 54px); }
+  .brand-logo--dark { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .brand-logo--light { display: none; }
+    :root:not([data-theme="light"]) .brand-logo--dark { display: block; }
+  }
+  :root[data-theme="dark"] .brand-logo--light { display: none; }
+  :root[data-theme="dark"] .brand-logo--dark { display: block; }
   .nav { display: flex; gap: 1.9rem; font-size: var(--t-sm); color: var(--muted); }
   .nav a { text-decoration: none; }
   .nav a:hover { color: var(--ink); }
@@ -614,12 +622,13 @@
   }
   .cta-inner { position: relative; display: grid; justify-items: start; gap: 1.5rem; padding-block: clamp(4rem, 8vw, 6.5rem) clamp(3.5rem, 7vw, 5rem); }
   .cta h2 { max-width: 16ch; font-size: clamp(2.4rem, 4.5vw + 1rem, 4.25rem); letter-spacing: -0.04em; }
-  .cta h2 em { color: #A3B0FF; }
+  .cta h2 em { color: #8DB8FA; }
   .cta p { max-width: 34rem; font-size: var(--t-lg); color: #A6ADBC; }
   .cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
   .cta .btn--light { background: #F3F4F7; color: #0D1117; }
   .cta .btn--outline-dark { color: #F3F4F7; border-color: #343B4A; }
-  .foot { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 1.5rem; border-top: 1px solid #272D39; font-size: var(--t-sm); color: #9BA2B0; }
+  .foot-logo { display: block; width: auto; height: 40px; }
+  .foot { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 1.5rem; border-top: 1px solid #272D39; font-size: var(--t-sm); color: #9BA2B0; }
 
   @media (max-width: 900px) {
     .hero { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
@@ -637,7 +646,7 @@
 <body>
 
 <header class="wrap topbar">
-  <a class="brand" href="#top" id="top"><span class="logo-mark" aria-hidden="true"></span>Website Design</a>
+  <a class="brand" href="#top" id="top" aria-label="LM Web Design home"><img class="brand-logo brand-logo--light" src="img/logo.png" alt="" width="468" height="200"><img class="brand-logo brand-logo--dark" src="img/logo-dark.png" alt="" width="468" height="200"></a>
   <nav class="nav" aria-label="Sections">
     <a href="#packages">Packages</a>
     <a href="#work" id="nav-work" hidden>Work</a>
@@ -1134,7 +1143,7 @@
   </div>
   <div class="wrap">
     <div class="foot">
-      <span>Website Design · Packages and pricing</span>
+      <img class="foot-logo" src="img/logo-dark.png" alt="LM Web Design" width="468" height="200">
       <span>Prices in US dollars · Updated October 2026</span>
     </div>
   </div>

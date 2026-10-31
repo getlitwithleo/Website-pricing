@@ -1,4 +1,4 @@
-# Website Design Pricing
+# LM Web Design
 
 A one-page pricing page for website design work: nine packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
 
@@ -13,6 +13,7 @@ Open `index.html` in a browser to view it.
 | `work/projects.js` | Your own finished websites, shown in the Recent work section |
 | `work/add.html` | An owner tool that writes a `projects.js` entry for you (not linked from the site) |
 | `masterpiece.html` | A page to send a customer listing everything in the Masterpiece package |
+| `img/` | The LM Web Design logo (`logo.png`, and `logo-dark.png` for dark backgrounds) and the browser tab icons |
 
 ## Demos
 
