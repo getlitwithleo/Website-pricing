@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Landing Page Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&family=Unbounded:wght@500..800&display=swap">
+<link rel="stylesheet" href="demo.css">
+<style>
+  :root {
+    /* Layout: one scrolling event page at night. Lantern-lit hero with the live countdown, then what's on, the schedule, the sign-up form and FAQ. */
+    --night: #10142B;
+    --night-2: #1A2045;
+    --line: #2C3463;
+    --cream: #FFF4E6;
+    --muted: #B9B7CC;
+    --lantern: #F08A4B;
+    --glow: #FFD27A;
+    --display: "Unbounded", "Arial Black", system-ui, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: dark;
+  }
+  body { background: var(--night); color: var(--cream); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  h2 { font: 700 clamp(1.6rem, 2.5vw + 1rem, 2.4rem)/1.1 var(--display); letter-spacing: -0.02em; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--glow); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 1.4rem; border: 0; border-radius: 999px; font: 700 16px/1.2 var(--body); text-decoration: none; cursor: pointer; }
+  .btn--glow { background: var(--glow); color: var(--night); box-shadow: 0 0 40px -6px rgba(255, 210, 122, 0.7); }
+  .btn--line { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1.5px var(--line); }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--glow); outline-offset: 3px; }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; background: radial-gradient(90% 70% at 50% 0%, #2A2F66 0%, transparent 70%), var(--night); }
+  .lanterns { position: absolute; inset: 0; pointer-events: none; }
+  .lantern { position: absolute; top: 0; left: var(--x); width: 2px; height: var(--h); background: rgba(255, 244, 230, 0.25); transform-origin: top center; }
+  .lantern::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--s) * -1);
+    width: var(--s);
+    height: calc(var(--s) * 1.15);
+    border-radius: 45%;
+    background: radial-gradient(circle at 50% 40%, #FFE6B0, var(--lantern) 60%, #B4502A);
+    box-shadow: 0 0 calc(var(--s) * 1.2) calc(var(--s) * 0.2) rgba(240, 138, 75, 0.45);
+    transform: translateX(-50%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lantern { animation: sway var(--t, 6s) ease-in-out infinite alternate; }
+    @keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+  }
+  .hero-inner { position: relative; display: grid; justify-items: center; gap: 1.3rem; padding-block: clamp(7rem, 16vw, 10rem) clamp(3.5rem, 8vw, 5rem); text-align: center; }
+  .hero h1 { max-width: 12ch; font: 800 clamp(2.6rem, 7vw + 0.5rem, 5.6rem)/0.98 var(--display); letter-spacing: -0.04em; }
+  .hero h1 span { color: var(--lantern); }
+  .hero-lede { max-width: 34rem; font-size: 1.15rem; color: var(--muted); }
+  .countdown { display: flex; gap: 0.6rem; margin-top: 0.5rem; }
+  .unit { display: grid; gap: 0.15rem; min-width: 4.4rem; padding: 0.8rem 0.6rem; border-radius: 14px; background: rgba(26, 32, 69, 0.85); box-shadow: inset 0 0 0 1px var(--line); }
+  .unit b { font: 700 clamp(1.6rem, 3vw + 0.8rem, 2.4rem)/1 var(--display); font-variant-numeric: tabular-nums; }
+  .unit span { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.4rem; }
+  @media (max-width: 420px) { .unit { min-width: 0; flex: 1; } }
+
+  .sec { padding-block: clamp(3.5rem, 8vw, 5.5rem); }
+  .sec + .sec { border-top: 1px solid var(--line); }
+  .sec-head { display: grid; gap: 0.6rem; max-width: 36rem; margin-bottom: 2rem; }
+
+  .whats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .what { display: grid; align-content: start; gap: 0.5rem; padding: 1.5rem; border-radius: 18px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--line); }
+  .what b { font: 800 2.4rem/1 var(--display); color: var(--glow); }
+  .what h3 { font: 700 1.15rem/1.2 var(--display); }
+  .what p { color: var(--muted); font-size: 15px; }
+  @media (max-width: 760px) { .whats { grid-template-columns: minmax(0, 1fr); } }
+
+  .schedule { list-style: none; margin: 0; padding: 0; display: grid; }
+  .slot { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
+  .slot time { font: 700 1rem/1.4 var(--display); color: var(--lantern); }
+  .slot b { font-weight: 700; }
+  .slot p { color: var(--muted); font-size: 15px; }
+
+  .rsvp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 2.5rem; align-items: start; }
+  .rsvp form { display: grid; gap: 1rem; padding: clamp(1.4rem, 4vw, 2rem); border-radius: 20px; background: var(--night-2); box-shadow: inset 0 0 0 1px var(--line); }
+  .field { display: grid; gap: 0.35rem; }
+  .field label { font-size: 14px; font-weight: 600; }
+  .field input, .field select { width: 100%; padding: 0.8rem 0.9rem; border: 1px solid var(--line); border-radius: 12px; background: var(--night); color: var(--cream); font: inherit; }
+  .check { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 15px; color: var(--muted); }
+  .check input { width: 1.1rem; height: 1.1rem; margin-top: 0.2rem; accent-color: var(--lantern); }
+  .rsvp-note { font-size: 14px; color: var(--muted); }
+  @media (max-width: 760px) { .rsvp { grid-template-columns: minmax(0, 1fr); } }
+
+  .faq { display: grid; max-width: 44rem; }
+  .faq details { padding-block: 1.1rem; border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 700 1.2rem/1 var(--display); color: var(--lantern); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin-top: 0.5rem; color: var(--muted); }
+
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 2rem 3rem; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .foot nav { display: flex; gap: 1.2rem; }
+  .foot a { color: var(--cream); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="wrap">
+    <span class="demo-bar-info"><span class="demo-tag">Demo</span>Landing Page package · $75</span>
+    <span class="demo-bar-links"><a href="../index.html#pkg-landing-page">← All packages</a><a class="demo-cta" href="../index.html#pick-3">Choose this package</a></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="lanterns" aria-hidden="true">
+    <span class="lantern" style="--x:6%; --h:90px; --s:30px; --t:5s"></span>
+    <span class="lantern" style="--x:17%; --h:150px; --s:22px; --t:7s"></span>
+    <span class="lantern" style="--x:29%; --h:60px; --s:26px; --t:6s"></span>
+    <span class="lantern" style="--x:71%; --h:70px; --s:28px; --t:6.5s"></span>
+    <span class="lantern" style="--x:83%; --h:140px; --s:20px; --t:5.5s"></span>
+    <span class="lantern" style="--x:94%; --h:95px; --s:32px; --t:7.5s"></span>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow" id="event-date">Riverside Park · One night only</p>
+    <h1>Lantern <span>Night</span> Market</h1>
+    <p class="hero-lede">40 food stalls, 20 makers and three stages of live music under 400 paper lanterns. Free to get in.</p>
+    <div class="countdown" role="timer" aria-label="Time until the market opens">
+      <div class="unit"><b id="cd-days">12</b><span>Days</span></div>
+      <div class="unit"><b id="cd-hours">08</b><span>Hours</span></div>
+      <div class="unit"><b id="cd-mins">45</b><span>Mins</span></div>
+      <div class="unit"><b id="cd-secs">30</b><span>Secs</span></div>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn--glow" href="#rsvp">RSVP for free</a>
+      <button class="btn btn--line" type="button" data-msg="text" data-to="(555) 014-3302" data-body="Hi! I have a question about Lantern Night Market:">Text us a question</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="sec" aria-labelledby="whats-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">What's on</p><h2 id="whats-title">Eat, shop and stay for the music</h2></div>
+      <div class="whats">
+        <div class="what"><b>40</b><h3>Food stalls</h3><p>Dumplings, tacos, wood-fired flatbreads and a whole row of desserts.</p></div>
+        <div class="what"><b>20</b><h3>Local makers</h3><p>Prints, ceramics, candles and jewelry, all made within 50 miles.</p></div>
+        <div class="what"><b>3</b><h3>Music stages</h3><p>Jazz by the river, a DJ by the food hall and acoustic sets on the lawn.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="schedule-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Schedule</p><h2 id="schedule-title">How the night goes</h2></div>
+      <ol class="schedule">
+        <li class="slot"><time>5:00 pm</time><div><b>Gates open</b><p>Stalls open and the first band starts by the river.</p></div></li>
+        <li class="slot"><time>6:30 pm</time><div><b>Lantern lighting</b><p>All 400 lanterns light up at once. Find a spot on the bridge.</p></div></li>
+        <li class="slot"><time>7:00 pm</time><div><b>Headline set</b><p>Live music on the main lawn until 9.</p></div></li>
+        <li class="slot"><time>9:30 pm</time><div><b>Fire dancers</b><p>A 20-minute show over the water.</p></div></li>
+        <li class="slot"><time>11:00 pm</time><div><b>Last call</b><p>Stalls close. Lanterns stay lit until midnight.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="rsvp" aria-labelledby="rsvp-title">
+    <div class="wrap rsvp">
+      <div class="sec-head">
+        <p class="eyebrow">RSVP</p>
+        <h2 id="rsvp-title">Save your spot. It's free.</h2>
+        <p class="rsvp-note">RSVPs get in through the fast lane and a free lantern to take home while they last.</p>
+      </div>
+      <form id="rsvp-form" novalidate>
+        <div class="field"><label for="rsvp-name">Name</label><input id="rsvp-name" name="name" data-label="Name" autocomplete="name" required></div>
+        <div class="field"><label for="rsvp-email">Email</label><input id="rsvp-email" name="email" data-label="Email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="rsvp-guests">How many are coming?</label>
+          <select id="rsvp-guests" name="guests" data-label="Guests"><option>Just me</option><option>2 people</option><option>3 people</option><option>4 or more</option></select>
+        </div>
+        <label class="check"><input type="checkbox" id="rsvp-updates" name="updates" data-label="Send updates" checked>Send me the map and any weather updates</label>
+        <button class="btn btn--glow" type="submit">RSVP for free</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">FAQ</p><h2 id="faq-title">Good to know</h2></div>
+      <div class="faq">
+        <details><summary>Is it really free?</summary><p>Yes. Entry is free for everyone. Bring cash or a card for the stalls.</p></details>
+        <details><summary>Where do I park?</summary><p>The Riverside garage is $5 for the night, and the number 12 bus stops at the main gate.</p></details>
+        <details><summary>Can I bring my dog?</summary><p>Friendly dogs on a leash are welcome. Water bowls are by the info tent.</p></details>
+        <details><summary>What if it rains?</summary><p>Light rain, we're on. Heavy rain moves us to the following Saturday, and RSVPs get a text first.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span>Lantern Night Market · Riverside Park</span>
+  <nav aria-label="Social"><a href="#" data-demo="the market's Instagram">Instagram</a><a href="#" data-demo="the market's TikTok">TikTok</a><a href="#" data-demo="the Facebook event">Facebook</a></nav>
+</footer>
+
+<script src="demo.js"></script>
+<script>
+  (function () {
+    // Opening night is always a Saturday at 5pm, at least 10 days out, so the countdown is always running
+    var target = new Date();
+    target.setDate(target.getDate() + 10);
+    target.setDate(target.getDate() + ((6 - target.getDay() + 7) % 7));
+    target.setHours(17, 0, 0, 0);
+    document.getElementById("event-date").textContent =
+      "Riverside Park · " + target.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+
+    var els = { d: document.getElementById("cd-days"), h: document.getElementById("cd-hours"), m: document.getElementById("cd-mins"), s: document.getElementById("cd-secs") };
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function tick() {
+      var left = Math.max(0, target - Date.now());
+      var secs = Math.floor(left / 1000);
+      els.d.textContent = Math.floor(secs / 86400);
+      els.h.textContent = pad(Math.floor(secs % 86400 / 3600));
+      els.m.textContent = pad(Math.floor(secs % 3600 / 60));
+      els.s.textContent = pad(secs % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    Demo.form(document.getElementById("rsvp-form"), {
+      title: "You're on the list!",
+      note: "On a real site, this RSVP goes straight to the organizer's inbox or email list through a free form service."
+    });
+  })();
+</script>
+</body>
+</html>

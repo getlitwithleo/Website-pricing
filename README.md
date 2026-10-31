@@ -2,7 +2,46 @@
 
 A one-page pricing page for website design work: ten packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
 
-Open `index.html` in a browser to view it. `masterpiece.html` is a page to send a customer that lists everything in the Masterpiece package. It's a single self-contained file, so you can host it anywhere (for example, GitHub Pages).
+Open `index.html` in a browser to view it.
+
+## What's in this folder
+
+| Path | What it is |
+|---|---|
+| `index.html` | The home page: packages, live demo links, Recent work, quote builder, process, FAQ |
+| `demos/` | One live demo site per package, each for a made-up business (see below) |
+| `work/projects.js` | Your own finished websites, shown in the Recent work section |
+| `work/add.html` | An owner tool that writes a `projects.js` entry for you (not linked from the site) |
+| `masterpiece.html` | A page to send a customer listing everything in the Masterpiece package |
+
+## Demos
+
+| Package | Demo | What you can try |
+|---|---|---|
+| Tune-Up | `demos/tune-up.html` | Drag a slider between an old hardware store site and its tuned-up version |
+| Link-in-Bio | `demos/link-in-bio.html` | A ceramic artist's link page with a featured link, video and posts |
+| Landing Page | `demos/landing-page.html` | A night market event page with a live countdown and RSVP form |
+| Portfolio | `demos/portfolio.html` | A painter's gallery with series filters and a full-screen view with the story behind each piece |
+| Small Business | `demos/small-business.html` | A bike shop with prices, an open-now sign, hours, map, FAQ and contact form |
+| Restaurant & Café | `demos/restaurant.html` | A café with a daily special, tabbed menu with dietary tags, ordering and reservations |
+| Booking Site | `demos/booking.html` | A salon with a working booking calendar, new-client form and before-and-after looks |
+| Growth | `demos/growth.html` | A bookkeeping firm with case studies, a readable blog, newsletter signup and quote form |
+| Product Catalog | `demos/product-catalog.html` | A pottery shop with search, filters, glaze options and order-by-message |
+| Masterpiece | `demos/masterpiece.html` | A tea house with animated steam, custom icons and a switch between two full design concepts |
+
+Each demo has a bar at the top marking it as a demo, linking back to the packages and to the quote builder with that package already chosen. Nothing on a demo is really sent: forms, booking and message buttons show a preview of what would happen on a real site. `demos/demo.css` and `demos/demo.js` hold the parts every demo shares.
+
+## Adding your own websites
+
+1. Put the finished site's folder inside `work/`, for example `work/rosies-bakery/`. Skip this if the site lives at its own address.
+2. Open `work/add.html` in a browser, fill in the form and press Copy entry.
+3. Paste the entry into `work/projects.js` right after `window.PROJECTS = [` and save.
+
+The Recent work section and its menu link appear on the home page as soon as the list has one entry.
+
+## Putting it online for free
+
+GitHub Pages hosts the whole folder for free when the repository is public: in the repository on GitHub, go to Settings → Pages, choose "Deploy from a branch", pick this branch and the `/ (root)` folder, and save. The address appears on that page after a minute or two.
 
 ## Packages
 

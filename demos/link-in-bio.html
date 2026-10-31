@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Link-in-Bio Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Young+Serif&display=swap">
+<link rel="stylesheet" href="demo.css">
+<style>
+  :root {
+    /* Layout: one narrow column, sized for a phone, on a soft blush ground: who she is, one featured link, the link buttons, a video and her latest posts. */
+    --blush: #FBEFF2;
+    --blush-2: #F4DCE4;
+    --surface: #FFFFFF;
+    --ink: #3A1626;
+    --muted: #7A5564;
+    --berry: #C2366A;
+    --glaze-1: #6E8F86;
+    --glaze-2: #D99A6C;
+    --glaze-3: #3E5A7A;
+    --display: "Young Serif", Georgia, serif;
+    --body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(120% 60% at 0% 0%, #F8D7E2 0%, transparent 60%),
+      radial-gradient(100% 50% at 100% 100%, #F3E1D6 0%, transparent 60%),
+      var(--blush);
+    color: var(--ink);
+    font: 400 16px/1.5 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { --wrap: 30rem; display: grid; gap: 1.6rem; padding-block: 2.5rem 3rem; }
+
+  .profile { display: grid; justify-items: center; gap: 0.5rem; text-align: center; }
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 0.4rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #E98AA9, var(--berry) 60%, #7E1F45);
+    box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--blush-2), 0 16px 30px -12px rgba(122, 31, 69, 0.5);
+    color: #FFFFFF;
+    font: 400 34px/1 var(--display);
+  }
+  .profile h1 { font: 400 1.9rem/1.1 var(--display); }
+  .handle { font-size: 14px; font-weight: 600; color: var(--berry); }
+  .bio { max-width: 24rem; color: var(--muted); }
+
+  .featured {
+    position: relative;
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 1.15rem;
+    border-radius: 18px;
+    background: var(--ink);
+    color: #FFFFFF;
+    text-decoration: none;
+    box-shadow: 0 18px 30px -18px rgba(58, 22, 38, 0.7);
+  }
+  .featured::after { content: ""; position: absolute; inset: -3px; z-index: -1; border-radius: 21px; background: linear-gradient(120deg, var(--berry), var(--glaze-2), var(--glaze-1), var(--berry)); background-size: 300% 100%; }
+  @media (prefers-reduced-motion: no-preference) {
+    .featured::after { animation: shimmer 6s linear infinite; }
+    @keyframes shimmer { to { background-position: 300% 0; } }
+  }
+  .featured-tag { justify-self: start; padding: 2px 8px; border-radius: 999px; background: var(--berry); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .featured b { font: 400 1.2rem/1.25 var(--display); }
+  .featured span:last-child { font-size: 14px; color: #E7C9D4; }
+
+  .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+    padding: 0.95rem 1.1rem;
+    border: 1.5px solid rgba(58, 22, 38, 0.1);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--ink);
+    font: 600 16px/1.3 var(--body);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .link:hover { border-color: var(--berry); }
+  .link:focus-visible, .featured:focus-visible, .video:focus-visible, .post:focus-visible, .social a:focus-visible { outline: 3px solid var(--berry); outline-offset: 3px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .link { transition: transform 0.15s ease, border-color 0.15s ease; }
+    .link:hover { transform: translateY(-2px); }
+  }
+  .link-icon { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 10px; background: var(--blush); color: var(--berry); }
+  .link-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .link-text { flex: 1; display: grid; }
+  .link-text small { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .link-arrow { color: var(--muted); }
+
+  .block-title { margin-bottom: 0.6rem; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .video {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #4C2A1E, #2A1610);
+    cursor: pointer;
+  }
+  .video .wheel { position: absolute; left: 50%; bottom: -34%; width: 78%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #6B4A3C 0 30%, #57392D 31% 60%, #44291F 61%); transform: translateX(-50%); }
+  .video .pot { position: absolute; left: 50%; bottom: 22%; width: 26%; height: 34%; border-radius: 40% 40% 22% 22% / 30% 30% 18% 18%; background: linear-gradient(90deg, #A9674A, #D99A6C 45%, #A9674A); transform: translateX(-50%); }
+  .video .play { position: absolute; left: 50%; top: 40%; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); transform: translate(-50%, -50%); }
+  .video .play::before { content: ""; margin-left: 4px; border: 10px solid transparent; border-left: 16px solid var(--ink); border-right: 0; }
+  .video .caption { position: absolute; left: 14px; right: 14px; bottom: 12px; color: #FFFFFF; font: 600 14px/1.3 var(--body); text-align: left; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5); }
+
+  .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  .post { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 12px; }
+  .post span { position: absolute; left: 50%; bottom: 14%; width: 46%; height: 46%; border-radius: 36% 36% 18% 18%; transform: translateX(-50%); box-shadow: inset -8px 0 14px rgba(0, 0, 0, 0.18); }
+  .post:nth-child(1) { background: #EFE3D3; } .post:nth-child(1) span { background: var(--glaze-1); }
+  .post:nth-child(2) { background: #2F2A33; } .post:nth-child(2) span { width: 56%; height: 30%; border-radius: 10% 10% 50% 50%; background: var(--glaze-2); }
+  .post:nth-child(3) { background: #DCE6EC; } .post:nth-child(3) span { width: 34%; height: 56%; border-radius: 40% 40% 30% 30% / 20% 20% 30% 30%; background: var(--glaze-3); }
+
+  .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+  .social a { padding: 0.45rem 0.9rem; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; }
+  .foot { text-align: center; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="wrap">
+    <span class="demo-bar-info"><span class="demo-tag">Demo</span>Link-in-Bio package · $40</span>
+    <span class="demo-bar-links"><a href="../index.html#pkg-link-in-bio">← All packages</a><a class="demo-cta" href="../index.html#pick-2">Choose this package</a></span>
+  </div>
+</div>
+
+<main class="wrap page">
+  <header class="profile">
+    <div class="avatar" aria-hidden="true">MS</div>
+    <h1>Mira Sol</h1>
+    <p class="handle">@mirasol.studio</p>
+    <p class="bio">Ceramic artist. Wheel-thrown mugs, weekly studio vlogs, and the occasional kiln disaster.</p>
+  </header>
+
+  <a class="featured" href="#" data-demo="the autumn mug drop page">
+    <span class="featured-tag">Featured</span>
+    <b>Autumn mug drop · Friday at 6pm</b>
+    <span>24 mugs in three new glazes. Set a reminder →</span>
+  </a>
+
+  <nav aria-label="Links">
+    <ul class="links">
+      <li><a class="link" href="#" data-demo="her online shop"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11H6.2z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><span class="link-text">Shop the latest pieces<small>Mugs, bowls and bud vases</small></span><span class="link-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="#" data-demo="this week's vlog on YouTube"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="m10 9.5 4.5 2.5-4.5 2.5z"/></svg></span><span class="link-text">This week's studio vlog<small>Glazing 24 mugs in one day</small></span><span class="link-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="#" data-demo="the workshop sign-up page"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><span class="link-text">Wheel-throwing workshops<small>Saturdays, 6 spots each</small></span><span class="link-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="#" data-demo="her newsletter sign-up"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span class="link-text">Get first dibs on drops<small>One email a month</small></span><span class="link-arrow" aria-hidden="true">→</span></a></li>
+      <li><button class="link" type="button" data-msg="email" data-to="hello@mirasol.example.com" data-subject="Commission request" data-body="Hi Mira! I'd love to commission a set of pieces. Here's what I have in mind:"><span class="link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="m14 7 3 3"/></svg></span><span class="link-text">Commission a custom set<small>Opens a ready-to-send email</small></span><span class="link-arrow" aria-hidden="true">→</span></button></li>
+    </ul>
+  </nav>
+
+  <section aria-labelledby="video-title">
+    <h2 class="block-title" id="video-title">Latest video</h2>
+    <button class="video" type="button" data-demo="her YouTube video, playing right here on the page">
+      <span class="wheel" aria-hidden="true"></span>
+      <span class="pot" aria-hidden="true"></span>
+      <span class="play" aria-hidden="true"></span>
+      <span class="caption">Throwing a 2-pound bowl, start to finish</span>
+    </button>
+  </section>
+
+  <section aria-labelledby="posts-title">
+    <h2 class="block-title" id="posts-title">Latest posts</h2>
+    <div class="posts">
+      <a class="post" href="#" data-demo="this post on Instagram" aria-label="Sage green mug"><span></span></a>
+      <a class="post" href="#" data-demo="this post on Instagram" aria-label="Amber serving bowl"><span></span></a>
+      <a class="post" href="#" data-demo="this post on Instagram" aria-label="Blue bud vase"><span></span></a>
+    </div>
+  </section>
+
+  <nav class="social" aria-label="Social profiles">
+    <a href="#" data-demo="her Instagram profile">Instagram</a>
+    <a href="#" data-demo="her TikTok profile">TikTok</a>
+    <a href="#" data-demo="her YouTube channel">YouTube</a>
+  </nav>
+
+  <p class="foot">© Mira Sol Studio</p>
+</main>
+
+<script src="demo.js"></script>
+</body>
+</html>

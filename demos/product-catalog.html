@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Product Catalog Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..800&family=Spline+Sans+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="demo.css">
+<style>
+  :root {
+    /* Layout: a maker's shop window. Search, category chips and sort above a grid of pieces; each opens with glaze options and order-by-message buttons. Pickup and shipping below. */
+    --bg: #F3F7FA;
+    --surface: #FFFFFF;
+    --ink: #14222E;
+    --muted: #5A6B78;
+    --line: #DCE5EC;
+    --sky: #1F76BE;
+    --sky-soft: #E3EFF8;
+    --clay: #EFE6DA;
+    --sale: #C2412D;
+    --sans: "Epilogue", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "Spline Sans Mono", ui-monospace, Menlo, monospace;
+    color-scheme: light;
+  }
+  body { background: var(--bg); color: var(--ink); font: 400 16.5px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  h2 { font: 750 clamp(1.8rem, 2.5vw + 1rem, 2.5rem)/1.08 var(--sans); letter-spacing: -0.03em; }
+  .eyebrow { font: 500 12.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--sky); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.8rem 1.25rem; border: 0; border-radius: 999px; font: 650 15px/1.2 var(--sans); text-decoration: none; cursor: pointer; }
+  .btn--ink { background: var(--ink); color: #FFFFFF; }
+  .btn--sky { background: var(--sky); color: #FFFFFF; }
+  .btn--light { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+
+  .site-head .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; padding-block: 1.1rem; }
+  .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
+  .logo span { color: var(--sky); }
+  .site-nav { display: flex; gap: 1.3rem; font-weight: 500; }
+  .site-nav a { color: var(--ink); text-decoration: none; }
+
+  .intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 2rem; align-items: end; padding-block: clamp(2rem, 6vw, 3.5rem) 2rem; }
+  .intro h1 { font: 800 clamp(2.4rem, 5vw + 0.5rem, 4.2rem)/1 var(--sans); letter-spacing: -0.045em; }
+  .intro p { margin-top: 0.9rem; max-width: 32rem; font-size: 1.1rem; color: var(--muted); }
+  .how { display: grid; gap: 0.5rem; padding: 1.2rem; border-radius: 16px; background: var(--sky-soft); font-size: 15px; }
+  .how b { font-weight: 700; }
+  @media (max-width: 760px) { .intro { grid-template-columns: minmax(0, 1fr); } }
+
+  .toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.75rem 1rem; align-items: center; margin-bottom: 0.9rem; }
+  .search { position: relative; }
+  .search input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.6rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; }
+  .search svg { position: absolute; left: 0.95rem; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; }
+  .sort { display: flex; align-items: center; gap: 0.5rem; font-size: 14px; color: var(--muted); }
+  .sort select { padding: 0.7rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.5rem; }
+  .chips button { padding: 0.45rem 0.95rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: 600 14px/1.2 var(--sans); cursor: pointer; }
+  .chips button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: #FFFFFF; }
+  .count { margin-bottom: 1rem; font: 400 13px/1 var(--mono); color: var(--muted); }
+  @media (max-width: 560px) { .toolbar { grid-template-columns: minmax(0, 1fr); } }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 1.25rem; }
+  .card { position: relative; display: grid; gap: 0.7rem; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .card-art { position: relative; display: grid; place-items: center; aspect-ratio: 1; border-radius: 18px; background: var(--clay); overflow: hidden; }
+  .card-art svg { width: 70%; height: 70%; }
+  @media (prefers-reduced-motion: no-preference) {
+    .card-art svg { transition: transform 0.25s ease; }
+    .card:hover .card-art svg { transform: scale(1.05) rotate(-2deg); }
+  }
+  .badge { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 999px; background: var(--ink); color: #FFFFFF; font: 600 11px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+  .badge--sale { background: var(--sale); }
+  .card-info { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  .card-info b { font-weight: 650; }
+  .price { font: 500 15px/1.2 var(--mono); white-space: nowrap; }
+  .price s { margin-right: 0.35rem; color: var(--muted); }
+  .price.is-sale { color: var(--sale); }
+  .card small { margin-top: -0.4rem; color: var(--muted); font-size: 14px; }
+  .empty { padding: 2.5rem 1rem; border: 1px dashed var(--line); border-radius: 18px; text-align: center; color: var(--muted); }
+  .empty button { margin-top: 0.6rem; }
+
+  .info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-block: clamp(3rem, 7vw, 4.5rem); }
+  .info div { display: grid; align-content: start; gap: 0.4rem; padding: 1.4rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+  .info h3 { font-size: 1.1rem; font-weight: 700; }
+  .info p { color: var(--muted); font-size: 15px; }
+  @media (max-width: 760px) { .info { grid-template-columns: minmax(0, 1fr); } }
+
+  .foot { border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.6rem 2.5rem; }
+
+  /* Product view */
+  .product { width: min(860px, calc(100vw - 24px)); max-width: none; max-height: calc(100vh - 24px); padding: 0; border: 0; border-radius: 22px; background: var(--surface); color: var(--ink); }
+  .product::backdrop { background: rgba(20, 34, 46, 0.6); }
+  .product-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .product-art { display: grid; place-items: center; min-height: 320px; background: var(--clay); }
+  .product-art svg { width: 72%; height: auto; }
+  .product-info { display: grid; align-content: start; gap: 0.9rem; padding: clamp(1.25rem, 4vw, 2rem); }
+  .product-info h2 { font-size: 1.9rem; }
+  .product-info .price { font-size: 1.1rem; }
+  .product-info p { color: var(--muted); }
+  .product-info label { display: grid; gap: 0.3rem; font-size: 14px; font-weight: 650; }
+  .product-info select { width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); font: inherit; font-weight: 400; }
+  .options { display: grid; grid-template-columns: 1fr 7rem; gap: 0.6rem; }
+  .order-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.3rem; }
+  .order-note { font-size: 13px; color: var(--muted); }
+  .close-x { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(20, 34, 46, 0.2); }
+  @media (max-width: 680px) { .product-inner { grid-template-columns: minmax(0, 1fr); } .product-art { min-height: 220px; } }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="wrap">
+    <span class="demo-bar-info"><span class="demo-tag">Demo</span>Product Catalog package · $325</span>
+    <span class="demo-bar-links"><a href="../index.html#pkg-store">← All packages</a><a class="demo-cta" href="../index.html#pick-9">Choose this package</a></span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <span class="logo">Kiln <span>&amp;</span> Kettle</span>
+    <nav class="site-nav" aria-label="Site"><a href="#shop">Shop</a><a href="#info">Pickup and shipping</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <div>
+      <p class="eyebrow">Handmade ceramics</p>
+      <h1>Small-batch pottery for every day.</h1>
+      <p>Kiln &amp; Kettle is a made-up pottery studio for this demo. Every piece is thrown, glazed and fired by hand.</p>
+    </div>
+    <div class="how">
+      <b>How ordering works</b>
+      <span>Pick a piece and a glaze, then tap Order. Your message is written for you. Send it and we'll reply with pickup or shipping details.</span>
+    </div>
+  </section>
+
+  <section id="shop" aria-label="Shop">
+    <div class="toolbar">
+      <div class="search">
+        <label class="sr-only" for="q">Search pieces</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="q" type="search" placeholder="Search mugs, bowls, glazes…" autocomplete="off">
+      </div>
+      <label class="sort" for="sort">Sort
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="new">Newest</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+        </select>
+      </label>
+    </div>
+    <div class="chips" role="group" aria-label="Filter by category" id="chips"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="info" id="info" aria-label="Pickup and shipping">
+    <div><h3>Local pickup</h3><p>Free from the studio on Saturdays, 10 am to 2 pm. We'll text when your order is ready.</p></div>
+    <div><h3>Shipping</h3><p>$8 flat anywhere in the country, packed in recycled paper. Free over $75.</p></div>
+    <div><h3>Payment</h3><p>Pay at pickup, or by bank transfer before shipping. We'll send the details with your order.</p></div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap"><span>Kiln &amp; Kettle Pottery</span><span>orders@kilnandkettle.example.com</span></div></footer>
+
+<dialog class="product" id="product" aria-labelledby="p-name">
+  <button class="close-x" type="button" id="p-close" aria-label="Close">×</button>
+  <div class="product-inner">
+    <div class="product-art" id="p-art"></div>
+    <div class="product-info">
+      <p class="eyebrow" id="p-cat"></p>
+      <h2 id="p-name"></h2>
+      <p class="price" id="p-price"></p>
+      <p id="p-desc"></p>
+      <div class="options">
+        <label for="p-glaze">Glaze<select id="p-glaze"></select></label>
+        <label for="p-qty">Quantity<select id="p-qty"><option>1</option><option>2</option><option>3</option><option>4</option><option>6</option></select></label>
+      </div>
+      <div class="order-actions">
+        <button class="btn btn--ink" type="button" id="p-text">Order by text</button>
+        <button class="btn btn--light" type="button" id="p-email">Order by email</button>
+      </div>
+      <p class="order-note">No payment online. Your order arrives as a message, and we reply to arrange pickup or shipping.</p>
+    </div>
+  </div>
+</dialog>
+
+<script src="demo.js"></script>
+<script>
+  (function () {
+    var GLAZES = { "Sea glass": "#7FB7A8", "Midnight": "#2E3E5C", "Oat": "#D9C7A8", "Ember": "#C8643A", "Sky": "#7FA9D6", "Moss": "#6D7F4E", "Blush": "#E2A6A0" };
+    var PRODUCTS = [
+      { name: "Morning Mug", cat: "Mugs", shape: "mug", price: 28, glazes: ["Sea glass", "Oat", "Midnight"], badge: "new", added: 12, desc: "Holds 12 oz. A thumb rest on the handle and a wide base so it never tips." },
+      { name: "Tall Latte Mug", cat: "Mugs", shape: "tall", price: 32, glazes: ["Midnight", "Sky", "Oat"], added: 7, desc: "Holds 16 oz. Tall and narrow, so drinks stay hot longer." },
+      { name: "Espresso Cup", cat: "Mugs", shape: "cup", price: 18, was: 22, glazes: ["Ember", "Oat"], badge: "sale", added: 3, desc: "Holds 3 oz. Sold one at a time, so you can mix glazes." },
+      { name: "Ramen Bowl", cat: "Bowls", shape: "bowl", price: 42, glazes: ["Midnight", "Sea glass"], badge: "new", added: 11, desc: "Deep enough for noodles and broth. 7 inches across." },
+      { name: "Cereal Bowl", cat: "Bowls", shape: "bowl-small", price: 26, glazes: ["Oat", "Sky", "Blush"], added: 6, desc: "The everyday bowl. 6 inches across, dishwasher safe." },
+      { name: "Serving Bowl", cat: "Bowls", shape: "bowl-wide", price: 68, glazes: ["Moss", "Oat"], added: 9, desc: "For salads and pasta for six. 11 inches across." },
+      { name: "Bud Vase", cat: "Vases", shape: "bud", price: 24, glazes: ["Sky", "Blush", "Midnight"], badge: "new", added: 10, desc: "For a single stem. 5 inches tall." },
+      { name: "Moon Vase", cat: "Vases", shape: "moon", price: 58, glazes: ["Oat", "Sea glass"], added: 5, desc: "Round and wide, for big branches. 9 inches tall." },
+      { name: "Bottle Vase", cat: "Vases", shape: "bottle", price: 44, was: 52, glazes: ["Ember", "Moss"], badge: "sale", added: 2, desc: "A long neck and a heavy base. 11 inches tall." },
+      { name: "Dinner Plate", cat: "Plates", shape: "plate", price: 34, glazes: ["Oat", "Midnight", "Sea glass"], added: 8, desc: "10 inches with a slight rim. Oven and dishwasher safe." },
+      { name: "Side Plate", cat: "Plates", shape: "plate-small", price: 22, glazes: ["Blush", "Sky"], added: 4, desc: "7 inches. For toast, cake and everything in between." },
+      { name: "Little Planter", cat: "Planters", shape: "planter", price: 30, was: 36, glazes: ["Moss", "Oat"], badge: "sale", added: 1, desc: "With a drainage hole and matching saucer. 4 inches across." }
+    ];
+
+    // Simple drawings of each shape, filled with the chosen glaze
+    function art(shape, color) {
+      var hi = "rgba(255,255,255,0.28)", sh = "rgba(0,0,0,0.14)";
+      var body = {
+        mug: '<path d="M30 30h46v48a12 12 0 0 1-12 12H42a12 12 0 0 1-12-12z" fill="' + color + '"/><path d="M76 42h6a10 10 0 0 1 0 20h-6" fill="none" stroke="' + color + '" stroke-width="7"/><path d="M36 34h8v50h-4a4 4 0 0 1-4-4z" fill="' + hi + '"/>',
+        tall: '<path d="M34 16h34v66a10 10 0 0 1-10 10H44a10 10 0 0 1-10-10z" fill="' + color + '"/><path d="M68 34h5a9 9 0 0 1 0 18h-5" fill="none" stroke="' + color + '" stroke-width="6"/><path d="M39 20h7v68h-2a5 5 0 0 1-5-5z" fill="' + hi + '"/>',
+        cup: '<path d="M32 50h34v18a14 14 0 0 1-14 14h-6a14 14 0 0 1-14-14z" fill="' + color + '"/><path d="M66 56h4a7 7 0 0 1 0 14h-4" fill="none" stroke="' + color + '" stroke-width="5"/><ellipse cx="50" cy="86" rx="28" ry="4" fill="' + sh + '"/>',
+        bowl: '<path d="M14 44h72a36 36 0 0 1-72 0z" fill="' + color + '"/><ellipse cx="50" cy="44" rx="36" ry="6" fill="' + hi + '"/><path d="M40 78h20v6H40z" fill="' + color + '"/>',
+        "bowl-small": '<path d="M22 50h56a28 28 0 0 1-56 0z" fill="' + color + '"/><ellipse cx="50" cy="50" rx="28" ry="5" fill="' + hi + '"/>',
+        "bowl-wide": '<path d="M8 50h84c0 18-18 28-42 28S8 68 8 50z" fill="' + color + '"/><ellipse cx="50" cy="50" rx="42" ry="7" fill="' + hi + '"/>',
+        bud: '<path d="M46 22h8v14c10 6 14 14 14 26 0 14-8 24-18 24s-18-10-18-24c0-12 4-20 14-26z" fill="' + color + '"/><path d="M40 52c2-6 5-9 8-11v40c-6-3-10-12-8-29z" fill="' + hi + '"/>',
+        moon: '<circle cx="50" cy="54" r="32" fill="' + color + '"/><path d="M42 18h16v10H42z" fill="' + color + '"/><path d="M28 54a22 22 0 0 1 14-21v42a22 22 0 0 1-14-21z" fill="' + hi + '"/>',
+        bottle: '<path d="M45 10h10v30c12 6 16 16 16 30 0 14-9 22-21 22s-21-8-21-22c0-14 4-24 16-30z" fill="' + color + '"/><path d="M38 64c0-10 3-16 8-20v44c-5-4-8-12-8-24z" fill="' + hi + '"/>',
+        plate: '<ellipse cx="50" cy="56" rx="42" ry="16" fill="' + color + '"/><ellipse cx="50" cy="54" rx="28" ry="9" fill="' + hi + '"/>',
+        "plate-small": '<ellipse cx="50" cy="56" rx="32" ry="12" fill="' + color + '"/><ellipse cx="50" cy="54" rx="20" ry="7" fill="' + hi + '"/>',
+        planter: '<path d="M26 36h48l-6 40H32z" fill="' + color + '"/><path d="M22 76h56v6H22z" fill="' + color + '"/><path d="M50 36c-4-10-14-14-20-12 2 8 10 12 20 12zM50 36c4-12 14-16 22-12-4 8-12 12-22 12z" fill="#5E8A4E"/><path d="M32 40h8l-3 34h-3z" fill="' + hi + '"/>'
+      }[shape];
+      return '<svg viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="50" cy="92" rx="34" ry="4" fill="' + sh + '"/>' + body + "</svg>";
+    }
+
+    function priceHTML(p) {
+      return (p.was ? "<s>$" + p.was + "</s>" : "") + "$" + p.price;
+    }
+
+    var CATS = ["All"].concat(PRODUCTS.map(function (p) { return p.cat; }).filter(function (c, i, a) { return a.indexOf(c) === i; }));
+    var state = { cat: "All", q: "", sort: "featured" };
+    var chips = document.getElementById("chips");
+    CATS.forEach(function (cat) {
+      var b = Demo.el("button", null, cat);
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(cat === "All"));
+      b.addEventListener("click", function () {
+        state.cat = cat;
+        chips.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        render();
+      });
+      chips.append(b);
+    });
+
+    var grid = document.getElementById("grid");
+    var count = document.getElementById("count");
+    function render() {
+      var q = state.q.toLowerCase();
+      var list = PRODUCTS.filter(function (p) {
+        return (state.cat === "All" || p.cat === state.cat) &&
+          (!q || (p.name + " " + p.cat + " " + p.desc + " " + p.glazes.join(" ")).toLowerCase().indexOf(q) !== -1);
+      });
+      if (state.sort === "low") list.sort(function (a, b) { return a.price - b.price; });
+      if (state.sort === "high") list.sort(function (a, b) { return b.price - a.price; });
+      if (state.sort === "new") list.sort(function (a, b) { return b.added - a.added; });
+      count.textContent = list.length + (list.length === 1 ? " piece" : " pieces");
+
+      if (!list.length) {
+        var empty = Demo.el("div", "empty");
+        empty.append(Demo.el("p", null, "No pieces match \"" + state.q + "\"" + (state.cat !== "All" ? " in " + state.cat : "") + "."));
+        var clear = Demo.el("button", "btn btn--light", "Clear search");
+        clear.type = "button";
+        clear.addEventListener("click", function () { document.getElementById("q").value = ""; state.q = ""; render(); });
+        empty.append(clear);
+        grid.replaceChildren(empty);
+        return;
+      }
+      grid.replaceChildren.apply(grid, list.map(function (p) {
+        var card = Demo.el("button", "card");
+        card.type = "button";
+        card.setAttribute("aria-label", p.name + ", $" + p.price + (p.badge ? ", " + p.badge : ""));
+        var a = Demo.el("span", "card-art");
+        a.innerHTML = art(p.shape, GLAZES[p.glazes[0]]);
+        if (p.badge) a.append(Demo.el("span", "badge" + (p.badge === "sale" ? " badge--sale" : ""), p.badge === "sale" ? "Sale" : "New"));
+        var info = Demo.el("span", "card-info");
+        var price = Demo.el("span", "price" + (p.was ? " is-sale" : ""));
+        price.innerHTML = priceHTML(p);
+        info.append(Demo.el("b", null, p.name), price);
+        card.append(a, info, Demo.el("small", null, p.glazes.length + " glazes"));
+        card.addEventListener("click", function () { openProduct(p); });
+        return card;
+      }));
+    }
+
+    document.getElementById("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); render(); });
+    document.getElementById("sort").addEventListener("change", function (e) { state.sort = e.target.value; render(); });
+
+    // Product view with order-by-message
+    var dlg = document.getElementById("product");
+    var glazeSel = document.getElementById("p-glaze");
+    var current = null;
+    function openProduct(p) {
+      current = p;
+      document.getElementById("p-cat").textContent = p.cat;
+      document.getElementById("p-name").textContent = p.name;
+      document.getElementById("p-price").innerHTML = priceHTML(p);
+      document.getElementById("p-price").className = "price" + (p.was ? " is-sale" : "");
+      document.getElementById("p-desc").textContent = p.desc;
+      document.getElementById("p-qty").value = "1";
+      glazeSel.replaceChildren.apply(glazeSel, p.glazes.map(function (g) { var o = Demo.el("option", null, g); o.value = g; return o; }));
+      paintArt();
+      if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    }
+    function paintArt() { document.getElementById("p-art").innerHTML = art(current.shape, GLAZES[glazeSel.value]); }
+    glazeSel.addEventListener("change", paintArt);
+    function closeProduct() { if (typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open"); }
+    document.getElementById("p-close").addEventListener("click", closeProduct);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) closeProduct(); });
+
+    function orderText() {
+      var qty = Number(document.getElementById("p-qty").value);
+      return "Hi Kiln & Kettle! I'd like to order " + qty + " × " + current.name + " in the " + glazeSel.value + " glaze ($" + current.price + " each, $" + (qty * current.price) + " total). Can I pick it up, or how much is shipping?";
+    }
+    document.getElementById("p-text").addEventListener("click", function () {
+      closeProduct();
+      Demo.message({ via: "text", to: "(555) 014-5150", body: orderText() });
+    });
+    document.getElementById("p-email").addEventListener("click", function () {
+      closeProduct();
+      Demo.message({ via: "email", to: "orders@kilnandkettle.example.com", subject: "Order: " + current.name, body: orderText() });
+    });
+
+    render();
+  })();
+</script>
+</body>
+</html>

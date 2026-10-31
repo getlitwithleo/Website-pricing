@@ -385,7 +385,7 @@
     box-shadow: var(--shadow);
   }
   .pkg-body { display: flex; flex: 1; flex-direction: column; gap: 1rem; padding: 1.4rem 1.5rem 1.5rem; }
-  .pkg-top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  .pkg-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; }
   .pkg h4 { font-size: 1.25rem; letter-spacing: -0.02em; }
   .pkg-price { font-size: 1.85rem; font-weight: 600; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .best { font-size: 0.9375rem; color: var(--muted); }
@@ -414,7 +414,14 @@
   }
   .ticks li::after { content: ""; position: absolute; left: 0.4rem; top: 0.38em; width: 0.29rem; height: 0.53rem; border: solid var(--hue); border-width: 0 2px 2px 0; transform: rotate(45deg); }
   .pkg-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1rem; margin-top: auto; padding-top: 1.1rem; border-top: 1px solid var(--line); }
-  .incl-note { font-size: var(--t-sm); color: var(--muted); }
+  .pkg-price small { display: block; margin-top: 0.35rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0; color: var(--muted); text-align: right; }
+  .demo-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: var(--t-sm); font-weight: 600; color: var(--accent); text-decoration: none; }
+  .demo-link svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .demo-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .preview-link { position: absolute; inset: 0; z-index: 1; display: grid; place-items: end center; padding-bottom: 14px; text-decoration: none; }
+  .preview-link span { padding: 0.4rem 0.9rem; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 600; opacity: 0; }
+  .pkg:hover .preview-link span { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) { .preview-link span { transition: opacity 0.2s ease; } }
   .badge {
     position: absolute;
     top: 14px;
@@ -450,7 +457,8 @@
     opacity: 0.55;
   }
   .pkg--top .preview .browser { position: relative; border-color: transparent; }
-  .pkg--top .best, .pkg--top .incl-note { color: var(--deep-muted); }
+  .pkg--top .best, .pkg--top .pkg-price small { color: var(--deep-muted); }
+  .pkg--top .demo-link { color: var(--deep-accent); }
   .pkg--top .best b { color: var(--deep-fg); }
   .pkg--top .specs li { background: rgba(255, 255, 255, 0.08); }
   .pkg--top .ticks li::before { background: rgba(255, 255, 255, 0.1); }
@@ -523,7 +531,7 @@
 
   /* Fit guide */
   .table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); }
-  table { width: 100%; min-width: 52rem; border-collapse: collapse; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+  table { width: 100%; min-width: 58rem; border-collapse: collapse; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
   th, td { padding: 0.85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--line); }
   tbody tr:last-child > * { border-bottom: 0; }
   thead th { font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
@@ -535,6 +543,24 @@
   .pkg-link::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--hue); }
   .pkg-link:hover { text-decoration: underline; text-underline-offset: 3px; }
   tr.rec-row > * { background: var(--accent-soft); }
+  .table-demo { font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .table-demo:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Recent work */
+  .works { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1.25rem; }
+  .work-card { --hue: var(--accent); display: grid; align-content: start; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: var(--shadow-sm); }
+  @media (prefers-reduced-motion: no-preference) {
+    .work-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .work-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  }
+  .work-thumb { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; overflow: hidden; background: var(--mock); background: linear-gradient(135deg, var(--hue), color-mix(in srgb, var(--hue) 35%, var(--surface))); color: #FFFFFF; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.04em; }
+  .work-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .work-body { display: grid; gap: 0.45rem; padding: 1.1rem 1.2rem 1.3rem; }
+  .work-type { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .work-type::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--hue); }
+  .work-body h3 { font-size: 1.2rem; letter-spacing: -0.02em; }
+  .work-body p { font-size: 0.9375rem; color: var(--muted); }
+  .work-visit { font-size: var(--t-sm); font-weight: 600; color: var(--accent); }
   .rec-tag { margin-left: 0.4rem; font-size: var(--t-xs); font-weight: 600; color: var(--accent); }
 
   /* Add-ons */
@@ -704,6 +730,7 @@
   <a class="brand" href="#top" id="top"><span class="logo-mark" aria-hidden="true"></span>Website Design</a>
   <nav class="nav" aria-label="Sections">
     <a href="#packages">Packages</a>
+    <a href="#work" id="nav-work" hidden>Work</a>
     <a href="#fit">Find your fit</a>
     <a href="#process">Process</a>
     <a href="#faq">FAQ</a>
@@ -716,7 +743,7 @@
     <div class="hero-copy">
       <span class="status"><span class="status-dot" aria-hidden="true"></span>Now booking new projects</span>
       <h1>Websites built to <em>win</em> you customers.</h1>
-      <p class="lede">I design and build fast, modern websites for small businesses, creators and independent brands. Ten packages from $20 to $400, each built for a different kind of business, with one flat price.</p>
+      <p class="lede">I design and build fast, modern websites for small businesses, creators and independent brands. Ten packages from $20 to $400, each built for a different kind of business, with one flat price. Every package has a live demo you can click through.</p>
       <div class="hero-actions">
         <a class="btn btn--primary" href="#packages">See the packages <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--secondary" href="#quote">Build a quote</a>
@@ -809,6 +836,7 @@
 
         <article class="pkg" id="pkg-tune-up" style="--hue: var(--hue-slate)" aria-labelledby="n-1">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/tune-up.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -820,7 +848,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-1">Tune-Up</h4><p class="pkg-price">$20</p></div>
+            <div class="pkg-top"><h4 id="n-1">Tune-Up</h4><p class="pkg-price">$20<small>$10 to start</small></p></div>
             <p class="best"><b>Best for</b> a site I built, or any site whose files you can share.</p>
             <ul class="specs"><li>Your current site</li><li>Max 2 days</li><li>1 revision</li></ul>
             <ul class="ticks">
@@ -829,12 +857,13 @@
               <li>Refresh colors, fonts and spacing on one page</li>
               <li>Speed and mobile check, with a short list of what to fix next</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$10 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="1">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/tune-up.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="1">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg" id="pkg-link-in-bio" style="--hue: var(--hue-rose)" aria-labelledby="n-2">
           <div class="preview preview--center" aria-hidden="true">
+            <a class="preview-link" href="demos/link-in-bio.html" tabindex="-1"><span>View live demo</span></a>
             <div class="phone-mini">
               <span class="avatar"></span>
               <span class="ln ln--ink" style="--w:55%; --lh:8px"></span>
@@ -847,7 +876,7 @@
             <div class="stat-card"><span class="ln" style="--w:36px; --lh:5px"></span><div class="bars"><i style="--v:40%"></i><i style="--v:75%"></i><i style="--v:55%"></i><i style="--v:95%"></i></div></div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-2">Link-in-Bio</h4><p class="pkg-price">$40</p></div>
+            <div class="pkg-top"><h4 id="n-2">Link-in-Bio</h4><p class="pkg-price">$40<small>$20 to start</small></p></div>
             <p class="best"><b>Best for</b> creators, artists and side hustles who live on social media.</p>
             <ul class="specs"><li>1 mobile page</li><li>Max 3 days</li><li>1 revision</li><li>7 days of fixes</li></ul>
             <ul class="ticks">
@@ -857,12 +886,13 @@
               <li>Click tracking to see which links get tapped</li>
               <li>Ready for your Instagram, TikTok and YouTube bios</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$20 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="2">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/link-in-bio.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="2">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg" id="pkg-landing-page" style="--hue: var(--hue-ember)" aria-labelledby="n-3">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/landing-page.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg" style="gap:8px">
@@ -873,7 +903,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-3">Landing Page</h4><p class="pkg-price">$75</p></div>
+            <div class="pkg-top"><h4 id="n-3">Landing Page</h4><p class="pkg-price">$75<small>$37.50 to start</small></p></div>
             <p class="best"><b>Best for</b> launching a product, event or new business.</p>
             <ul class="specs"><li>1 page</li><li>Max 5 days</li><li>1 revision</li><li>7 days of fixes</li></ul>
             <ul class="ticks">
@@ -883,7 +913,7 @@
               <li>Countdown timer or event details</li>
               <li>Social links and basic search setup</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$37.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="3">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/landing-page.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="3">Choose</a></div>
           </div>
         </article>
 
@@ -901,6 +931,7 @@
 
         <article class="pkg pkg--side" id="pkg-portfolio" style="--hue: var(--hue-violet)" aria-labelledby="n-4">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/portfolio.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -912,7 +943,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-4">Portfolio</h4><p class="pkg-price">$125</p></div>
+            <div class="pkg-top"><h4 id="n-4">Portfolio</h4><p class="pkg-price">$125<small>$62.50 to start</small></p></div>
             <p class="best"><b>Best for</b> photographers, artists, designers and makers.</p>
             <ul class="specs"><li>Up to 4 pages</li><li>Max 7 days</li><li>2 revisions</li><li>7 days of fixes</li></ul>
             <ul class="ticks">
@@ -922,12 +953,13 @@
               <li>Inquiry form for commissions and bookings</li>
               <li>Image optimization so big photos still load fast</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$62.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="4">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/portfolio.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="4">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg pkg--side" id="pkg-small-business" style="--hue: var(--hue-teal)" aria-labelledby="n-5">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/small-business.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -941,7 +973,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-5">Small Business</h4><p class="pkg-price">$150</p></div>
+            <div class="pkg-top"><h4 id="n-5">Small Business</h4><p class="pkg-price">$150<small>$75 to start</small></p></div>
             <p class="best"><b>Best for</b> local shops and service businesses.</p>
             <ul class="specs"><li>Up to 5 pages</li><li>Max 10 days</li><li>2 revisions</li><li>7 days of fixes</li></ul>
             <ul class="ticks">
@@ -951,12 +983,13 @@
               <li>FAQ section with answers written for you</li>
               <li>Custom color palette and typography</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$75 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="5">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/small-business.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="5">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg pkg--side" id="pkg-restaurant" style="--hue: var(--hue-amber)" aria-labelledby="n-6">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/restaurant.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -975,7 +1008,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-6">Restaurant &amp; Café</h4><p class="pkg-price">$175</p></div>
+            <div class="pkg-top"><h4 id="n-6">Restaurant &amp; Café</h4><p class="pkg-price">$175<small>$87.50 to start</small></p></div>
             <p class="best"><b>Best for</b> restaurants, cafés, bakeries and food trucks.</p>
             <ul class="specs"><li>Up to 5 pages</li><li>Max 10 days</li><li>2 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
@@ -985,12 +1018,13 @@
               <li>Food photo gallery and a daily specials banner</li>
               <li>Events and catering page</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$87.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="6">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/restaurant.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="6">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg pkg--side" id="pkg-booking" style="--hue: var(--hue-green)" aria-labelledby="n-7">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/booking.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -1006,7 +1040,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-7">Booking Site</h4><p class="pkg-price">$200</p></div>
+            <div class="pkg-top"><h4 id="n-7">Booking Site</h4><p class="pkg-price">$200<small>$100 to start</small></p></div>
             <p class="best"><b>Best for</b> salons, trainers, tutors, coaches and consultants.</p>
             <ul class="specs"><li>Up to 6 pages</li><li>Max 12 days</li><li>3 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
@@ -1016,7 +1050,7 @@
               <li>Automatic email confirmations and reminders</li>
               <li>Reviews and a before-and-after gallery</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$100 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="7">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/booking.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="7">Choose</a></div>
           </div>
         </article>
 
@@ -1035,6 +1069,7 @@
         <article class="pkg pkg--rec" id="pkg-growth" style="--hue: var(--hue-blue)" aria-labelledby="n-8">
           <span class="badge">Recommended</span>
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/growth.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -1052,7 +1087,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-8">Growth</h4><p class="pkg-price">$250</p></div>
+            <div class="pkg-top"><h4 id="n-8">Growth</h4><p class="pkg-price">$250<small>$125 to start</small></p></div>
             <p class="best"><b>Best for</b> businesses ready to bring in steady leads.</p>
             <ul class="specs"><li>Up to 8 pages</li><li>Max 14 days</li><li>3 revisions</li><li>14 days of fixes</li></ul>
             <ul class="ticks">
@@ -1062,12 +1097,13 @@
               <li>Visitor analytics setup</li>
               <li>Speed optimization for fast page loads</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$125 deposit to start</span><a class="btn btn--primary btn--sm" href="#quote" data-pick="8">Choose Growth</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/growth.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--primary btn--sm" href="#quote" data-pick="8">Choose Growth</a></div>
           </div>
         </article>
 
         <article class="pkg" id="pkg-store" style="--hue: var(--hue-sky)" aria-labelledby="n-9">
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/product-catalog.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -1083,7 +1119,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-9">Product Catalog</h4><p class="pkg-price">$325</p></div>
+            <div class="pkg-top"><h4 id="n-9">Product Catalog</h4><p class="pkg-price">$325<small>$162.50 to start</small></p></div>
             <p class="best"><b>Best for</b> makers and shops who sell by message, at markets or in person.</p>
             <ul class="specs"><li>Up to 25 products</li><li>Max 18 days</li><li>3 revisions</li><li>21 days of fixes</li></ul>
             <ul class="ticks">
@@ -1093,13 +1129,14 @@
               <li>New arrival and sale badges</li>
               <li>Written guide to adding your own products</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$162.50 deposit to start</span><a class="btn btn--secondary btn--sm" href="#quote" data-pick="9">Choose</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/product-catalog.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--secondary btn--sm" href="#quote" data-pick="9">Choose</a></div>
           </div>
         </article>
 
         <article class="pkg pkg--top" id="pkg-masterpiece" aria-labelledby="n-10">
           <span class="badge">Fully custom</span>
           <div class="preview" aria-hidden="true">
+            <a class="preview-link" href="demos/masterpiece.html" tabindex="-1"><span>View live demo</span></a>
             <div class="browser">
               <div class="bar"><i></i><i></i><i></i><b></b></div>
               <div class="pg">
@@ -1110,7 +1147,7 @@
             </div>
           </div>
           <div class="pkg-body">
-            <div class="pkg-top"><h4 id="n-10">Masterpiece</h4><p class="pkg-price">$400</p></div>
+            <div class="pkg-top"><h4 id="n-10">Masterpiece</h4><p class="pkg-price">$400<small>$200 to start</small></p></div>
             <p class="best"><b>Best for</b> brands that want something nobody else has.</p>
             <ul class="specs"><li>Up to 12 pages</li><li>Max 21 days</li><li>5 revisions</li><li>30 days of fixes</li></ul>
             <ul class="ticks">
@@ -1120,12 +1157,21 @@
               <li>Advanced search optimization</li>
               <li>Step-by-step guide to editing your site</li>
             </ul>
-            <div class="pkg-foot"><span class="incl-note">$200 deposit to start</span><a class="btn btn--light btn--sm" href="#quote" data-pick="10">Choose Masterpiece</a></div>
+            <div class="pkg-foot"><a class="demo-link" href="demos/masterpiece.html">View live demo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--light btn--sm" href="#quote" data-pick="10">Choose Masterpiece</a></div>
           </div>
         </article>
 
       </div>
     </div>
+  </section>
+
+  <section class="wrap sec" id="work" aria-labelledby="work-title" hidden>
+    <div class="section-head">
+      <p class="eyebrow">Recent work</p>
+      <h2 id="work-title">Websites I've built</h2>
+      <p>Real sites for real businesses. Click a card to visit the site.</p>
+    </div>
+    <div class="works" id="works"></div>
   </section>
 
   <section class="wrap sec" id="fit" aria-labelledby="fit-title">
@@ -1137,19 +1183,19 @@
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th scope="col">If you…</th><th scope="col">Package</th><th scope="col">Pages</th><th scope="col">Max time</th><th scope="col">Revisions</th><th scope="col">Free fixes</th><th scope="col" class="num">Price</th></tr>
+          <tr><th scope="col">If you…</th><th scope="col">Package</th><th scope="col">Pages</th><th scope="col">Max time</th><th scope="col">Revisions</th><th scope="col">Free fixes</th><th scope="col">Demo</th><th scope="col" class="num">Price</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">need fixes to a site you have the files for</th><td><a class="pkg-link" style="--hue: var(--hue-slate)" href="#pkg-tune-up">Tune-Up</a></td><td>Current site</td><td>2 days</td><td>1</td><td>None</td><td class="num">$20</td></tr>
-          <tr><th scope="row">want one link for your social bios</th><td><a class="pkg-link" style="--hue: var(--hue-rose)" href="#pkg-link-in-bio">Link-in-Bio</a></td><td>1 mobile page</td><td>3 days</td><td>1</td><td>7 days</td><td class="num">$40</td></tr>
-          <tr><th scope="row">are launching a product or event</th><td><a class="pkg-link" style="--hue: var(--hue-ember)" href="#pkg-landing-page">Landing Page</a></td><td>1</td><td>5 days</td><td>1</td><td>7 days</td><td class="num">$75</td></tr>
-          <tr><th scope="row">want to show off your work</th><td><a class="pkg-link" style="--hue: var(--hue-violet)" href="#pkg-portfolio">Portfolio</a></td><td>Up to 4</td><td>7 days</td><td>2</td><td>7 days</td><td class="num">$125</td></tr>
-          <tr><th scope="row">run a local shop or service</th><td><a class="pkg-link" style="--hue: var(--hue-teal)" href="#pkg-small-business">Small Business</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>7 days</td><td class="num">$150</td></tr>
-          <tr><th scope="row">run a restaurant or café</th><td><a class="pkg-link" style="--hue: var(--hue-amber)" href="#pkg-restaurant">Restaurant &amp; Café</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>14 days</td><td class="num">$175</td></tr>
-          <tr><th scope="row">take appointments</th><td><a class="pkg-link" style="--hue: var(--hue-green)" href="#pkg-booking">Booking Site</a></td><td>Up to 6</td><td>12 days</td><td>3</td><td>14 days</td><td class="num">$200</td></tr>
-          <tr class="rec-row"><th scope="row">want steady leads and a blog</th><td><a class="pkg-link" style="--hue: var(--hue-blue)" href="#pkg-growth">Growth</a><span class="rec-tag">Recommended</span></td><td>Up to 8</td><td>14 days</td><td>3</td><td>14 days</td><td class="num">$250</td></tr>
-          <tr><th scope="row">want to show products people can order</th><td><a class="pkg-link" style="--hue: var(--hue-sky)" href="#pkg-store">Product Catalog</a></td><td>Up to 25 products</td><td>18 days</td><td>3</td><td>21 days</td><td class="num">$325</td></tr>
-          <tr><th scope="row">want something nobody else has</th><td><a class="pkg-link" style="--hue: var(--ink)" href="#pkg-masterpiece">Masterpiece</a></td><td>Up to 12</td><td>21 days</td><td>5</td><td>30 days</td><td class="num">$400</td></tr>
+          <tr><th scope="row">need fixes to a site you have the files for</th><td><a class="pkg-link" style="--hue: var(--hue-slate)" href="#pkg-tune-up">Tune-Up</a></td><td>Current site</td><td>2 days</td><td>1</td><td>None</td><td><a class="table-demo" href="demos/tune-up.html">View demo</a></td><td class="num">$20</td></tr>
+          <tr><th scope="row">want one link for your social bios</th><td><a class="pkg-link" style="--hue: var(--hue-rose)" href="#pkg-link-in-bio">Link-in-Bio</a></td><td>1 mobile page</td><td>3 days</td><td>1</td><td>7 days</td><td><a class="table-demo" href="demos/link-in-bio.html">View demo</a></td><td class="num">$40</td></tr>
+          <tr><th scope="row">are launching a product or event</th><td><a class="pkg-link" style="--hue: var(--hue-ember)" href="#pkg-landing-page">Landing Page</a></td><td>1</td><td>5 days</td><td>1</td><td>7 days</td><td><a class="table-demo" href="demos/landing-page.html">View demo</a></td><td class="num">$75</td></tr>
+          <tr><th scope="row">want to show off your work</th><td><a class="pkg-link" style="--hue: var(--hue-violet)" href="#pkg-portfolio">Portfolio</a></td><td>Up to 4</td><td>7 days</td><td>2</td><td>7 days</td><td><a class="table-demo" href="demos/portfolio.html">View demo</a></td><td class="num">$125</td></tr>
+          <tr><th scope="row">run a local shop or service</th><td><a class="pkg-link" style="--hue: var(--hue-teal)" href="#pkg-small-business">Small Business</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>7 days</td><td><a class="table-demo" href="demos/small-business.html">View demo</a></td><td class="num">$150</td></tr>
+          <tr><th scope="row">run a restaurant or café</th><td><a class="pkg-link" style="--hue: var(--hue-amber)" href="#pkg-restaurant">Restaurant &amp; Café</a></td><td>Up to 5</td><td>10 days</td><td>2</td><td>14 days</td><td><a class="table-demo" href="demos/restaurant.html">View demo</a></td><td class="num">$175</td></tr>
+          <tr><th scope="row">take appointments</th><td><a class="pkg-link" style="--hue: var(--hue-green)" href="#pkg-booking">Booking Site</a></td><td>Up to 6</td><td>12 days</td><td>3</td><td>14 days</td><td><a class="table-demo" href="demos/booking.html">View demo</a></td><td class="num">$200</td></tr>
+          <tr class="rec-row"><th scope="row">want steady leads and a blog</th><td><a class="pkg-link" style="--hue: var(--hue-blue)" href="#pkg-growth">Growth</a><span class="rec-tag">Recommended</span></td><td>Up to 8</td><td>14 days</td><td>3</td><td>14 days</td><td><a class="table-demo" href="demos/growth.html">View demo</a></td><td class="num">$250</td></tr>
+          <tr><th scope="row">want to show products people can order</th><td><a class="pkg-link" style="--hue: var(--hue-sky)" href="#pkg-store">Product Catalog</a></td><td>Up to 25 products</td><td>18 days</td><td>3</td><td>21 days</td><td><a class="table-demo" href="demos/product-catalog.html">View demo</a></td><td class="num">$325</td></tr>
+          <tr><th scope="row">want something nobody else has</th><td><a class="pkg-link" style="--hue: var(--ink)" href="#pkg-masterpiece">Masterpiece</a></td><td>Up to 12</td><td>21 days</td><td>5</td><td>30 days</td><td><a class="table-demo" href="demos/masterpiece.html">View demo</a></td><td class="num">$400</td></tr>
         </tbody>
       </table>
     </div>
@@ -1307,6 +1353,52 @@
   </div>
 </footer>
 
+<script src="work/projects.js"></script>
+<script>
+  // Recent work: one card per entry in work/projects.js. The section stays hidden until there's an entry.
+  (function () {
+    var HUES = {
+      "Tune-Up": "--hue-slate", "Link-in-Bio": "--hue-rose", "Landing Page": "--hue-ember", "Portfolio": "--hue-violet",
+      "Small Business": "--hue-teal", "Restaurant & Café": "--hue-amber", "Booking Site": "--hue-green",
+      "Growth": "--hue-blue", "Product Catalog": "--hue-sky", "Masterpiece": "--ink"
+    };
+    var projects = (Array.isArray(window.PROJECTS) ? window.PROJECTS : []).filter(function (p) { return p && p.name && p.link; });
+    if (!projects.length) return;
+
+    function make(tag, cls, text) {
+      var node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text) node.textContent = text;
+      return node;
+    }
+    var list = document.getElementById("works");
+    projects.forEach(function (p) {
+      var card = make("a", "work-card");
+      card.href = p.link;
+      if (/^https?:/i.test(p.link)) { card.target = "_blank"; card.rel = "noopener"; }
+      card.style.setProperty("--hue", "var(" + (HUES[p.type] || "--accent") + ")");
+      var thumb = make("span", "work-thumb");
+      if (p.image) {
+        var img = make("img");
+        img.src = p.image;
+        img.alt = "";
+        img.loading = "lazy";
+        thumb.append(img);
+      } else {
+        thumb.textContent = p.name.split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join("").toUpperCase();
+      }
+      var body = make("span", "work-body");
+      if (p.type) body.append(make("span", "work-type", p.type));
+      body.append(make("h3", null, p.name));
+      if (p.about) body.append(make("p", null, p.about));
+      body.append(make("span", "work-visit", "Visit site →"));
+      card.append(thumb, body);
+      list.append(card);
+    });
+    document.getElementById("work").hidden = false;
+    document.getElementById("nav-work").hidden = false;
+  })();
+</script>
 <script>
   (function () {
     var PACKAGES = {
@@ -1461,6 +1553,18 @@
     });
 
     update();
+
+    // Each demo's "Choose this package" links here with #pick-N to preselect that package
+    function pickFromHash() {
+      var m = /^#pick-(\d+)$/.exec(location.hash);
+      var radio = m && document.getElementById("pick-" + m[1]);
+      if (!radio) return;
+      radio.checked = true;
+      update();
+      document.getElementById("quote").scrollIntoView();
+    }
+    pickFromHash();
+    window.addEventListener("hashchange", pickFromHash);
   })();
 </script>
 </body>

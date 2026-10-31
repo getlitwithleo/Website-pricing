@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Booking Site Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Work+Sans:wght@400..600&display=swap">
+<link rel="stylesheet" href="demo.css">
+<style>
+  :root {
+    /* Layout: a salon site built around booking. Services with times and prices feed a working booking panel (service, day, time, details), then new-client info, looks, reviews and policies. */
+    --bg: #F4F6F2;
+    --surface: #FFFFFF;
+    --ink: #18241E;
+    --muted: #56655C;
+    --line: #DCE4DC;
+    --green: #2C7A4B;
+    --green-dark: #1E3A2F;
+    --mint: #DCEBDF;
+    --clay: #C9826B;
+    --display: "Syne", "Arial Black", system-ui, sans-serif;
+    --body: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  body { background: var(--bg); color: var(--ink); font: 400 16.5px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  h2 { font: 700 clamp(1.9rem, 3vw + 1rem, 2.8rem)/1.05 var(--display); letter-spacing: -0.02em; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1.3rem; border: 0; border-radius: 12px; font: 600 16px/1.2 var(--body); text-decoration: none; cursor: pointer; }
+  .btn--green { background: var(--green); color: #FFFFFF; }
+  .btn--light { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--clay); outline-offset: 2px; }
+
+  .site-head .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; padding-block: 1.1rem; }
+  .logo { font: 800 1.35rem/1 var(--display); letter-spacing: 0.08em; }
+  .logo span { color: var(--green); }
+  .site-nav { display: flex; gap: 1.3rem; font-weight: 500; }
+  .site-nav a { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { .site-nav { display: none; } }
+
+  .hero { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 2.5rem; align-items: end; }
+  .hero h1 { font: 800 clamp(2.6rem, 5.5vw + 0.5rem, 5rem)/0.98 var(--display); letter-spacing: -0.03em; }
+  .hero h1 span { color: var(--green); }
+  .hero p { max-width: 32rem; margin-top: 1rem; font-size: 1.15rem; color: var(--muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
+  .facts { display: grid; gap: 0.7rem; }
+  .fact { display: flex; gap: 0.8rem; align-items: center; padding: 1rem 1.1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-weight: 500; }
+  .fact i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+  @media (max-width: 760px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+  .sec { padding-block: clamp(3.5rem, 8vw, 5rem); }
+  .sec-head { display: grid; gap: 0.6rem; margin-bottom: 2rem; max-width: 40rem; }
+  .sec-head p:last-child:not(.eyebrow) { color: var(--muted); }
+
+  .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .svc-group { display: grid; align-content: start; gap: 0.2rem; padding: 1.4rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+  .svc-group h3 { margin-bottom: 0.5rem; font: 700 1.25rem/1.1 var(--display); }
+  .svc { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.1rem 1rem; align-items: center; padding-block: 0.75rem; border-top: 1px solid var(--line); }
+  .svc b { font-weight: 600; }
+  .svc small { grid-column: 1; color: var(--muted); font-size: 14px; }
+  .svc-price { grid-column: 2; grid-row: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .svc button { grid-column: 2; grid-row: 2; padding: 0; border: 0; background: none; color: var(--green); font: 600 14px/1.3 var(--body); cursor: pointer; }
+  @media (max-width: 900px) { .services { grid-template-columns: minmax(0, 1fr); max-width: 36rem; } }
+
+  /* Booking panel */
+  .book-sec { background: var(--green-dark); color: #EAF2EC; }
+  .book-sec h2 { color: #FFFFFF; }
+  .book-sec .sec-head p:last-child { color: #B8CCBF; }
+  .booker { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+  .steps { display: grid; gap: 1.25rem; padding: clamp(1.25rem, 3vw, 1.75rem); border-radius: 20px; background: var(--surface); color: var(--ink); }
+  .step-title { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; font: 700 1.05rem/1.2 var(--display); }
+  .step-title span { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--mint); color: var(--green); font: 700 13px/1 var(--body); }
+  .booker select, .booker input { width: 100%; padding: 0.75rem 0.85rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; }
+  .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
+  .day { display: grid; gap: 0.05rem; justify-items: center; padding: 0.55rem 0.2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: 500 12px/1.2 var(--body); cursor: pointer; }
+  .day b { font: 700 1.1rem/1.1 var(--display); }
+  .day:disabled { background: var(--bg); color: #A3B0A7; cursor: not-allowed; }
+  .day[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: #FFFFFF; }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.2rem, 1fr)); gap: 0.4rem; }
+  .slot { padding: 0.55rem 0.3rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: 500 14px/1.2 var(--body); font-variant-numeric: tabular-nums; cursor: pointer; }
+  .slot:disabled { background: var(--bg); color: #A3B0A7; text-decoration: line-through; cursor: not-allowed; }
+  .slot[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: #FFFFFF; }
+  .hint { font-size: 14px; color: var(--muted); }
+  .details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+  .details label { display: grid; gap: 0.25rem; font-size: 14px; font-weight: 600; }
+  .details .check { grid-column: 1 / -1; display: flex; gap: 0.5rem; align-items: center; font-weight: 500; }
+  .details .check input { width: 1.1rem; height: 1.1rem; accent-color: var(--green); }
+  .summary { position: sticky; top: 4rem; display: grid; gap: 1rem; padding: 1.5rem; border-radius: 20px; background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+  .summary h3 { font: 700 1.25rem/1.2 var(--display); color: #FFFFFF; }
+  .summary dl { display: grid; gap: 0.6rem; margin: 0; }
+  .summary dl div { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+  .summary dt { color: #B8CCBF; }
+  .summary dd { margin: 0; font-weight: 600; text-align: right; }
+  .summary .btn { width: 100%; background: var(--clay); color: #FFFFFF; }
+  .summary p { font-size: 14px; color: #B8CCBF; }
+  @media (max-width: 860px) { .booker { grid-template-columns: minmax(0, 1fr); } .summary { position: static; } }
+  @media (max-width: 480px) { .days { grid-template-columns: repeat(4, minmax(0, 1fr)); } .details { grid-template-columns: minmax(0, 1fr); } }
+
+  .newbie { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+  .expect { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .expect li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 0.9rem; }
+  .expect span { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--mint); color: var(--green); font: 700 1rem/1 var(--display); }
+  .expect b { display: block; font-weight: 600; }
+  .expect p { color: var(--muted); font-size: 15px; }
+  .intake { display: grid; gap: 0.8rem; padding: 1.5rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+  .intake h3 { font: 700 1.25rem/1.2 var(--display); }
+  .intake label { display: grid; gap: 0.25rem; font-size: 14px; font-weight: 600; }
+  .intake input, .intake select, .intake textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: inherit; }
+  .intake textarea { min-height: 80px; resize: vertical; }
+  @media (max-width: 860px) { .newbie { grid-template-columns: minmax(0, 1fr); } }
+
+  .looks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .look { display: grid; gap: 0.6rem; }
+  .look-pair { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 16px; aspect-ratio: 4 / 3; }
+  .look-pair span { position: relative; }
+  .look-pair span::after { content: attr(data-l); position: absolute; left: 8px; bottom: 8px; padding: 2px 8px; border-radius: 999px; background: rgba(0, 0, 0, 0.55); color: #FFFFFF; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .look b { font-weight: 600; }
+  @media (max-width: 760px) { .looks { grid-template-columns: minmax(0, 1fr); } }
+
+  .reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .review { padding: 1.3rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+  .review span { color: var(--clay); letter-spacing: 2px; }
+  .review p { margin-top: 0.5rem; }
+  .review cite { display: block; margin-top: 0.6rem; font-style: normal; font-size: 14px; color: var(--muted); }
+  .sample { margin-top: 1rem; font-size: 14px; color: var(--muted); }
+  @media (max-width: 760px) { .reviews { grid-template-columns: minmax(0, 1fr); } }
+
+  .policies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .policy { padding: 1.2rem; border-radius: 14px; background: var(--mint); }
+  .policy b { display: block; margin-bottom: 0.3rem; font-weight: 600; }
+  .policy p { font-size: 15px; color: var(--muted); }
+  @media (max-width: 760px) { .policies { grid-template-columns: minmax(0, 1fr); } }
+
+  .foot { background: var(--green-dark); color: #B8CCBF; font-size: 15px; }
+  .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.8rem; }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="wrap">
+    <span class="demo-bar-info"><span class="demo-tag">Demo</span>Booking Site package · $200</span>
+    <span class="demo-bar-links"><a href="../index.html#pkg-booking">← All packages</a><a class="demo-cta" href="../index.html#pick-7">Choose this package</a></span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <span class="logo">STUDIO <span>NINE</span></span>
+    <nav class="site-nav" aria-label="Site"><a href="#services">Services</a><a href="#new">First visit</a><a href="#looks">Looks</a><a href="#policies">Policies</a></nav>
+    <a class="btn btn--green" href="#book">Book now</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Hair salon · Cuts and color</p>
+        <h1>Good hair days, <span>booked in a minute.</span></h1>
+        <p>Studio Nine is a made-up salon for this demo. Pick a service, choose a time that works, and you're done.</p>
+        <div class="hero-actions"><a class="btn btn--green" href="#book">Book an appointment</a><a class="btn btn--light" href="#services">See prices</a></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><i aria-hidden="true"></i>Open Tuesday to Saturday</div>
+        <div class="fact"><i aria-hidden="true"></i>Free 15-minute consult for new clients</div>
+        <div class="fact"><i aria-hidden="true"></i>Reminder email the day before</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Services</p><h2 id="services-title">Prices and times</h2><p>Every service includes a wash and style.</p></div>
+      <div class="services" id="services-list"></div>
+    </div>
+  </section>
+
+  <section class="sec book-sec" id="book" aria-labelledby="book-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Book online</p><h2 id="book-title">Pick a time that works</h2><p>Crossed-out times are already booked.</p></div>
+      <div class="booker">
+        <div class="steps">
+          <div>
+            <p class="step-title"><span>1</span>Service</p>
+            <select id="b-service" aria-label="Service"></select>
+          </div>
+          <div>
+            <p class="step-title"><span>2</span>Day</p>
+            <div class="days" id="b-days" role="group" aria-label="Choose a day"></div>
+          </div>
+          <div>
+            <p class="step-title"><span>3</span>Time</p>
+            <div class="slots" id="b-slots" role="group" aria-label="Choose a time"></div>
+            <p class="hint" id="b-hint">Choose a day to see open times.</p>
+          </div>
+          <div>
+            <p class="step-title"><span>4</span>Your details</p>
+            <div class="details">
+              <label for="b-name">Name<input id="b-name" autocomplete="name"></label>
+              <label for="b-phone">Phone<input id="b-phone" type="tel" autocomplete="tel"></label>
+              <label class="check" for="b-new"><input id="b-new" type="checkbox">This is my first visit</label>
+            </div>
+          </div>
+        </div>
+        <aside class="summary" aria-labelledby="sum-title">
+          <h3 id="sum-title">Your appointment</h3>
+          <dl>
+            <div><dt>Service</dt><dd id="s-service">–</dd></div>
+            <div><dt>Day</dt><dd id="s-day">–</dd></div>
+            <div><dt>Time</dt><dd id="s-time">–</dd></div>
+            <div><dt>Price</dt><dd id="s-price">–</dd></div>
+          </dl>
+          <button class="btn" type="button" id="b-confirm" disabled>Request this time</button>
+          <p id="b-status">Pick a service, day and time.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="new" aria-labelledby="new-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">First visit</p><h2 id="new-title">New here? Here's what to expect</h2></div>
+      <div class="newbie">
+        <ol class="expect">
+          <li><span>1</span><div><b>A quick chat first</b><p>15 minutes to talk through what you want, with photos if you have them.</p></div></li>
+          <li><span>2</span><div><b>Wash, cut or color</b><p>We explain each step and check in before anything big.</p></div></li>
+          <li><span>3</span><div><b>Style and aftercare</b><p>You leave with tips for keeping it looking good at home.</p></div></li>
+          <li><span>4</span><div><b>How to prepare</b><p>Come with dry hair, and bring any photos of looks you love.</p></div></li>
+        </ol>
+        <form class="intake" id="intake" novalidate>
+          <h3>New client form</h3>
+          <label for="i-name">Name<input id="i-name" name="name" data-label="Name" required></label>
+          <label for="i-hair">Hair type<select id="i-hair" name="hair" data-label="Hair type"><option>Straight</option><option>Wavy</option><option>Curly</option><option>Coily</option></select></label>
+          <label for="i-color">Colored in the last 6 months?<select id="i-color" name="colored" data-label="Recent color"><option>No</option><option>Yes</option></select></label>
+          <label for="i-notes">Allergies or anything we should know<textarea id="i-notes" name="notes" data-label="Notes"></textarea></label>
+          <button class="btn btn--green" type="submit">Send form</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="looks" aria-labelledby="looks-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Before and after</p><h2 id="looks-title">Recent looks</h2></div>
+      <div class="looks">
+        <figure class="look"><div class="look-pair" role="img" aria-label="Balayage, before and after"><span data-l="Before" style="background:linear-gradient(180deg,#5A4436,#4A382D)"></span><span data-l="After" style="background:linear-gradient(180deg,#5A4436 10%,#B5865A 60%,#E3C08E)"></span></div><b>Soft balayage</b></figure>
+        <figure class="look"><div class="look-pair" role="img" aria-label="Copper gloss, before and after"><span data-l="Before" style="background:linear-gradient(180deg,#8A6A52,#6E5442)"></span><span data-l="After" style="background:linear-gradient(180deg,#B3542E,#D9783F 60%,#E79A5E)"></span></div><b>Copper gloss</b></figure>
+        <figure class="look"><div class="look-pair" role="img" aria-label="Root touch-up, before and after"><span data-l="Before" style="background:linear-gradient(180deg,#3B302A 0 25%,#C9A77A 25%)"></span><span data-l="After" style="background:linear-gradient(180deg,#D9B98A,#C9A77A)"></span></div><b>Root touch-up</b></figure>
+      </div>
+      <div class="reviews">
+        <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Booked at midnight from my phone, got a reminder the next day. Best balayage I've had."</p><cite>Sample client</cite></figure>
+        <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"They actually listened. Asked a lot of questions before cutting anything."</p><cite>Sample client</cite></figure>
+        <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Easy to book, on time, and my curls have never looked better."</p><cite>Sample client</cite></figure>
+      </div>
+      <p class="sample">Sample looks and reviews for the demo. A real site shows your own work and clients' reviews.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="policies" aria-labelledby="policies-title">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Policies</p><h2 id="policies-title">The small print, kept short</h2></div>
+      <div class="policies">
+        <div class="policy"><b>Cancellations</b><p>Free up to 24 hours before. Later than that, there's a $20 fee.</p></div>
+        <div class="policy"><b>Running late</b><p>Text us. After 15 minutes we may need to move your time.</p></div>
+        <div class="policy"><b>Color patch test</b><p>New color clients need a quick patch test 48 hours before.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>Studio Nine · 9 Linden Row</span><span>(555) 014-9090</span></div>
+</footer>
+
+<script src="demo.js"></script>
+<script>
+  (function () {
+    var SERVICES = [
+      { group: "Cuts", name: "Cut and style", mins: 60, price: 65 },
+      { group: "Cuts", name: "Short cut", mins: 30, price: 38 },
+      { group: "Cuts", name: "Kids' cut", mins: 30, price: 28 },
+      { group: "Color", name: "Root touch-up", mins: 90, price: 95 },
+      { group: "Color", name: "Balayage", mins: 180, price: 210 },
+      { group: "Color", name: "Gloss", mins: 45, price: 45 },
+      { group: "Treatments", name: "Deep conditioning", mins: 30, price: 30 },
+      { group: "Treatments", name: "Blowout", mins: 45, price: 40 },
+      { group: "Treatments", name: "Curl treatment", mins: 60, price: 55 }
+    ];
+    var OPEN = 9, CLOSE = 18;
+    var CLOSED_DAYS = [0, 1];
+
+    function duration(m) { return m >= 60 ? (Math.floor(m / 60) + " hr" + (m % 60 ? " " + (m % 60) + " min" : "")) : m + " min"; }
+    function timeLabel(mins) { var h = Math.floor(mins / 60), m = mins % 60; return (h % 12 || 12) + ":" + String(m).padStart(2, "0") + (h < 12 ? " am" : " pm"); }
+
+    // Services list with Book buttons that pick the service in the booking panel
+    var list = document.getElementById("services-list");
+    var select = document.getElementById("b-service");
+    var groups = {};
+    SERVICES.forEach(function (s, i) {
+      if (!groups[s.group]) {
+        var g = Demo.el("div", "svc-group");
+        g.append(Demo.el("h3", null, s.group));
+        groups[s.group] = g;
+        list.append(g);
+      }
+      var row = Demo.el("div", "svc");
+      var btn = Demo.el("button", null, "Book");
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Book " + s.name);
+      btn.addEventListener("click", function () { select.value = String(i); state.slot = null; render(); document.getElementById("book").scrollIntoView(); });
+      row.append(Demo.el("b", null, s.name), Demo.el("span", "svc-price", "$" + s.price), Demo.el("small", null, duration(s.mins)), btn);
+      groups[s.group].append(row);
+      var opt = Demo.el("option", null, s.name + " · " + duration(s.mins) + " · $" + s.price);
+      opt.value = String(i);
+      select.append(opt);
+    });
+
+    var state = { day: null, slot: null };
+    var days = [];
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+    for (var d = 0; d < 14; d++) {
+      var date = new Date(start);
+      date.setDate(start.getDate() + d);
+      days.push(date);
+    }
+
+    // Some times look booked so the calendar feels real; the same ones every visit on a given day
+    function taken(date, mins) {
+      var n = date.getDate() * 37 + date.getMonth() * 11 + mins / 30 * 7;
+      return n % 5 === 0 || n % 7 === 0;
+    }
+
+    var daysEl = document.getElementById("b-days");
+    var slotsEl = document.getElementById("b-slots");
+
+    function render() {
+      var svc = SERVICES[Number(select.value)];
+      daysEl.replaceChildren.apply(daysEl, days.map(function (date, i) {
+        var b = Demo.el("button", "day");
+        b.type = "button";
+        var closed = CLOSED_DAYS.indexOf(date.getDay()) !== -1;
+        b.disabled = closed;
+        b.setAttribute("aria-pressed", String(state.day === i));
+        b.setAttribute("aria-label", date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }) + (closed ? ", closed" : ""));
+        b.append(Demo.el("span", null, date.toLocaleDateString("en-US", { weekday: "short" })), Demo.el("b", null, String(date.getDate())), Demo.el("span", null, closed ? "Closed" : date.toLocaleDateString("en-US", { month: "short" })));
+        b.addEventListener("click", function () { state.day = i; state.slot = null; render(); });
+        return b;
+      }));
+
+      var hint = document.getElementById("b-hint");
+      if (state.day === null) {
+        slotsEl.replaceChildren();
+        hint.hidden = false;
+      } else {
+        hint.hidden = true;
+        var date = days[state.day];
+        var now = new Date();
+        var slots = [];
+        for (var m = OPEN * 60; m + svc.mins <= CLOSE * 60; m += 30) slots.push(m);
+        slotsEl.replaceChildren.apply(slotsEl, slots.map(function (mins) {
+          var b = Demo.el("button", "slot", timeLabel(mins));
+          b.type = "button";
+          var past = state.day === 0 && mins <= now.getHours() * 60 + now.getMinutes() + 60;
+          b.disabled = past || taken(date, mins);
+          b.setAttribute("aria-pressed", String(state.slot === mins));
+          b.addEventListener("click", function () { state.slot = mins; render(); });
+          return b;
+        }));
+        if (!slotsEl.querySelector(".slot:not(:disabled)")) {
+          hint.textContent = "No open times left this day. Try another day.";
+          hint.hidden = false;
+        }
+      }
+
+      document.getElementById("s-service").textContent = svc.name;
+      document.getElementById("s-price").textContent = "$" + svc.price + " · " + duration(svc.mins);
+      document.getElementById("s-day").textContent = state.day === null ? "–" : days[state.day].toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      document.getElementById("s-time").textContent = state.slot === null ? "–" : timeLabel(state.slot);
+      var ready = state.day !== null && state.slot !== null;
+      document.getElementById("b-confirm").disabled = !ready;
+      document.getElementById("b-status").textContent = ready ? "Add your name and phone, then request the time." : "Pick a service, day and time.";
+    }
+    select.addEventListener("change", function () { state.slot = null; render(); });
+
+    document.getElementById("b-confirm").addEventListener("click", function () {
+      var name = document.getElementById("b-name");
+      var phone = document.getElementById("b-phone");
+      if (!name.value.trim() || !phone.value.trim()) {
+        document.getElementById("b-status").textContent = "Add your name and phone so the salon can confirm.";
+        (name.value.trim() ? phone : name).focus();
+        return;
+      }
+      var svc = SERVICES[Number(select.value)];
+      var ul = Demo.el("ul", "dd-list");
+      [["Service", svc.name + " ($" + svc.price + ")"],
+       ["When", days[state.day].toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }) + " at " + timeLabel(state.slot)],
+       ["Name", name.value.trim()], ["Phone", phone.value.trim()],
+       ["First visit", document.getElementById("b-new").checked ? "Yes" : "No"]].forEach(function (pair) {
+        var li = Demo.el("li");
+        li.append(Demo.el("b", null, pair[0] + ": "), document.createTextNode(pair[1]));
+        ul.append(li);
+      });
+      Demo.open({
+        title: "You're booked!",
+        content: [ul],
+        note: "On a real site, this calendar connects to a free booking tool, which blocks the time, emails a confirmation and sends a reminder the day before."
+      });
+    });
+
+    Demo.form(document.getElementById("intake"), { title: "Form sent!" });
+    render();
+  })();
+</script>
+</body>
+</html>

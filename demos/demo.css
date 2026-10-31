@@ -1,0 +1,91 @@
+/* Shared by every demo site: reset, side gutters, the demo bar, and the preview dialog and toast from demo.js.
+   Each demo sets its own brand on top of this. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img, svg, canvas { max-width: 100%; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.wrap {
+  max-width: var(--wrap, 72rem);
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* Demo bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 61; height: env(safe-area-inset-top, 0px); background: #0D1117; }
+.demo-bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 60;
+  background: #0D1117;
+  color: #F3F4F7;
+  font: 500 13px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 1rem; max-width: none; padding-block: 0.5rem; }
+.demo-bar-info { display: inline-flex; align-items: center; gap: 0.6rem; min-width: 0; }
+.demo-tag { padding: 2px 8px; border-radius: 999px; background: #2E46D9; color: #FFFFFF; font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.demo-bar-links { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
+.demo-bar a { color: #C9CEDA; text-decoration: none; }
+.demo-bar a:hover { color: #FFFFFF; }
+.demo-bar a.demo-cta { padding: 4px 11px; border-radius: 999px; background: #F3F4F7; color: #0D1117; font-weight: 600; }
+.demo-bar a.demo-cta:hover { background: #FFFFFF; color: #0D1117; }
+.demo-bar a:focus-visible { outline: 2px solid #8D9BFF; outline-offset: 2px; }
+
+/* Preview dialog */
+.demo-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #FFFFFF;
+  color: #0D1117;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.5);
+  font: 400 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.demo-dialog::backdrop { background: rgba(13, 17, 23, 0.55); }
+.dd-inner { display: grid; gap: 0.9rem; padding: 1.5rem; }
+.dd-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #2E46D9; }
+.dd-title { font-size: 1.3rem; font-weight: 650; line-height: 1.2; letter-spacing: -0.02em; }
+.dd-meta { font-size: 13px; color: #565D6B; }
+.dd-bubble { padding: 0.85rem 1rem; border-radius: 16px 16px 16px 4px; background: #ECEFFD; white-space: pre-wrap; overflow-wrap: anywhere; }
+.dd-bubble.is-email { border-radius: 10px; background: #F5F6F8; border: 1px solid #E3E6EB; }
+.dd-list { display: grid; gap: 0.3rem; margin: 0; padding: 0.85rem 1rem; list-style: none; border-radius: 10px; background: #F5F6F8; }
+.dd-list b { font-weight: 600; }
+.dd-note { font-size: 13px; color: #565D6B; }
+.demo-dialog.is-wide { width: min(680px, calc(100vw - 32px)); }
+.dd-article { display: grid; gap: 0.8rem; font-size: 16px; line-height: 1.65; }
+.dd-article .dd-meta { margin-top: -0.4rem; }
+.dd-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.dd-actions button { flex: 1; min-width: 8rem; padding: 0.7rem 1rem; border: 1px solid #CDD2DA; border-radius: 10px; background: #FFFFFF; color: #0D1117; font: inherit; font-weight: 600; cursor: pointer; }
+.dd-actions button.dd-primary { border-color: #0D1117; background: #0D1117; color: #FFFFFF; }
+.dd-actions button:focus-visible { outline: 2px solid #2E46D9; outline-offset: 2px; }
+.dd-status { min-height: 1.2em; font-size: 13px; color: #565D6B; text-align: center; }
+
+/* Toast */
+.demo-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  z-index: 70;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 0.7rem 1.1rem;
+  border-radius: 12px;
+  background: #0D1117;
+  color: #F3F4F7;
+  font: 500 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .demo-toast { animation: toast-in 0.2s ease; }
+  @keyframes toast-in { from { transform: translate(-50%, 8px); } to { transform: translate(-50%, 0); } }
+}
