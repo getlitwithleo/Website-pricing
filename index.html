@@ -1187,7 +1187,7 @@
       if (p.type) body.append(make("span", "work-type", p.type));
       body.append(make("h3", null, p.name));
       if (p.about) body.append(make("p", null, p.about));
-      body.append(make("span", "work-visit", "Visit site →"));
+      body.append(make("span", "work-visit", /github\.com/i.test(p.link) ? "View on GitHub →" : "Visit site →"));
       card.append(thumb, body);
       list.append(card);
     });
