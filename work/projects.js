@@ -30,7 +30,7 @@ window.PROJECTS = [
   {
     name: "Summit Window Cleaning",
     type: "Small Business",
-    link: "work/summit-window-cleaning/",
+    link: "https://github.com/getlitwithleo/summit-window-cleaning",
     about: "A window cleaning business run by two Oconomowoc students, with a before-and-after slider, booking calendar, service-area map and quote form.",
     image: "work/summit-window-cleaning/screenshot.jpg"
   },
