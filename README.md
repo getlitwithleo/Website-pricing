@@ -67,7 +67,7 @@ GitHub Pages hosts the whole folder for free when the repository is public: in t
 | Copywriting | $10 per page | |
 | Logo design | $40 | |
 | Business cards (design only, printing not included) | $15 | |
-| Social media kit | $30 | |
+| Social media launch kit (profile picture for every platform, cover banners for 3 platforms, 5 post templates, 3 story highlight covers) | $30 | |
 | Booking calendar | $35 | Booking Site, Masterpiece |
 | Newsletter signup | $15 | Growth |
 | Rush delivery | +$30 | |
