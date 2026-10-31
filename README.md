@@ -1,6 +1,6 @@
 # LM Web Design
 
-A one-page pricing page for website design work: nine packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
+A one-page pricing page for website design work: nine packages from $25 to $450. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $275 Growth package is marked as recommended.
 
 Open `index.html` in a browser to view it.
 
@@ -51,29 +51,29 @@ GitHub Pages hosts the whole folder for free when the repository is public: in t
 
 | Group | Package | Price | Best for | Pages | Max turnaround | Revisions | Free fixes |
 |---|---|---|---|---|---|---|---|
-| Quick jobs | Tune-Up | $20 | Fixes to a site you have the files for | Current site | 2 days | 1 | None |
-| Quick jobs | Landing Page | $75 | Launching a product or event | 1 | 5 days | 1 | 7 days |
-| Business websites | Portfolio | $125 | Photographers, artists, makers | Up to 4 | 7 days | 2 | 7 days |
-| Business websites | Small Business | $150 | Local shops and services | Up to 5 | 10 days | 2 | 7 days |
-| Business websites | Restaurant & Café | $175 | Restaurants, cafés, food trucks | Up to 5 | 10 days | 2 | 14 days |
-| Business websites | Booking Site | $200 | Salons, trainers, coaches | Up to 6 | 12 days | 3 | 14 days |
-| Premium builds | Growth (recommended) | $250 | Steady leads and a blog | Up to 8 | 14 days | 3 | 14 days |
-| Premium builds | Product Catalog | $325 | Shops that sell by message or in person | Up to 25 products | 18 days | 3 | 21 days |
-| Premium builds | Masterpiece | $400 | Fully custom, one of a kind | Up to 12 | 21 days | 5 | 30 days |
+| Quick jobs | Tune-Up | $25 | Fixes to a site you have the files for | Current site | 2 days | 1 | None |
+| Quick jobs | Landing Page | $85 | Launching a product or event | 1 | 5 days | 1 | 7 days |
+| Business websites | Portfolio | $140 | Photographers, artists, makers | Up to 4 | 7 days | 2 | 7 days |
+| Business websites | Small Business | $175 | Local shops and services | Up to 5 | 10 days | 2 | 7 days |
+| Business websites | Restaurant & Café | $195 | Restaurants, cafés, food trucks | Up to 5 | 10 days | 2 | 14 days |
+| Business websites | Booking Site | $225 | Salons, trainers, coaches | Up to 6 | 12 days | 3 | 14 days |
+| Premium builds | Growth (recommended) | $275 | Steady leads and a blog | Up to 8 | 14 days | 3 | 14 days |
+| Premium builds | Product Catalog | $350 | Shops that sell by message or in person | Up to 25 products | 18 days | 3 | 21 days |
+| Premium builds | Masterpiece | $450 | Fully custom, one of a kind | Up to 12 | 21 days | 5 | 30 days |
 
 ## Add-ons
 
 | Add-on | Price | Included with |
 |---|---|---|
-| Extra page | $15 each | |
-| Extra revision round | $15 each | |
-| Copywriting | $10 per page | |
-| Logo design | $40 | |
-| Business cards (design only, printing not included) | $15 | |
-| Social media launch kit (profile picture for every platform, cover banners for 3 platforms, 5 post templates, 3 story highlight covers) | $30 | |
-| Booking calendar | $35 | Booking Site, Masterpiece |
-| Newsletter signup | $15 | Growth |
-| Rush delivery | +$30 | |
+| Extra page | $20 each | |
+| Extra revision round | $20 each | |
+| Copywriting | $12 per page | |
+| Logo design | $50 | |
+| Business cards (design only, printing not included) | $20 | |
+| Social media launch kit (profile picture for every platform, cover banners for 3 platforms, 5 post templates, 3 story highlight covers) | $35 | |
+| Booking calendar | $40 | Booking Site, Masterpiece |
+| Newsletter signup | $20 | Growth |
+| Rush delivery | +$35 | |
 
 ## Scope
 
