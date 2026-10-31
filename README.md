@@ -1,6 +1,6 @@
 # Website Design Pricing
 
-A one-page pricing page for website design work: ten packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
+A one-page pricing page for website design work: nine packages from $20 to $400. Each package is a different kind of website, with its own color, a preview of what that site looks like, and features built for that type of business. The $250 Growth package is marked as recommended.
 
 Open `index.html` in a browser to view it.
 
@@ -19,7 +19,6 @@ Open `index.html` in a browser to view it.
 | Package | Demo | What you can try |
 |---|---|---|
 | Tune-Up | `demos/tune-up.html` | Drag a slider between an old hardware store site and its tuned-up version |
-| Link-in-Bio | `demos/link-in-bio.html` | A ceramic artist's link page with a featured link, video and posts |
 | Landing Page | `demos/landing-page.html` | A night market event page with a live countdown and RSVP form |
 | Portfolio | `demos/portfolio.html` | A painter's gallery with series filters and a full-screen view with the story behind each piece |
 | Small Business | `demos/small-business.html` | A bike shop with prices, an open-now sign, hours, map, FAQ and contact form |
@@ -50,7 +49,6 @@ GitHub Pages hosts the whole folder for free when the repository is public: in t
 | Group | Package | Price | Best for | Pages | Max turnaround | Revisions | Free fixes |
 |---|---|---|---|---|---|---|---|
 | Quick jobs | Tune-Up | $20 | Fixes to a site you have the files for | Current site | 2 days | 1 | None |
-| Quick jobs | Link-in-Bio | $40 | Creators and social media | 1 mobile page | 3 days | 1 | 7 days |
 | Quick jobs | Landing Page | $75 | Launching a product or event | 1 | 5 days | 1 | 7 days |
 | Business websites | Portfolio | $125 | Photographers, artists, makers | Up to 4 | 7 days | 2 | 7 days |
 | Business websites | Small Business | $150 | Local shops and services | Up to 5 | 10 days | 2 | 7 days |
@@ -81,7 +79,7 @@ Everything listed is work that can be built with Claude. Forms, booking, newslet
 ## What's on the page
 
 - A hero with a desktop and phone mockup, and a strip of what every website includes
-- Ten package cards in three groups, each with its own color, site preview and features; each "Choose" button preselects that package in the quote builder
+- Nine package cards in three groups, each with its own color, site preview and features; each "Choose" button preselects that package in the quote builder
 - A "Find your fit" table matching common needs to packages
 - Add-ons, a quote builder (total, 50% deposit, balance due at launch), the process, FAQ, and terms
 

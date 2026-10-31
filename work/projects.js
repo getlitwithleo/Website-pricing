@@ -10,7 +10,7 @@
 
    Each entry has:
      name   the business or site name
-     type   the package it was built as: Tune-Up, Link-in-Bio, Landing Page, Portfolio, Small Business,
+     type   the package it was built as: Tune-Up, Landing Page, Portfolio, Small Business,
             Restaurant & Café, Booking Site, Growth, Product Catalog or Masterpiece
      link   "work/folder-name/" for a site in this folder, or a full address like "https://example.com"
      about  one short sentence about the project

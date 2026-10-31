@@ -7,11 +7,6 @@ The `shot-*.jpg` files are screenshots of the demo pages themselves.
 | File | Unsplash source |
 |---|---|
 | `tune-up-tools.jpg` | https://images.unsplash.com/photo-1530124566582-a618bc2615dc |
-| `lib-avatar.jpg` | https://images.unsplash.com/photo-1438761681033-6461ffad8d80 |
-| `lib-wheel.jpg` | https://images.unsplash.com/photo-1493106641515-6b5631de4bb9 |
-| `lib-post-1.jpg` | https://images.unsplash.com/photo-1610701596007-11502861dcfa |
-| `lib-post-2.jpg` | https://images.unsplash.com/photo-1578749556568-bc2c40e68b61 |
-| `lib-post-3.jpg` | https://images.unsplash.com/photo-1490312278390-ab64016e0aa9 |
 | `lp-hero.jpg` | https://images.unsplash.com/photo-1517457373958-b7bdd4587205 |
 | `lp-food.jpg` | https://images.unsplash.com/photo-1555939594-58d7cb561ad1 |
 | `lp-makers.jpg` | https://images.unsplash.com/photo-1533900298318-6b8da08a523e |
