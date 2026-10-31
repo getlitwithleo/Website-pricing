@@ -41,6 +41,8 @@ Each demo has a bar at the top marking it as a demo, linking back to the package
 
 The Recent work section and its menu link appear on the home page as soon as the list has one entry.
 
+A site that has its own GitHub repository can be linked in instead of copied, so there's only one version of it. `work/summit-window-cleaning` works this way: it's a git submodule of [getlitwithleo/summit-window-cleaning](https://github.com/getlitwithleo/summit-window-cleaning). After changing that repository, run `git submodule update --remote work/summit-window-cleaning` here and commit to bring the change in.
+
 ## Putting it online for free
 
 GitHub Pages hosts the whole folder for free when the repository is public: in the repository on GitHub, go to Settings → Pages, choose "Deploy from a branch", pick this branch and the `/ (root)` folder, and save. The address appears on that page after a minute or two.
