@@ -606,20 +606,28 @@
   /* Closing band */
   /* Contact */
   .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .contact-card { display: grid; align-content: start; gap: 0.55rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; color: var(--ink); text-decoration: none; }
-  .contact-card:hover { border-color: var(--accent); }
-  .contact-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .contact-card { display: grid; grid-template-rows: auto auto auto 1fr auto; align-content: start; gap: 0.55rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; color: var(--ink); }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+  .contact-actions .btn { cursor: pointer; }
+  .contact-actions .is-copied { border-color: var(--accent); color: var(--accent); }
+  .contact-value { user-select: all; }
+  .contact-hint { display: none; }
+  /* Computers can't place calls or texts: show the number to copy instead of buttons that open nothing */
+  @media (hover: hover) and (pointer: fine) {
+    .phone-only { display: none; }
+    .contact-hint { display: block; }
+  }
   .contact-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 0.35rem; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
   .contact-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
   .contact-card h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   .contact-value { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
   .contact-card p { font-size: 0.9375rem; color: var(--muted); }
-  .contact-go { margin-top: 0.3rem; font-size: var(--t-sm); font-weight: 600; color: var(--accent); }
   .contact-note { margin-top: 1.25rem; font-size: 0.9375rem; color: var(--muted); }
   @media (max-width: 760px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
   .foot-contact { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; }
-  .foot-contact a { color: inherit; text-decoration: none; }
-  .foot-contact a:hover { color: #F3F4F7; text-decoration: underline; text-underline-offset: 3px; }
+  .foot-contact button { padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+  .foot-contact button:hover { color: #F3F4F7; text-decoration: underline; text-underline-offset: 3px; }
+  .foot-contact button:focus-visible { outline: 2px solid #8DB8FA; outline-offset: 3px; }
 
   .cta { position: relative; overflow: hidden; margin-top: clamp(5rem, 10vw, 8rem); background: #0D1117; color: #F3F4F7; }
   .cta::before {
@@ -1156,28 +1164,41 @@
       <p>Questions, a quote, or not sure which package fits? Call, text or email. I usually reply the same day.</p>
     </div>
     <div class="contact-grid">
-      <a class="contact-card" href="mailto:getlitwithleo@gmail.com?subject=Website%20inquiry">
+      <div class="contact-card">
         <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
         <h3>Email</h3>
-        <span class="contact-value">getlitwithleo@gmail.com</span>
+        <p class="contact-value">getlitwithleo@gmail.com</p>
         <p>Best for sharing details, photos or a link to your current site.</p>
-        <span class="contact-go">Send an email →</span>
-      </a>
-      <a class="contact-card" href="tel:+12628041198">
+        <div class="contact-actions">
+          <a class="btn btn--primary btn--sm" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=getlitwithleo@gmail.com&amp;su=Website%20inquiry" target="_blank" rel="noopener">Email with Gmail</a>
+          <a class="btn btn--secondary btn--sm" href="mailto:getlitwithleo@gmail.com?subject=Website%20inquiry">Use my email app</a>
+          <button class="btn btn--secondary btn--sm" type="button" data-copy="getlitwithleo@gmail.com">Copy address</button>
+        </div>
+      </div>
+      <div class="contact-card">
         <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
         <h3>Call</h3>
-        <span class="contact-value">262-804-1198</span>
+        <p class="contact-value">262-804-1198</p>
         <p>Talk it through and get a recommendation on the spot.</p>
-        <span class="contact-go">Call now →</span>
-      </a>
-      <a class="contact-card" href="sms:+12628041198">
+        <p class="contact-hint">On a computer? Copy the number and call from your phone.</p>
+        <div class="contact-actions">
+          <a class="btn btn--primary btn--sm phone-only" href="tel:+12628041198">Call now</a>
+          <button class="btn btn--secondary btn--sm" type="button" data-copy="262-804-1198">Copy number</button>
+        </div>
+      </div>
+      <div class="contact-card">
         <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
         <h3>Text</h3>
-        <span class="contact-value">262-804-1198</span>
+        <p class="contact-value">262-804-1198</p>
         <p>Quick questions, or send your quote total and package.</p>
-        <span class="contact-go">Send a text →</span>
-      </a>
+        <p class="contact-hint">On a computer? Copy the number and text from your phone.</p>
+        <div class="contact-actions">
+          <a class="btn btn--primary btn--sm phone-only" href="sms:+12628041198">Send a text</a>
+          <button class="btn btn--secondary btn--sm" type="button" data-copy="262-804-1198">Copy number</button>
+        </div>
+      </div>
     </div>
+    <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
     <p class="contact-note">Built a quote above? Mention the package and total when you get in touch, and I'll confirm it.</p>
   </section>
 </main>
@@ -1194,12 +1215,49 @@
   <div class="wrap">
     <div class="foot">
       <img class="foot-logo" src="img/logo-dark.png" alt="LM Web Design" width="468" height="200">
-      <span class="foot-contact"><a href="mailto:getlitwithleo@gmail.com">getlitwithleo@gmail.com</a><a href="tel:+12628041198">262-804-1198</a></span>
+      <span class="foot-contact"><button type="button" data-copy="getlitwithleo@gmail.com" title="Copy email address">getlitwithleo@gmail.com</button><button type="button" data-copy="262-804-1198" title="Copy phone number">262-804-1198</button></span>
       <span>Prices in US dollars · Updated November 2026</span>
     </div>
   </div>
 </footer>
 
+<script>
+  // Contact: copy the email address or phone number. Works in any browser, even ones with no email or phone app.
+  (function () {
+    var status = document.getElementById("copy-status");
+    function done(btn, ok) {
+      var label = btn.dataset.label || (btn.dataset.label = btn.textContent);
+      btn.textContent = ok ? "Copied!" : btn.dataset.copy;
+      btn.classList.toggle("is-copied", ok);
+      if (status) status.textContent = ok ? "Copied " + btn.dataset.copy : "Select and copy " + btn.dataset.copy;
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.textContent = label; btn.classList.remove("is-copied"); }, ok ? 1800 : 6000);
+    }
+    function legacyCopy(text) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      area.remove();
+      return ok;
+    }
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-copy]");
+      if (!btn) return;
+      var text = btn.dataset.copy;
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done(btn, true); }, function () { done(btn, legacyCopy(text)); });
+      } else {
+        done(btn, legacyCopy(text));
+      }
+    });
+  })();
+</script>
 <script src="work/projects.js?v=2026-11-01b"></script>
 <script>
   // Recent work: one card per entry in work/projects.js. The section stays hidden until there's an entry.
