@@ -69,15 +69,15 @@ GitHub Pages hosts the whole folder for free when the repository is public: in t
 
 | Add-on | Price | Included with |
 |---|---|---|
-| Extra page | $30 each | |
-| Extra revision round | $30 each | |
-| Copywriting | $18 per page | |
-| Logo design | $70 | |
-| Business cards (design only, printing not included) | $30 | |
-| Social media launch kit (profile picture for every platform, cover banners for 3 platforms, 5 post templates, 3 story highlight covers) | $50 | |
-| Booking calendar | $55 | Booking Site, Masterpiece |
-| Newsletter signup | $30 | Growth |
-| Rush delivery | +$50 | |
+| Extra page | $15 each | |
+| Extra revision round | $15 each | |
+| Copywriting | $10 per page | |
+| Logo design | $40 | |
+| Business cards (design only, printing not included) | $15 | |
+| Social media launch kit (profile picture for every platform, cover banners for 3 platforms, 5 post templates, 3 story highlight covers) | $30 | |
+| Booking calendar | $35 | Booking Site, Masterpiece |
+| Newsletter signup | $15 | Growth |
+| Rush delivery | +$30 | |
 
 ## Scope
 
