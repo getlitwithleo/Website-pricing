@@ -81,7 +81,7 @@ GitHub Pages hosts the whole folder for free when the repository is public: in t
 
 ## Scope
 
-Everything listed is work that can be built with Claude. Forms, booking, newsletter signup and analytics are built into the site and connected to an outside tool (for example Formspree, Calendly, Mailchimp, Google Analytics), all of which have free plans; the client pays for any paid plan directly. There is no on-site checkout: the Product Catalog takes orders through buttons that open a pre-filled text or email. Buying domains, setting up business email, Google Business Profile, calls and ongoing care plans are not offered.
+Everything listed is built into the site itself. Forms, booking, newsletter signup and analytics are built into the site and connected to an outside tool (for example Formspree, Calendly, Mailchimp, Google Analytics), all of which have free plans; the client pays for any paid plan directly. There is no on-site checkout: the Product Catalog takes orders through buttons that open a pre-filled text or email. Buying domains, setting up business email, Google Business Profile, calls and ongoing care plans are not offered.
 
 ## What's on the page
 
