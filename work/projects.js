@@ -7,6 +7,8 @@
    2. Add an entry to the list below. The easiest way: open work/add.html in a browser,
       fill in the form, copy what it writes, and paste it right after "window.PROJECTS = [".
    3. Save and publish. The first entry in the list shows first.
+      Then change the date after projects.js?v= in index.html, so visitors' browsers load the new list
+      instead of an old saved copy.
 
    Each entry has:
      name   the business or site name
