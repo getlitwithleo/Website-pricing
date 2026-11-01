@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-concept="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tastings | Halcyon Tea House</title>
+<meta name="description" content="Book a Saturday tasting, a matcha ceremony or a private tasting at Halcyon Tea House.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Halcyon Tea House">
+<meta property="og:title" content="Tastings | Halcyon Tea House">
+<meta property="og:description" content="Book a Saturday tasting, a matcha ceremony or a private tasting at Halcyon Tea House.">
+<meta property="og:image" content="../img/mp-hero-night.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try { var c = localStorage.getItem("halcyon-concept"); if (c === "a" || c === "b") document.documentElement.setAttribute("data-concept", c); } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="">
+<div class="demo-bar" data-package="masterpiece"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13"/><path d="M15 6c-5 4-5 14 0 18 5-4 5-14 0-18zM15 6v18"/></svg>Halcyon</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="story.html">Our story</a><a href="collection.html">Collection</a><a href="tastings.html" aria-current="page">Tastings</a><a href="journal.html">Journal</a><a href="visit.html">Visit</a></nav>
+    <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" style="--page-img: url('../img/mp-tasting.jpg')">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Tastings</p>
+    <h1>Six teas, <em>one</em> slow hour</h1>
+    <p>Sit at the long counter while our tea master brews and pours. You'll taste, compare, ask anything, and leave with a tin of your favorite.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="formats-title" style="padding-top:2rem">
+  <div class="wrap">
+    <h2 class="sr-only" id="formats-title">Ways to taste</h2>
+    <div class="formats">
+      <div class="format" data-reveal><p class="meta">Saturdays · 1 hour</p><h3>Saturday tasting</h3><p>Six teas from green to dark, with small bites and a 50 g tin to take home. Up to six guests.</p><b>$38 per guest</b><a class="more-link" href="?format=saturday#book" style="justify-self:start">Book this</a></div>
+      <div class="format" data-reveal><p class="meta">Sundays · 45 minutes</p><h3>Matcha ceremony</h3><p>Learn to sift, whisk and serve matcha the traditional way. You'll make three bowls yourself. Up to four guests.</p><b>$45 per guest</b><a class="more-link" href="?format=ceremony#book" style="justify-self:start">Book this</a></div>
+      <div class="format" data-reveal><p class="meta">Friday evenings · 90 minutes</p><h3>Private tasting</h3><p>The whole room for your group: birthdays, teams, or a slow evening with friends. Up to eight guests.</p><b>$280 flat</b><a class="more-link" href="?format=private#book" style="justify-self:start">Book this</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="book" aria-labelledby="book-title" style="padding-top:0;scroll-margin-top:60px">
+  <div class="wrap tasting" style="align-items:start">
+    <div class="sec-head" style="margin:0" data-reveal>
+      <p class="eyebrow">Book online</p>
+      <h2 id="book-title">Save your <em>seat</em></h2>
+      <p>Pick a tasting, a date and a time. You'll get a confirmation right away and a reminder the day before. Free to cancel up to 48 hours before.</p>
+      <img class="tasting-photo" src="../img/mp-spoons.jpg" alt="Spoons holding six different loose-leaf teas" width="700" height="875" loading="lazy" style="aspect-ratio:4/3">
+    </div>
+    <div class="tasting-card" id="tasting-card" data-reveal>
+      <label for="t-format">Tasting<select id="t-format"><option value="saturday">Saturday tasting · $38 per guest</option><option value="ceremony">Matcha ceremony · $45 per guest</option><option value="private">Private tasting · $280 flat</option></select></label>
+      <label for="t-date">Date<select id="t-date"></select></label>
+      <div class="row">
+        <label for="t-time">Time<select id="t-time"></select></label>
+        <label for="t-guests">Guests<select id="t-guests"><option value="2">2 guests</option></select></label>
+      </div>
+      <label for="t-name">Your name<input id="t-name" autocomplete="name" required></label>
+      <div class="tasting-price"><span id="t-each">$38 per guest</span><b id="t-total">$76</b></div>
+      <button class="btn btn--gold" type="button" id="t-book">Request this tasting</button>
+      <p class="note">Booking a gift? Add the guest's name and we'll send a printed card.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="flight-title" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal><p class="eyebrow">This season's flight</p><h2 id="flight-title">What you'll <em>taste</em></h2><p>The Saturday flight changes with the harvest. This season, from lightest to darkest:</p></div>
+    <ol class="flight" data-reveal>
+      <li><b>Jasmine Silver Needle</b><span>White · Fujian</span></li>
+      <li><b>Ceremonial Matcha</b><span>Green · Uji</span></li>
+      <li><b>Roasted Hojicha</b><span>Green · Kyoto</span></li>
+      <li><b>Phoenix Oolong</b><span>Oolong · Guangdong</span></li>
+      <li><b>First-flush Darjeeling</b><span>Black · Darjeeling</span></li>
+      <li><b>Aged Pu-erh</b><span>Dark · Yunnan</span></li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13"/><path d="M15 6c-5 4-5 14 0 18 5-4 5-14 0-18zM15 6v18"/></svg>Halcyon</a>
+      <p>Single-estate tea, brewed to order in a quiet room on Linden Street. Since 2016.</p>
+    </div>
+    <div><h2>Explore</h2><nav aria-label="Footer"><a href="story.html">Our story</a><a href="collection.html">Collection</a><a href="tastings.html">Tastings</a><a href="journal.html">Journal</a><a href="visit.html">Visit</a></nav></div>
+    <div><h2>Visit</h2><p>41 Linden Street</p><p>Wed–Sun, 10 am – 6 pm</p><p><a href="mailto:hello@halcyon.example.com" data-demo="the visitor's email app">hello@halcyon.example.com</a></p></div>
+    <div>
+      <h2>The letter</h2>
+      <p>One letter a season, with first access to small harvests.</p>
+      <form class="letter" data-letter novalidate style="justify-items:start;margin-top:0.8rem">
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;width:100%"><input name="email" data-label="Email" type="email" placeholder="Your email" aria-label="Your email for the letter" autocomplete="email" required style="flex:1 1 10rem;min-width:0;padding:0.75rem 0.85rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:300 15px/1.3 var(--body)"><button class="btn btn--gold" type="submit" style="padding:0.75rem 1rem">Join</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Halcyon Tea House</span><span><a href="#" data-demo="Halcyon's Instagram">Instagram</a> · <a href="#" data-demo="Halcyon's Pinterest">Pinterest</a></span></div>
+</footer>
+
+<div class="concepts" role="group" aria-label="Design concept">
+  <span>Design concept</span>
+  <button type="button" data-concept="a" aria-pressed="true">A · Night</button>
+  <button type="button" data-concept="b" aria-pressed="false">B · Day</button>
+</div>
+
+<script src="site.js"></script>
+
+</body>
+</html>

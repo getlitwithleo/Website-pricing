@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Owner's guide: adding a product | Kiln &amp; Kettle</title>
+<meta name="description" content="A step-by-step guide for the shop owner to adding, changing and removing products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="product-catalog"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a></nav>
+    <div class="head-actions">
+      <a class="bag" href="order.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span>Order list</span><b data-bag-count>0</b></a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<section class="page-title">
+  <p class="crumbs"><a href="index.html">Shop</a> / Owner's guide</p>
+  <h1>Adding a product, step by step</h1>
+  <p>A guide for the shop owner. Adding a new piece takes about five minutes and doesn't need any code knowledge, just careful copying.</p>
+</section>
+
+<p class="owner-note"><b>Demo note</b><span>This page is the written guide that comes with the Product Catalog package. On a real site it's sent to you as a document, not shown to customers.</span></p>
+
+<div class="guide">
+  <nav class="guide-nav" aria-label="Guide sections">
+    <b>In this guide</b>
+    <a href="#photo">1. Take the photo</a>
+    <a href="#upload">2. Upload it</a>
+    <a href="#edit">3. Open the product list</a>
+    <a href="#copy">4. Copy and change a product</a>
+    <a href="#save">5. Save and check</a>
+    <a href="#sale">Sales, price changes and sold out</a>
+    <a href="#fields">Every field explained</a>
+  </nav>
+
+  <div class="guide-body">
+    <h2 id="photo"><span>01</span>Take the photo</h2>
+    <ul>
+      <li>Shoot in daylight, near a window, on a plain background. The shop looks best when every photo has a similar light.</li>
+      <li>Crop it square. The shop shows every photo as a square, so anything outside the square won't be seen.</li>
+      <li>Make it about 1,200 pixels wide. Bigger photos slow the site down; smaller ones look blurry on big screens.</li>
+      <li>Name the file in lowercase with dashes, starting with <code>pc-</code>. For example: <code>pc-blue-jug.jpg</code>.</li>
+    </ul>
+    <p class="tip">Want two or three photos of one piece? Name them <code>pc-blue-jug.jpg</code>, <code>pc-blue-jug-2.jpg</code> and so on. The first one is the main photo.</p>
+
+    <h2 id="upload"><span>02</span>Upload it</h2>
+    <ol>
+      <li>Go to your site's repository on GitHub and open the <code>demos/img</code> folder (on your live site, simply <code>img</code>).</li>
+      <li>Click <b>Add file</b>, then <b>Upload files</b>, and drag your photo in.</li>
+      <li>Click <b>Commit changes</b>. That's GitHub's word for save.</li>
+    </ol>
+
+    <h2 id="edit"><span>03</span>Open the product list</h2>
+    <p>Every product lives in one file called <code>products.js</code>. Open it on GitHub and click the pencil icon to edit it. You'll see a list of products, each one inside curly brackets <code>{ }</code>.</p>
+
+    <h2 id="copy"><span>04</span>Copy and change a product</h2>
+    <p>Find a product that's similar to your new one, copy its whole block from <code>{</code> to <code>},</code> and paste it right below. Then change the details. Here's a new jug, based on the mug:</p>
+<pre><code>{ id: "blue-jug", name: "Blue Pouring Jug", cat: "Tableware", img: ["pc-blue-jug"], price: 42,
+  sizes: [["Small", 36], ["Large", 42]], finishes: ["Sky blue", "Charcoal"], badge: "new", added: 26,
+  desc: "A round-bellied jug for milk, water or flowers. Pours without dripping.",
+  details: ["6 in tall", "Holds 24 oz", "Dishwasher safe"] },</code></pre>
+    <p class="tip"><b>The three things people miss:</b> keep the quote marks around words, keep the comma at the very end of the block, and give <code>added</code> a number higher than every other product so it shows first under "Newest".</p>
+
+    <h2 id="save"><span>05</span>Save and check</h2>
+    <ol>
+      <li>Click <b>Commit changes</b> at the top right.</li>
+      <li>Wait one or two minutes while the site updates.</li>
+      <li>Open the shop, search for your new piece, and click it to check the photo, sizes and price.</li>
+    </ol>
+    <p class="tip">If the shop shows no products at all, there's a typo in <code>products.js</code>, usually a missing comma or quote mark. Open the file's history on GitHub, compare with the last version, and fix the line you changed.</p>
+
+    <h2 id="sale"><span>06</span>Sales, price changes and sold out</h2>
+    <ul>
+      <li><b>Change a price:</b> change the number after <code>price:</code> (and inside <code>sizes</code>, if the piece has sizes).</li>
+      <li><b>Put something on sale:</b> add <code>was: 32,</code> with the old price, set <code>price</code> to the new one, and set <code>badge: "sale"</code>.</li>
+      <li><b>Mark something new:</b> add <code>badge: "new",</code>. Remove it after a month or two.</li>
+      <li><b>Sold out for good:</b> delete the whole block from <code>{</code> to <code>},</code>.</li>
+    </ul>
+
+    <h2 id="fields"><span>07</span>Every field explained</h2>
+    <table>
+      <thead><tr><th>Field</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>id</td><td>A short name for the page address, lowercase with dashes. Must be different for every product.</td></tr>
+        <tr><td>name</td><td>The name shown on the card and the product page.</td></tr>
+        <tr><td>cat</td><td>The category. Use an existing one, or type a new one and it appears as a new filter button.</td></tr>
+        <tr><td>img</td><td>Photo file names without <code>.jpg</code>, in square brackets.</td></tr>
+        <tr><td>price</td><td>The price in dollars, no dollar sign.</td></tr>
+        <tr><td>was</td><td>Optional. The old price, shown crossed out.</td></tr>
+        <tr><td>sizes</td><td>Optional. Pairs of size and price.</td></tr>
+        <tr><td>finishes</td><td>Glaze or color choices, in quote marks.</td></tr>
+        <tr><td>badge</td><td>Optional. <code>"new"</code> or <code>"sale"</code>.</td></tr>
+        <tr><td>added</td><td>A number for the "Newest" sort. Higher is newer.</td></tr>
+        <tr><td>desc</td><td>One or two sentences about the piece.</td></tr>
+        <tr><td>details</td><td>Short facts, shown as a list: size, care, materials.</td></tr>
+      </tbody>
+    </table>
+    <p>Stuck? Email your web designer with a screenshot of what you changed. It's usually a one-character fix.</p>
+  </div>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+      <p>Small-batch pottery, thrown, glazed and fired in our studio. Order by text or email, pick up on Saturdays or have it shipped.</p>
+    </div>
+    <div><h2>Shop</h2><nav aria-label="Shop categories"><a href="index.html?cat=Mugs%20and%20cups">Mugs and cups</a><a href="index.html?cat=Tableware">Tableware</a><a href="index.html?cat=Vases">Vases</a><a href="index.html?cat=Planters">Planters</a><a href="index.html?cat=Classes">Classes</a></nav></div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a><a href="order.html">Order list</a></nav></div>
+    <div><h2>Studio</h2><p>14 Mill Yard, Unit 3</p><p>Open Saturdays, 10 am – 2 pm</p><p><a href="mailto:orders@kilnandkettle.example.com" data-demo="the visitor's email app">orders@kilnandkettle.example.com</a></p><p><a href="#" data-demo="Kiln &amp; Kettle's Instagram">Instagram</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Kiln &amp; Kettle Pottery</span><a href="guide.html">Shop owner? How to add a product →</a></div>
+</footer>
+
+<script src="products.js"></script>
+<script src="site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gallery and reviews | Studio Nine</title>
+<meta name="description" content="Before-and-after photos, recent looks and reviews from Studio Nine clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Work+Sans:wght@400..600&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="booking"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">STUDIO <span>NINE</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="services.html">Services</a><a href="book.html">Book online</a><a href="new-clients.html">New clients</a><a href="gallery.html" aria-current="page">Gallery</a><a href="policies.html">Policies &amp; FAQ</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--green" href="book.html">Book now</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Gallery and reviews</p>
+    <h1>Our <span>work</span></h1>
+    <p>Drag the sliders to compare before and after, browse recent looks, and read what clients say.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="ba-title" style="padding-top:2rem">
+  <div class="wrap">
+    <h2 class="sr-only" id="ba-title">Before and after</h2>
+    <div class="ba-grid">
+      <figure class="ba">
+        <div class="ba-frame"><img src="../img/bk-look-waves.jpg" alt="After: long hair with glossy, warm soft waves" width="700" height="875" loading="lazy"><img class="before" src="../img/bk-look-waves.jpg" alt="" width="700" height="875" loading="lazy"><span class="tag tag-before">Before</span><span class="tag tag-after">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after: gloss and soft waves"></div>
+        <b>Gloss and soft waves</b><p>Gloss · Blowout · with Nina</p>
+      </figure>
+      <figure class="ba">
+        <div class="ba-frame"><img src="../img/bk-look-curls.jpg" alt="After: defined, hydrated natural curls" width="700" height="875" loading="lazy"><img class="before" src="../img/bk-look-curls.jpg" alt="" width="700" height="875" loading="lazy"><span class="tag tag-before">Before</span><span class="tag tag-after">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after: curl cut and treatment"></div>
+        <b>Curl cut and treatment</b><p>Curl cut · Curl treatment · with Kai</p>
+      </figure>
+      <figure class="ba">
+        <div class="ba-frame"><img src="../img/bk-look-blowout.jpg" alt="After: a smooth, shiny blowout" width="700" height="875" loading="lazy"><img class="before" src="../img/bk-look-blowout.jpg" alt="" width="700" height="875" loading="lazy"><span class="tag tag-before">Before</span><span class="tag tag-after">After</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after: color refresh and blowout"></div>
+        <b>Color refresh and blowout</b><p>All-over color · Blowout · with Leah</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="looks-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Recent looks</p><h2 id="looks-title">Fresh from the chair</h2></div>
+    <div class="filter-row" role="group" aria-label="Filter looks">
+      <button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="cut" aria-pressed="false">Cuts</button><button type="button" data-filter="color" aria-pressed="false">Color</button><button type="button" data-filter="curls" aria-pressed="false">Curls</button>
+    </div>
+    <div class="looks looks--4">
+      <figure class="look" data-kind="color"><img src="../img/bk-look-waves.jpg" alt="Long hair styled in soft waves" width="700" height="875" loading="lazy"><b>Soft waves and gloss</b><span>Color · Nina</span></figure>
+      <figure class="look" data-kind="curls"><img src="../img/bk-look-curls.jpg" alt="Defined natural curls" width="700" height="875" loading="lazy"><b>Curl cut</b><span>Curls · Kai</span></figure>
+      <figure class="look" data-kind="cut"><img src="../img/bk-look-blowout.jpg" alt="A stylist finishing a blowout" width="700" height="875" loading="lazy"><b>Cut and blowout</b><span>Cut · Leah</span></figure>
+      <figure class="look" data-kind="cut"><img src="../img/bk-cut.jpg" alt="A stylist drying a client's short cut" width="900" height="700" loading="lazy"><b>Short textured cut</b><span>Cut · Leah</span></figure>
+      <figure class="look" data-kind="color"><img src="../img/bk-hero.jpg" alt="A stylist blow-drying a client's freshly colored hair" width="1600" height="1200" loading="lazy"><b>Warm brunette refresh</b><span>Color · Nina</span></figure>
+      <figure class="look" data-kind="curls"><img src="../img/bk-wash.jpg" alt="A client getting a curl treatment at the wash station" width="900" height="700" loading="lazy"><b>Curl treatment</b><span>Curls · Kai</span></figure>
+      <figure class="look" data-kind="cut"><img src="../img/bk-chairs.jpg" alt="Three pink styling chairs facing a long mirror" width="1200" height="800" loading="lazy"><b>The cutting floor</b><span>Studio</span></figure>
+      <figure class="look" data-kind="color"><img src="../img/bk-studio-bw.jpg" alt="The color bar with chairs by tall windows" width="1200" height="800" loading="lazy"><b>The color bar</b><span>Studio</span></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <div class="rating"><b>4.9</b><span aria-hidden="true" style="color:var(--clay);letter-spacing:2px">★★★★★</span><span>from 212 reviews</span></div>
+    <h2 id="reviews-title" style="margin-bottom:1.5rem">Clients say</h2>
+    <div class="reviews" style="margin-top:0">
+      <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Booked at midnight from my phone, got a reminder the next day. Best balayage I've had."</p><cite>Jess M. · balayage with Nina</cite></figure>
+      <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"They actually listened. Asked a lot of questions before cutting anything."</p><cite>Alana K. · cut with Leah</cite></figure>
+      <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Easy to book, on time, and my curls have never looked better."</p><cite>Brooke T. · curl cut with Kai</cite></figure>
+      <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Kai taught me how to diffuse properly. Twenty minutes that changed my mornings."</p><cite>Renee D. · curl treatment</cite></figure>
+      <figure class="review"><span aria-label="5 out of 5 stars">★★★★★</span><p>"Leah did my wedding updo and a trial run. It didn't move all night."</p><cite>Sofia P. · event updo</cite></figure>
+      <figure class="review"><span aria-label="4 out of 5 stars">★★★★☆</span><p>"Lovely salon and great color. Parking on Linden Row can be tricky on Saturdays."</p><cite>Megan L. · root touch-up</cite></figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html">STUDIO <span>NINE</span></a>
+      <p>A small, appointment-only salon for cuts, color and curls. Book online any time, day or night.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="services.html">Services</a><a href="book.html">Book online</a><a href="new-clients.html">New clients</a><a href="gallery.html">Gallery</a><a href="policies.html">Policies &amp; FAQ</a></nav></div>
+    <div><h2>Hours</h2><p>Tue, Wed, Fri 9 am – 6 pm</p><p>Thu 9 am – 8 pm</p><p>Sat 9 am – 4 pm</p><p>Sun and Mon closed</p></div>
+    <div><h2>Find us</h2><p>9 Linden Row</p><p><a href="tel:+15550149090" data-demo="the phone app, ready to call (555) 014-9090">(555) 014-9090</a></p><p><a href="mailto:hello@studionine.example.com" data-demo="the customer's email app">hello@studionine.example.com</a></p><p><a href="#" data-demo="Studio Nine's Instagram">Instagram</a> · <a href="#" data-demo="Studio Nine's TikTok">TikTok</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Studio Nine Hair</span><span>Gift cards available at the front desk.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

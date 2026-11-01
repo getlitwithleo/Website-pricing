@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Product | Kiln &amp; Kettle</title>
+<meta name="description" content="Handmade pottery from Kiln &amp; Kettle, with sizes, finishes and order-by-message.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="product-catalog"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html" aria-current="true">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a></nav>
+    <div class="head-actions">
+      <a class="bag" href="order.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span>Order list</span><b data-bag-count>0</b></a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<p class="crumbs" style="padding-top:1rem"><a href="index.html">Shop</a> / <a id="crumb-cat" href="index.html">Category</a> / <span id="crumb-name">Product</span></p>
+
+<section class="pdp" id="pdp" aria-labelledby="p-name">
+  <div class="gallery">
+    <div class="gallery-main" id="main-img"></div>
+    <div class="thumbs" id="thumbs" role="group" aria-label="More photos"></div>
+  </div>
+  <div class="buy">
+    <p class="eyebrow" id="p-cat"></p>
+    <h1 id="p-name">Product</h1>
+    <p class="price" id="p-price"></p>
+    <p id="p-desc"></p>
+    <fieldset class="opt" id="p-sizes"><legend id="p-size-name">Size</legend><div class="pills"></div></fieldset>
+    <fieldset class="opt" id="p-finishes"><legend><span id="p-finish-name" style="font-weight:650;color:inherit">Finish</span><span id="p-finish-chosen"></span></legend><div class="pills"></div></fieldset>
+    <div class="buy-row">
+      <div class="qty" role="group" aria-label="Quantity"><button type="button" id="p-minus" aria-label="One fewer">−</button><output id="p-qty" aria-live="polite">1</output><button type="button" id="p-plus" aria-label="One more">+</button></div>
+      <button class="btn btn--ink" type="button" id="p-add">Add to order list</button>
+    </div>
+    <p class="added" id="p-added" role="status" hidden><span></span> <a href="order.html">View order list →</a></p>
+    <div class="order-now"><button class="btn btn--light" type="button" id="p-text">Order now by text</button><button class="btn btn--light" type="button" id="p-email">Order now by email</button></div>
+    <p class="order-note">No payment online. Your order arrives as a message, and we reply to arrange pickup or shipping.</p>
+    <ul class="facts" id="p-facts" aria-label="Details"></ul>
+  </div>
+</section>
+
+<section class="related" aria-labelledby="related-title">
+  <h2 id="related-title">You might also like</h2>
+  <div class="grid" id="related-grid"></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+      <p>Small-batch pottery, thrown, glazed and fired in our studio. Order by text or email, pick up on Saturdays or have it shipped.</p>
+    </div>
+    <div><h2>Shop</h2><nav aria-label="Shop categories"><a href="index.html?cat=Mugs%20and%20cups">Mugs and cups</a><a href="index.html?cat=Tableware">Tableware</a><a href="index.html?cat=Vases">Vases</a><a href="index.html?cat=Planters">Planters</a><a href="index.html?cat=Classes">Classes</a></nav></div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a><a href="order.html">Order list</a></nav></div>
+    <div><h2>Studio</h2><p>14 Mill Yard, Unit 3</p><p>Open Saturdays, 10 am – 2 pm</p><p><a href="mailto:orders@kilnandkettle.example.com" data-demo="the visitor's email app">orders@kilnandkettle.example.com</a></p><p><a href="#" data-demo="Kiln &amp; Kettle's Instagram">Instagram</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Kiln &amp; Kettle Pottery</span><a href="guide.html">Shop owner? How to add a product →</a></div>
+</footer>
+
+<script src="products.js"></script>
+<script src="site.js"></script>
+
+</body>
+</html>

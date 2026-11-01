@@ -9,7 +9,7 @@ Open `index.html` in a browser to view it.
 | Path | What it is |
 |---|---|
 | `index.html` | The home page: packages, live demo links, Recent work, quote builder, process, FAQ |
-| `demos/` | One live demo site per package, each for a made-up business (see below) |
+| `demos/` | One full demo website per package, each for a made-up business, in its own folder (see below) |
 | `work/projects.js` | Your own finished websites, shown in the Recent work section |
 | `work/add.html` | An owner tool that writes a `projects.js` entry for you (not linked from the site) |
 | `masterpiece.html` | A page to send a customer listing everything in the Masterpiece package |
@@ -17,21 +17,25 @@ Open `index.html` in a browser to view it.
 
 ## Demos
 
-| Package | Demo | What you can try |
-|---|---|---|
-| Tune-Up | `demos/tune-up.html` | Drag a slider between an old hardware store site and its tuned-up version |
-| Landing Page | `demos/landing-page.html` | A night market event page with a live countdown and RSVP form |
-| Portfolio | `demos/portfolio.html` | A painter's gallery with series filters and a full-screen view with the story behind each piece |
-| Small Business | `demos/small-business.html` | A bike shop with prices, an open-now sign, hours, map, FAQ and contact form |
-| Restaurant & Café | `demos/restaurant.html` | A café with a daily special, tabbed menu with dietary tags, ordering and reservations |
-| Booking Site | `demos/booking.html` | A salon with a working booking calendar, new-client form and before-and-after looks |
-| Growth | `demos/growth.html` | A bookkeeping firm with case studies, a readable blog, newsletter signup and quote form |
-| Product Catalog | `demos/product-catalog.html` | A pottery shop with search, filters, glaze options and order-by-message |
-| Masterpiece | `demos/masterpiece.html` | A tea house with animated steam, custom icons and a switch between two full design concepts |
+Each demo is a complete website for a made-up business, built out to everything its package includes: the full page count and every listed feature. Each lives in its own folder in `demos/`.
 
-Each demo uses real photos from Unsplash, stored in `demos/img/` (sources are listed in `demos/img/CREDITS.md`). The package cards and hero on the home page show screenshots of the demos.
+| Package | Demo | Pages | What you can try |
+|---|---|---|---|
+| Tune-Up | `demos/tune-up/` | 1 (an existing site, fixed) | Drag a slider between an old hardware store site and its tuned-up version |
+| Landing Page | `demos/landing-page/` | 1 page, 6 sections | A night market event page with a live countdown, park map, RSVP form, FAQ, social sharing and search tags |
+| Portfolio | `demos/portfolio/` | 4: Work, Tidewater, Small Hours, About & commissions | A painter's gallery with a full-screen viewer, a page with the story behind each series, and a commission inquiry form |
+| Small Business | `demos/small-business/` | 5: Home, Services & prices, About & reviews, FAQ, Visit & contact | A bike shop with 22 prices, an open-now sign, reviews, searchable FAQ, map, tap-to-call and contact form |
+| Restaurant & Café | `demos/restaurant/` | 5: Home, Menu, Order & reserve, Events & catering, Visit | A café with a daily special banner, 36-item menu with dietary filters, delivery links, table booking, photo gallery and catering form |
+| Booking Site | `demos/booking/` | 6: Home, Services, Book online, New clients, Gallery, Policies & FAQ | A salon with a booking calendar by stylist, confirmation and reminder previews, intake form and before-and-after sliders |
+| Growth | `demos/growth/` | 8: Home, Services & pricing, Case studies, Blog, 3 blog posts, Contact | A bookkeeping firm with plan comparison, full case studies, a searchable blog, newsletter, free checklist and quote form |
+| Product Catalog | `demos/product-catalog/` | 25 products: Shop, product pages, Order list, Studio, Shipping & care, Owner's guide | A pottery shop with search, filters, sizes and finishes, an order list sent as one text or email, and the guide to adding products |
+| Masterpiece | `demos/masterpiece/` | 12: Home, Our story, Collection, 4 tea pages, Tastings, Journal, 2 journal posts, Visit | A tea house with two full design concepts (switch anywhere, remembered across pages), custom graphics and animation, tasting bookings and search tags |
 
-Each demo has a bar at the top marking it as a demo, linking back to the packages and to the quote builder with that package already chosen. Nothing on a demo is really sent: forms, booking and message buttons show a preview of what would happen on a real site. `demos/demo.css` and `demos/demo.js` hold the parts every demo shares.
+Each demo uses real photos from Unsplash, stored in `demos/img/` (sources are listed in `demos/img/CREDITS.md`). A few product photos in the pottery shop are cropped from the shop's wider photos. The package cards and hero on the home page show screenshots of the demos.
+
+Every demo page has a bar at the top marking it as a demo, linking back to the packages and to the quote builder with that package already chosen. The bar is filled in by `demos/demo.js` from one list of packages and prices (`PACKAGES` at the top of that file). Nothing on a demo is really sent: forms, booking and message buttons show a preview of what would happen on a real site. `demos/demo.css` and `demos/demo.js` hold the parts every demo shares; each demo folder has its own `site.css` and `site.js`.
+
+The old single-page addresses (like `demos/booking.html`) redirect to the new folders, so older links still work.
 
 ## Adding your own websites
 
@@ -88,4 +92,4 @@ Everything listed is work that can be built with Claude. Forms, booking, newslet
 
 ## Editing prices
 
-Prices appear in the hero, the package cards, the "Find your fit" table, the add-ons list and the quote builder. If you change one, update each spot, plus the `PACKAGES` and `EXTRAS` lists in the `<script>` at the bottom of `index.html` (they also control which add-ons each package includes).
+Prices appear in the hero, the package cards, the "Find your fit" table, the add-ons list and the quote builder. If you change one, update each spot, plus the `PACKAGES` and `EXTRAS` lists in the `<script>` at the bottom of `index.html` (they also control which add-ons each package includes), the `PACKAGES` list at the top of `demos/demo.js` (the demo bars), and the prices in `masterpiece.html`.

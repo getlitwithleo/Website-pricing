@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Little Fig Café | Breakfast, lunch and good coffee</title>
+<meta name="description" content="Little Fig: a neighborhood café, bakery and brunch spot on the corner of Orchard and Pine. Everything baked in-house each morning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400..700&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="restaurant"></div>
+<script src="../demo.js"></script>
+
+<div class="special" role="note"><div class="wrap"><b id="special-day">Today's special:</b><span id="special-text">Fig and honey scones, warm from the oven, $4.50</span></div></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html" aria-current="page">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--fig" href="order.html#reserve">Reserve a table</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Café · Bakery · Brunch</p>
+      <h1>Breakfast, lunch and <em>good coffee</em> on the corner.</h1>
+      <p>A neighborhood café on the corner of Orchard and Pine. Everything is baked in-house each morning, and the coffee is roasted two streets away.</p>
+      <div class="hero-actions">
+        <a class="btn btn--fig" href="menu.html">See the menu</a>
+        <a class="btn btn--line" href="order.html">Order for pickup</a>
+      </div>
+      <p class="today" data-today>Open today 7 am – 3 pm</p>
+    </div>
+    <img class="hero-photo" src="../img/rc-hero.jpg" alt="Inside Little Fig: wooden tables, plants and the coffee bar" width="1800" height="1100">
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="week-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row">
+      <div class="sec-head" style="margin:0"><p class="eyebrow">Every day is different</p><h2 id="week-title">This week's specials</h2></div>
+      <a class="more-link" href="menu.html">Full menu</a>
+    </div>
+    <ol class="week" id="week" aria-label="Specials by day"></ol>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="ways-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Stay, take away or bring us to you</p><h2 id="ways-title">Three ways to Little Fig</h2></div>
+    <div class="ways">
+      <a class="way" href="order.html#reserve"><img src="../img/rc-room.jpg" alt="Long wooden tables and hanging lights inside the café" width="1200" height="800" loading="lazy"><div><h3>Book a table</h3><p>Brunch tables go fast on weekends. Reserve online in under a minute.</p><span>Reserve</span></div></a>
+      <a class="way" href="order.html"><img src="../img/rc-latte.jpg" alt="Three lattes with leaf art on a wooden table" width="700" height="700" loading="lazy"><div><h3>Order ahead</h3><p>Delivery through the apps, or skip the line with pickup at the counter.</p><span>Order now</span></div></a>
+      <a class="way" href="events.html#catering"><img src="../img/rc-spread.jpg" alt="A brunch spread of waffles, eggs, fruit and juice on a long table" width="1200" height="800" loading="lazy"><div><h3>Cater your event</h3><p>Pastry, sandwich and salad trays for the office, from $45.</p><span>See catering</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band" aria-label="What guests say">
+  <div class="wrap">
+    <blockquote>"The fig toast is worth crossing town for. The scones are worth getting up early for."</blockquote>
+    <cite>Orchard Street Weekly, best brunch of the year</cite>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="gallery-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">From the kitchen</p><h2 id="gallery-title">Customer favorites</h2><p>Tap any photo to see it bigger.</p></div>
+    <div class="gallery">
+      <button class="is-big" type="button" data-caption="Avocado egg toast · $12"><img src="../img/rc-toast.jpg" alt="Avocado egg toast on seeded sourdough" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Buttermilk pancakes · $12"><img src="../img/rc-pancakes.jpg" alt="A stack of buttermilk pancakes with syrup" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Green bowl · $12"><img src="../img/rc-bowl.jpg" alt="Green bowl with avocado, chickpeas and greens" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Almond croissant · $5"><img src="../img/rc-croissant.jpg" alt="Croissants dusted with sugar" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Seeded sourdough loaf · $9"><img src="../img/rc-bread.jpg" alt="Loaves of seeded sourdough" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Harvest grain plate · $14"><img src="../img/rc-greens.jpg" alt="A grain plate with green beans, tomatoes and herbs" width="800" height="800" loading="lazy"></button>
+      <button type="button" data-caption="Sunday steak and greens · $19"><img src="../img/rc-plates.jpg" alt="Sliced steak with greens and chili on a grey plate" width="800" height="800" loading="lazy"></button>
+      <button class="is-big" type="button" data-caption="Weekend brunch for the table"><img src="../img/rc-spread.jpg" alt="A table set with waffles, eggs, fruit and orange juice" width="1200" height="800" loading="lazy"></button>
+      <button type="button" data-caption="Latte · $5"><img src="../img/rc-latte.jpg" alt="Lattes with leaf latte art" width="700" height="700" loading="lazy"></button>
+      <button type="button" data-caption="Friday live music brunch"><img src="../img/rc-cheers.jpg" alt="Friends raising coffee cups together" width="1200" height="800" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo">
+  <img src="../img/rc-toast.jpg" alt="" width="700" height="700">
+  <div class="lb-bar"><p></p><div><button type="button" data-prev aria-label="Previous photo">←</button><button type="button" data-next aria-label="Next photo">→</button><button type="button" data-close aria-label="Close">✕</button></div></div>
+</dialog>
+
+<section class="sec" style="padding-top:0" aria-labelledby="find-title">
+  <div class="wrap two">
+    <div class="panel panel--fig">
+      <h3 id="find-title">27 Orchard Street</h3>
+      <p>On the corner of Orchard and Pine. <span data-today>Open today</span>.</p>
+      <div class="panel-actions"><a class="btn btn--mustard" href="visit.html">Hours and directions</a></div>
+    </div>
+    <div class="panel panel--sage">
+      <h3>Fridays, 10 to noon</h3>
+      <p>Live music brunch with acoustic sets and the full menu. No cover, but book ahead.</p>
+      <div class="panel-actions"><a class="btn btn--fig" href="events.html">See what's on</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+      <p>Café, bakery and brunch on the corner of Orchard and Pine. Baked in-house every morning since 2017.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav></div>
+    <div><h2>Hours</h2><p>Mon–Thu 7 am – 3 pm</p><p>Fri 7 am – 4 pm</p><p>Sat 8 am – 4 pm</p><p>Sun 8 am – 2 pm</p></div>
+    <div><h2>Say hello</h2><p>27 Orchard Street</p><p><a href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">(555) 014-6688</a></p><p><a href="mailto:hello@littlefig.example.com" data-demo="the customer's email app">hello@littlefig.example.com</a></p><p><a href="#" data-demo="Little Fig's Instagram">Instagram</a> · <a href="#" data-demo="Little Fig's Facebook page">Facebook</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Little Fig Café</span><span>Allergy questions? Ask us before you order.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

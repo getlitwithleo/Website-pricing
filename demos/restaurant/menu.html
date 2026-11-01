@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menu | Little Fig Café</title>
+<meta name="description" content="The full Little Fig menu: breakfast, lunch, coffee and tea, bakery and kids, with vegetarian, vegan and gluten-free choices marked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400..700&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="restaurant"></div>
+<script src="../demo.js"></script>
+
+<div class="special" role="note"><div class="wrap"><b id="special-day">Today's special:</b><span id="special-text">Fig and honey scones, warm from the oven, $4.50</span></div></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="menu.html" aria-current="page">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--fig" href="order.html#reserve">Reserve a table</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Menu</p>
+    <h1>What we're <em>serving</em></h1>
+    <p>Breakfast until 11:30, lunch until close, and the bakery case is full from 7 am. Prices include tax.</p>
+  </div>
+</section>
+
+<section class="sec" aria-label="The menu" style="padding-top:2.5rem">
+  <div class="wrap">
+    <div class="menu-tools">
+      <div class="tabs" role="tablist" aria-label="Menu sections">
+        <button type="button" role="tab" id="tab-breakfast" aria-controls="panel-breakfast" aria-selected="true">Breakfast</button><button type="button" role="tab" id="tab-lunch" aria-controls="panel-lunch" aria-selected="false" tabindex="-1">Lunch</button><button type="button" role="tab" id="tab-drinks" aria-controls="panel-drinks" aria-selected="false" tabindex="-1">Coffee &amp; tea</button><button type="button" role="tab" id="tab-bakery" aria-controls="panel-bakery" aria-selected="false" tabindex="-1">Bakery</button><button type="button" role="tab" id="tab-kids" aria-controls="panel-kids" aria-selected="false" tabindex="-1">Kids</button>
+      </div>
+      <div class="diet" role="group" aria-label="Dietary filters"><span>Show only:</span><label><input type="checkbox" value="v" data-diet> Vegetarian</label><label><input type="checkbox" value="vg" data-diet> Vegan</label><label><input type="checkbox" value="gf" data-diet> Gluten-free</label></div>
+    </div>
+    <div class="sec--white" style="padding:clamp(1.2rem,3vw,2rem);border-radius:22px;border:1px solid var(--line)">
+  <div role="tabpanel" id="panel-breakfast" aria-labelledby="tab-breakfast">
+    <p class="menu-note" style="margin:0 0 0.5rem">Served until 11:30 am, and all day on weekends.</p>
+    <ul class="menu">
+      <li class="item" data-tags="v"><div class="item-top"><b>Fig toast</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$11</span></div><p>Sourdough, ricotta, roasted figs, honey and thyme.</p></li>
+      <li class="item" data-tags=""><div class="item-top"><b>Corner breakfast</b><i></i><span>$14</span></div><p>Two eggs, bacon or mushrooms, toast and crispy potatoes.</p></li>
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Green bowl</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$12</span></div><p>Quinoa, greens, avocado, pickled onion and tahini.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Buttermilk pancakes</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$12</span></div><p>Three pancakes with whipped butter and maple syrup.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Avocado egg toast</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$12</span></div><p>Seeded sourdough, smashed avocado, a fried egg and chili flakes.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Yogurt and granola</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$8</span></div><p>House granola, seasonal fruit and honey.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Shakshuka</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$13</span></div><p>Eggs baked in spiced tomato and peppers, with feta. Add bread $2.</p></li>
+      <li class="item" data-tags=""><div class="item-top"><b>Breakfast sandwich</b><i></i><span>$10</span></div><p>Fried egg, cheddar, bacon and chili jam on a brioche bun.</p></li>
+    </ul>
+    <p class="menu-empty" hidden>Nothing in this section matches all of those. Try fewer filters, or ask us: we can often adapt a dish.</p>
+  </div>
+  <div role="tabpanel" id="panel-lunch" aria-labelledby="tab-lunch" hidden>
+    <p class="menu-note" style="margin:0 0 0.5rem">From 11:30 am until close.</p>
+    <ul class="menu">
+      <li class="item" data-tags=""><div class="item-top"><b>Roast chicken sandwich</b><i></i><span>$14</span></div><p>Herb mayo, pickles and greens on focaccia.</p></li>
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Tomato soup</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$9</span></div><p>Slow-roasted tomatoes and basil, with bread on the side.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Fig and goat cheese salad</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$13</span></div><p>Arugula, walnuts and balsamic.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Grilled cheese</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$11</span></div><p>Three cheeses on sourdough, with tomato soup to dip.</p></li>
+      <li class="item" data-tags="vg"><div class="item-top"><b>Harvest grain plate</b><span class="tags"><span class="tag tag-vg">VG</span></span><i></i><span>$14</span></div><p>Farro, green beans, roast tomatoes, herbs and lemon.</p></li>
+      <li class="item" data-tags="gf"><div class="item-top"><b>Steak and greens</b><span class="tags"><span class="tag tag-gf">GF</span></span><i></i><span>$19</span></div><p>Grilled flank steak, chimichurri, greens and potatoes.</p></li>
+      <li class="item" data-tags="vg"><div class="item-top"><b>Falafel wrap</b><span class="tags"><span class="tag tag-vg">VG</span></span><i></i><span>$12</span></div><p>Falafel, hummus, pickled cabbage and herbs in flatbread.</p></li>
+      <li class="item" data-tags=""><div class="item-top"><b>Soup and half sandwich</b><i></i><span>$13</span></div><p>Today's soup with half of any sandwich.</p></li>
+    </ul>
+    <p class="menu-empty" hidden>Nothing in this section matches all of those. Try fewer filters, or ask us: we can often adapt a dish.</p>
+  </div>
+  <div role="tabpanel" id="panel-drinks" aria-labelledby="tab-drinks" hidden>
+    <p class="menu-note" style="margin:0 0 0.5rem">Beans from Pine Street Roasters, two streets away. Oat, almond or whole milk at no extra cost.</p>
+    <ul class="menu">
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Espresso</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$3</span></div><p>A double shot.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Latte</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$5</span></div><p>Oat, almond or whole milk.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Fig and cardamom latte</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$6</span></div><p>Our house syrup, made each morning.</p></li>
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Cold brew</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$5</span></div><p>Steeped for 18 hours.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Hot chocolate</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$4.50</span></div><p>Dark chocolate and steamed milk, with whipped cream on request.</p></li>
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Loose-leaf tea</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$4</span></div><p>Earl grey, jasmine green or mint.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Chai</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$5</span></div><p>Spiced black tea brewed with milk.</p></li>
+      <li class="item" data-tags="vg gf"><div class="item-top"><b>Fresh orange juice</b><span class="tags"><span class="tag tag-vg">VG</span><span class="tag tag-gf">GF</span></span><i></i><span>$5</span></div><p>Squeezed to order.</p></li>
+    </ul>
+    <p class="menu-empty" hidden>Nothing in this section matches all of those. Try fewer filters, or ask us: we can often adapt a dish.</p>
+  </div>
+  <div role="tabpanel" id="panel-bakery" aria-labelledby="tab-bakery" hidden>
+    <p class="menu-note" style="margin:0 0 0.5rem">Baked in-house from 5 am. Whole loaves and boxes can be ordered a day ahead.</p>
+    <ul class="menu">
+      <li class="item" data-tags="v"><div class="item-top"><b>Fig and honey scone</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$4.50</span></div><p>Our most popular bake.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Almond croissant</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$5</span></div><p>Twice-baked with frangipane.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Butter croissant</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$4</span></div><p>Three-day laminated dough.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Olive oil cake</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$5</span></div><p>Made with almond flour and orange.</p></li>
+      <li class="item" data-tags="vg"><div class="item-top"><b>Seeded sourdough loaf</b><span class="tags"><span class="tag tag-vg">VG</span></span><i></i><span>$9</span></div><p>Baked every morning. Order ahead, they sell out by 10.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Cinnamon knot</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$4.50</span></div><p>Cardamom dough, cinnamon sugar.</p></li>
+      <li class="item" data-tags="vg"><div class="item-top"><b>Vegan banana bread</b><span class="tags"><span class="tag tag-vg">VG</span></span><i></i><span>$4</span></div><p>With walnuts and dark chocolate.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Chocolate chip cookie</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$3</span></div><p>Brown butter and sea salt.</p></li>
+    </ul>
+    <p class="menu-empty" hidden>Nothing in this section matches all of those. Try fewer filters, or ask us: we can often adapt a dish.</p>
+  </div>
+  <div role="tabpanel" id="panel-kids" aria-labelledby="tab-kids" hidden>
+    <p class="menu-note" style="margin:0 0 0.5rem">For under 12s. Every kids' meal comes with a small juice or milk.</p>
+    <ul class="menu">
+      <li class="item" data-tags="v"><div class="item-top"><b>Mini pancakes</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$7</span></div><p>Two pancakes with berries and maple syrup.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Egg and soldiers</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$6</span></div><p>A soft-boiled egg with toast to dip.</p></li>
+      <li class="item" data-tags="v"><div class="item-top"><b>Little grilled cheese</b><span class="tags"><span class="tag tag-v">V</span></span><i></i><span>$7</span></div><p>With cucumber sticks.</p></li>
+      <li class="item" data-tags="v gf"><div class="item-top"><b>Fruit and yogurt pot</b><span class="tags"><span class="tag tag-v">V</span><span class="tag tag-gf">GF</span></span><i></i><span>$4</span></div><p>Yogurt, berries and a drizzle of honey.</p></li>
+    </ul>
+    <p class="menu-empty" hidden>Nothing in this section matches all of those. Try fewer filters, or ask us: we can often adapt a dish.</p>
+  </div>
+    </div>
+    <p class="legend"><span><span class="tag tag-v">V</span> Vegetarian</span><span><span class="tag tag-vg">VG</span> Vegan</span><span><span class="tag tag-gf">GF</span> Gluten-free</span><span>Our kitchen handles nuts, wheat and dairy. Tell us about any allergy before you order.</span></p>
+    <div class="panel-actions" style="margin-top:1.5rem"><a class="btn btn--fig" href="order.html">Order for pickup or delivery</a><a class="btn btn--line" href="#" data-demo="a printable PDF of the menu">Download the menu (PDF)</a></div>
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="fav-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row">
+      <div class="sec-head" style="margin:0"><p class="eyebrow">Most ordered</p><h2 id="fav-title">Where to start</h2></div>
+      <a class="more-link" href="index.html#gallery-title">More food photos</a>
+    </div>
+    <div class="dishes">
+      <figure class="dish"><img src="../img/rc-toast.jpg" alt="Avocado egg toast on seeded sourdough" width="700" height="700" loading="lazy"><b>Avocado egg toast</b><span>$12 · breakfast</span></figure>
+      <figure class="dish"><img src="../img/rc-pancakes.jpg" alt="A stack of buttermilk pancakes with syrup" width="700" height="700" loading="lazy"><b>Buttermilk pancakes</b><span>$12 · breakfast</span></figure>
+      <figure class="dish"><img src="../img/rc-bowl.jpg" alt="Green bowl with avocado, chickpeas and greens" width="700" height="700" loading="lazy"><b>Green bowl</b><span>$12 · vegan, gluten-free</span></figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+      <p>Café, bakery and brunch on the corner of Orchard and Pine. Baked in-house every morning since 2017.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav></div>
+    <div><h2>Hours</h2><p>Mon–Thu 7 am – 3 pm</p><p>Fri 7 am – 4 pm</p><p>Sat 8 am – 4 pm</p><p>Sun 8 am – 2 pm</p></div>
+    <div><h2>Say hello</h2><p>27 Orchard Street</p><p><a href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">(555) 014-6688</a></p><p><a href="mailto:hello@littlefig.example.com" data-demo="the customer's email app">hello@littlefig.example.com</a></p><p><a href="#" data-demo="Little Fig's Instagram">Instagram</a> · <a href="#" data-demo="Little Fig's Facebook page">Facebook</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Little Fig Café</span><span>Allergy questions? Ask us before you order.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harbor Lane Hardware | Tune-Up demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Schibsted+Grotesk:wght@400..700&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<style>
+  :root {
+    /* Layout: a short before-and-after report. A drag slider over two versions of the same store page, then the list of changes and the speed check. */
+    --bg: #F4F5F7;
+    --surface: #FFFFFF;
+    --ink: #10131A;
+    --muted: #5B6273;
+    --line: #E2E5EA;
+    --accent: #2E46D9;
+    --good: #1F8A4C;
+    --bad: #C2412D;
+    --store-green: #1F3D2B;
+    --store-yellow: #F2C230;
+    --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --store: "Archivo", "Arial Narrow", system-ui, sans-serif;
+    color-scheme: light;
+  }
+  body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  .page { --wrap: 64rem; display: grid; gap: clamp(3rem, 7vw, 4.5rem); padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .intro { display: grid; gap: 0.9rem; max-width: 40rem; }
+  .intro h1 { font-size: clamp(2.3rem, 4vw + 1rem, 3.6rem); font-weight: 650; line-height: 1.04; letter-spacing: -0.04em; }
+  .intro p:last-child { font-size: 1.15rem; color: var(--muted); }
+  h2 { font-size: clamp(1.6rem, 2vw + 1rem, 2.1rem); font-weight: 650; letter-spacing: -0.03em; line-height: 1.1; }
+
+  /* Before and after */
+  .compare { display: grid; gap: 0.9rem; }
+  .compare-frame {
+    --pos: 50%;
+    position: relative;
+    height: clamp(460px, 62vw, 560px);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: 0 30px 60px -36px rgba(16, 19, 26, 0.45);
+    touch-action: pan-y;
+  }
+  .version { position: absolute; inset: 0; overflow: hidden; }
+  .version--after { clip-path: inset(0 0 0 var(--pos)); }
+  .compare-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(16, 19, 26, 0.25); pointer-events: none; }
+  .compare-knob {
+    position: absolute;
+    top: 50%;
+    left: var(--pos);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(16, 19, 26, 0.35);
+    color: var(--ink);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .compare-knob svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .compare-tag { position: absolute; bottom: 12px; z-index: 2; padding: 4px 10px; border-radius: 999px; background: rgba(16, 19, 26, 0.8); color: #FFFFFF; font: 600 12px/1.3 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; pointer-events: none; }
+  .compare-tag--before { left: 12px; }
+  .compare-tag--after { right: 12px; }
+  .compare-range { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+  .compare-range:focus-visible + .compare-knob { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .compare-hint { font-size: 14px; color: var(--muted); }
+
+  /* The old page */
+  .old { height: 100%; padding: 0 0 24px; background: #FFFFCC; color: #000000; font: 16px/1.35 "Times New Roman", Times, serif; text-align: center; }
+  .old-head { padding: 14px 10px; background: #000080; color: #FFFF00; font: 700 26px/1.15 "Comic Sans MS", "Comic Sans", cursive; }
+  .old-nav { padding: 8px; background: #C0C0C0; font-size: 15px; }
+  .old-nav a { margin: 0 6px; color: #0000EE; }
+  .old-body { display: grid; gap: 14px; padding: 18px 16px; justify-items: center; }
+  .old-broken { display: grid; place-items: center; width: min(280px, 90%); height: 110px; border: 2px inset #999999; background: #EEEEEE; color: #CC0000; font: 13px/1.3 Arial, sans-serif; }
+  .old-hours { padding: 8px 14px; border: 3px double #000000; background: #FFFFFF; font-size: 15px; }
+  .old-red { color: #FF0000; font-weight: 700; }
+  .old-link { color: #551A8B; text-decoration: underline; }
+  .old-long { white-space: nowrap; font-size: 15px; }
+
+  /* The refreshed page */
+  .new { height: 100%; background: #FBFAF6; color: var(--store-green); font: 400 15px/1.5 var(--sans); }
+  .new-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 22px; border-bottom: 1px solid rgba(31, 61, 43, 0.12); }
+  .new-logo { font: 800 19px/1 var(--store); font-stretch: 75%; letter-spacing: 0.02em; text-transform: uppercase; }
+  .new-logo span { color: #B58A0E; }
+  .new-call { padding: 7px 13px; border-radius: 8px; background: var(--store-yellow); color: var(--store-green); font-weight: 700; font-size: 13px; white-space: nowrap; }
+  .new-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 20px; align-items: center; padding: 26px 22px 18px; }
+  .new-hero h3 { font: 800 clamp(30px, 4vw, 44px)/0.98 var(--store); font-stretch: 75%; letter-spacing: -0.01em; text-transform: uppercase; }
+  .new-hero p { margin-top: 10px; color: #4A5E52; }
+  .new-photo { display: block; width: 100%; height: 170px; border-radius: 12px; object-fit: cover; }
+  .new-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0 22px; }
+  .new-card { padding: 12px; border: 1px solid rgba(31, 61, 43, 0.14); border-radius: 10px; background: #FFFFFF; font-size: 13px; }
+  .new-card b { display: block; margin-bottom: 2px; font: 700 15px/1.2 var(--store); font-stretch: 85%; text-transform: uppercase; }
+  @media (max-width: 560px) {
+    .new-hero { grid-template-columns: minmax(0, 1fr); }
+    .new-photo { height: 96px; }
+    .new-cards { grid-template-columns: minmax(0, 1fr); }
+    .new-card:nth-child(n + 2) { display: none; }
+  }
+
+  /* What changed */
+  .changes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .change { display: grid; gap: 0.6rem; padding: 1.25rem 1.3rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .change h3 { font-size: 1.05rem; font-weight: 650; letter-spacing: -0.01em; }
+  .change-row { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 0.5rem; font-size: 15px; }
+  .change-row span:first-child { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 3px; }
+  .change-row.was span:first-child { color: var(--bad); }
+  .change-row.was span:last-child { color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(194, 65, 45, 0.6); }
+  .change-row.now span:first-child { color: var(--good); }
+  @media (max-width: 720px) { .changes { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Speed and mobile check */
+  .report { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+  .scores, .next { padding: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  .scores { display: grid; gap: 1.2rem; }
+  .score { display: grid; gap: 0.4rem; }
+  .score-head { display: flex; justify-content: space-between; gap: 1rem; font-size: 15px; font-weight: 600; }
+  .score-head span:last-child { font-variant-numeric: tabular-nums; color: var(--good); }
+  .bar { position: relative; height: 10px; border-radius: 99px; background: #EDEFF3; overflow: hidden; }
+  .bar i { position: absolute; inset: 0 auto 0 0; border-radius: 99px; }
+  .bar .b { width: var(--b); background: #E8A397; }
+  .bar .a { width: var(--a); background: var(--good); opacity: 0.9; }
+  .score small { font-size: 13px; color: var(--muted); }
+  .next { display: grid; align-content: start; gap: 0.8rem; }
+  .next h3 { font-size: 1.05rem; font-weight: 650; }
+  .next ol { display: grid; gap: 0.6rem; margin: 0; padding-left: 1.2rem; font-size: 15px; color: var(--muted); }
+  .sample-note { font-size: 13px; color: var(--muted); }
+  @media (max-width: 720px) { .report { grid-template-columns: minmax(0, 1fr); } }
+
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; padding: clamp(1.5rem, 4vw, 2.25rem); border-radius: 18px; background: var(--ink); color: #F3F4F7; }
+  .cta h2 { color: #FFFFFF; }
+  .cta p { margin-top: 0.4rem; color: #A6ADBC; }
+  .btn { display: inline-flex; padding: 0.8rem 1.3rem; border-radius: 10px; background: #FFFFFF; color: var(--ink); font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .btn:focus-visible { outline: 2px solid #8D9BFF; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div class="demo-bar" data-package="tune-up"></div>
+<script src="../demo.js"></script>
+
+<main class="wrap page">
+  <header class="intro">
+    <p class="eyebrow">Tune-Up demo · Harbor Lane Hardware</p>
+    <h1>Same website. Two days later.</h1>
+    <p>Harbor Lane Hardware has sold tools on the same corner for 40 years. Their website hadn't been touched since 2019. Here's what a $60 Tune-Up changed. Drag the slider to compare.</p>
+  </header>
+
+  <section class="compare" aria-label="Before and after comparison">
+    <div class="compare-frame" id="compare">
+      <div class="version version--before" aria-label="Before">
+        <div class="old">
+          <div class="old-head">~*~ Welcome to Harbor Lane Hardware!!! ~*~</div>
+          <div class="old-nav"><a href="#" data-demo="the old Home page">Home</a> | <a href="#" data-demo="a page that no longer exists">Catalog</a> | <a href="#" data-demo="the old Contact page">Contact Us</a> | <a href="#" data-demo="a page from 2014">News</a></div>
+          <div class="old-body">
+            <p class="old-red">*** NOW CARRYING PAINT!!! ***</p>
+            <div class="old-broken">✕ image cannot be displayed (store_front_2009.jpg)</div>
+            <p class="old-hours">HOURS: Mon - Sat 8am - 5pm<br><small>(updated March 2019)</small></p>
+            <p>Click <span class="old-link">HERE</span> for our catalog</p>
+            <p class="old-long">Call us today at 555-014-7731 or stop by 42 Harbor Lane for all your hardware needs and more!!!</p>
+            <p><small>Best viewed in Internet Explorer 6 at 800 × 600</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="version version--after" aria-label="After">
+        <div class="new">
+          <div class="new-head"><span class="new-logo">Harbor Lane <span>Hardware</span></span><span class="new-call">Call (555) 014-7731</span></div>
+          <div class="new-hero">
+            <div>
+              <h3>Everything for the fix-it list.</h3>
+              <p>Tools, paint, keys cut while you wait, and advice from people who've done the job before.</p>
+            </div>
+            <img class="new-photo" src="../img/tune-up-tools.jpg" alt="Wall of hand tools at Harbor Lane Hardware" width="1200" height="800">
+          </div>
+          <div class="new-cards">
+            <div class="new-card"><b>Open today</b>Mon–Sat 7:30–6 · Sun 9–3</div>
+            <div class="new-card"><b>Paint mixing</b>Any color, matched in 10 minutes.</div>
+            <div class="new-card"><b>Find us</b>42 Harbor Lane, by the ferry</div>
+          </div>
+        </div>
+      </div>
+      <span class="compare-tag compare-tag--before" aria-hidden="true">Before</span>
+      <span class="compare-tag compare-tag--after" aria-hidden="true">After</span>
+      <span class="compare-line" aria-hidden="true"></span>
+      <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the old and new page">
+      <span class="compare-knob" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span>
+    </div>
+    <p class="compare-hint">Drag left and right, or use the arrow keys. Left side is before, right side is after.</p>
+  </section>
+
+  <section aria-labelledby="changes-title">
+    <p class="eyebrow">What changed</p>
+    <h2 id="changes-title">Six fixes in two days</h2>
+    <div class="changes">
+      <div class="change"><h3>Opening hours</h3><p class="change-row was"><span>Before</span><span>Mon–Sat 8–5, last updated 2019</span></p><p class="change-row now"><span>After</span><span>Mon–Sat 7:30–6 and Sundays 9–3</span></p></div>
+      <div class="change"><h3>Broken catalog link</h3><p class="change-row was"><span>Before</span><span>"Click HERE" went to a missing page</span></p><p class="change-row now"><span>After</span><span>Removed, with paint mixing and key cutting shown up front</span></p></div>
+      <div class="change"><h3>Missing photo</h3><p class="change-row was"><span>Before</span><span>A broken image box from 2009</span></p><p class="change-row now"><span>After</span><span>A fresh storefront image</span></p></div>
+      <div class="change"><h3>Fonts and colors</h3><p class="change-row was"><span>Before</span><span>Three fonts and five bright colors</span></p><p class="change-row now"><span>After</span><span>One sturdy font and two brand colors</span></p></div>
+      <div class="change"><h3>Phone number</h3><p class="change-row was"><span>Before</span><span>Plain text buried in a sentence</span></p><p class="change-row now"><span>After</span><span>A tap-to-call button at the top</span></p></div>
+      <div class="change"><h3>Phone screens</h3><p class="change-row was"><span>Before</span><span>Text ran off the side of the screen</span></p><p class="change-row now"><span>After</span><span>Everything fits, on any screen</span></p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="report-title">
+    <p class="eyebrow">Speed and mobile check</p>
+    <h2 id="report-title">The before and after scores</h2>
+    <div class="report">
+      <div class="scores">
+        <div class="score"><div class="score-head"><span>Mobile-friendly</span><span>41 → 96</span></div><div class="bar"><i class="a" style="--a:96%"></i><i class="b" style="--b:41%"></i></div></div>
+        <div class="score"><div class="score-head"><span>Page speed</span><span>52 → 91</span></div><div class="bar"><i class="a" style="--a:91%"></i><i class="b" style="--b:52%"></i></div></div>
+        <div class="score"><div class="score-head"><span>Easy to read</span><span>58 → 94</span></div><div class="bar"><i class="a" style="--a:94%"></i><i class="b" style="--b:58%"></i></div></div>
+        <p class="sample-note">Scores are out of 100. Pink is before, green is after.</p>
+      </div>
+      <div class="next">
+        <h3>What to fix next</h3>
+        <ol>
+          <li>Add a page for key cutting and paint mixing prices.</li>
+          <li>Replace the 2016 photos in the gallery.</li>
+          <li>Add the new Sunday hours to your Google listing.</li>
+        </ol>
+        <p class="sample-note">Every Tune-Up ends with a short list like this, so you know what to do next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <div>
+      <h2 id="cta-title">Does your site need a tune-up?</h2>
+      <p>$60 flat · 2 days max · 1 revision round</p>
+    </div>
+    <a class="btn" href="../../index.html#pick-1">Choose the Tune-Up</a>
+  </section>
+</main>
+
+<script>
+  (function () {
+    var frame = document.getElementById("compare");
+    var range = document.getElementById("compare-range");
+    function set() { frame.style.setProperty("--pos", range.value + "%"); }
+    range.addEventListener("input", set);
+    set();
+  })();
+</script>
+</body>
+</html>

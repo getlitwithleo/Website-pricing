@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book online | Studio Nine</title>
+<meta name="description" content="Book a Studio Nine appointment online: pick a service, a stylist, a day and a time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Work+Sans:wght@400..600&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="booking"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">STUDIO <span>NINE</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="services.html">Services</a><a href="book.html" aria-current="page">Book online</a><a href="new-clients.html">New clients</a><a href="gallery.html">Gallery</a><a href="policies.html">Policies &amp; FAQ</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--green" href="book.html">Book now</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Book online</p>
+    <h1>Pick a time <span>that works</span></h1>
+    <p>Choose a service and stylist, then a day and time. Crossed-out times are already booked. You'll get a confirmation right away and a reminder the day before.</p>
+  </div>
+</section>
+
+<section class="sec book-sec" aria-label="Booking calendar">
+  <div class="wrap">
+    <div class="booker" id="booker">
+      <div class="steps">
+        <div>
+          <p class="step-title"><span>1</span>Service</p>
+          <select id="b-service" aria-label="Service"></select>
+        </div>
+        <div>
+          <p class="step-title"><span>2</span>Stylist</p>
+          <div class="stylists" role="radiogroup" aria-label="Stylist">
+            <label><input type="radio" name="stylist" value="any" checked><span>First available</span></label>
+            <label><input type="radio" name="stylist" value="nina"><span>Nina · color</span></label>
+            <label><input type="radio" name="stylist" value="kai"><span>Kai · curls</span></label>
+            <label><input type="radio" name="stylist" value="leah"><span>Leah · cuts</span></label>
+          </div>
+        </div>
+        <div>
+          <p class="step-title"><span>3</span>Day</p>
+          <div class="days" id="b-days" role="group" aria-label="Choose a day"></div>
+        </div>
+        <div>
+          <p class="step-title"><span>4</span>Time</p>
+          <div class="slots" id="b-slots" role="group" aria-label="Choose a time"></div>
+          <p class="hint" id="b-hint">Choose a day to see open times.</p>
+        </div>
+        <div>
+          <p class="step-title"><span>5</span>Your details</p>
+          <div class="details">
+            <label for="b-name">Name<input id="b-name" autocomplete="name"></label>
+            <label for="b-phone">Mobile<input id="b-phone" type="tel" autocomplete="tel"></label>
+            <label class="check" for="b-new"><input id="b-new" type="checkbox">This is my first visit</label>
+          </div>
+        </div>
+      </div>
+      <aside class="summary" aria-labelledby="sum-title">
+        <h2 class="sr-only">Summary</h2>
+        <h3 id="sum-title">Your appointment</h3>
+        <dl>
+          <div><dt>Service</dt><dd id="s-service">–</dd></div>
+          <div><dt>Stylist</dt><dd id="s-stylist">–</dd></div>
+          <div><dt>Day</dt><dd id="s-day">–</dd></div>
+          <div><dt>Time</dt><dd id="s-time">–</dd></div>
+          <div><dt>Price</dt><dd id="s-price">–</dd></div>
+        </dl>
+        <button class="btn" type="button" id="b-confirm" disabled>Book this time</button>
+        <p id="b-status" role="status">Pick a service, day and time.</p>
+      </aside>
+    </div>
+    <div class="how-it-works">
+      <div><b>Synced to our schedule</b><p>The calendar shows real openings, so a time you pick is a time we have.</p></div>
+      <div><b>Confirmed right away</b><p>A confirmation email with a link to change or cancel arrives in seconds.</p></div>
+      <div><b>Reminded the day before</b><p>A text the day before, so nobody forgets. Reply to confirm or move it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="before-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Before you book</p><h2 id="before-title">Good to know</h2></div>
+    <div class="policies">
+      <div class="policy"><b>New color client?</b><p>We need a quick patch test 48 hours before. Book it as a free consult.</p></div>
+      <div class="policy"><b>Balayage deposit</b><p>Appointments of 2 hours or more need a $30 deposit, taken off your bill.</p></div>
+      <div class="policy"><b>Changing plans</b><p>Free to cancel or move up to 24 hours before. <a href="policies.html">All policies</a></p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html">STUDIO <span>NINE</span></a>
+      <p>A small, appointment-only salon for cuts, color and curls. Book online any time, day or night.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="services.html">Services</a><a href="book.html">Book online</a><a href="new-clients.html">New clients</a><a href="gallery.html">Gallery</a><a href="policies.html">Policies &amp; FAQ</a></nav></div>
+    <div><h2>Hours</h2><p>Tue, Wed, Fri 9 am – 6 pm</p><p>Thu 9 am – 8 pm</p><p>Sat 9 am – 4 pm</p><p>Sun and Mon closed</p></div>
+    <div><h2>Find us</h2><p>9 Linden Row</p><p><a href="tel:+15550149090" data-demo="the phone app, ready to call (555) 014-9090">(555) 014-9090</a></p><p><a href="mailto:hello@studionine.example.com" data-demo="the customer's email app">hello@studionine.example.com</a></p><p><a href="#" data-demo="Studio Nine's Instagram">Instagram</a> · <a href="#" data-demo="Studio Nine's TikTok">TikTok</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Studio Nine Hair</span><span>Gift cards available at the front desk.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

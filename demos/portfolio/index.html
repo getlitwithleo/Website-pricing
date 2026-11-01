@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Theo Marsh | Paintings</title>
+<meta name="description" content="Theo Marsh: abstract paintings in acrylic and ink about water, light and the hour after dark.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="portfolio"></div>
+<script src="../demo.js"></script>
+
+<div class="wrap page">
+  <header class="site-head">
+    <a class="site-name" href="index.html">Theo Marsh</a>
+    <nav class="site-nav" aria-label="Site"><a href="index.html" aria-current="page">Work</a><a href="tidewater.html">Tidewater</a><a href="small-hours.html">Small Hours</a><a href="about.html">About &amp; commissions</a></nav>
+  </header>
+
+  <main>
+    <section class="statement">
+      <h1>Paintings about <em>water</em>, light and the hour after dark.</h1>
+      <p>Abstract work in acrylic and ink, made in a studio a few minutes from the estuary. Click any painting to see it larger, with the story behind it.</p>
+    </section>
+
+    <section id="work" aria-label="Paintings">
+      <div class="filters" role="group" aria-label="Filter by series">
+        <button type="button" data-series="all" aria-pressed="true">All work</button>
+        <button type="button" data-series="Tidewater" aria-pressed="false">Tidewater</button>
+        <button type="button" data-series="Small Hours" aria-pressed="false">Small Hours</button>
+      </div>
+      <div class="wall" id="wall"></div>
+    </section>
+
+    <section class="series" aria-labelledby="series-title">
+      <h2 id="series-title">Series</h2>
+      <div class="series-list">
+        <a class="series-card" href="tidewater.html"><img src="../img/pf-slack-water.jpg" alt="" width="900" height="900" loading="lazy"><h3>Tidewater</h3><p>Four paintings made over one summer at the estuary, each at the moment the tide turned. 2025.</p><span>Read the story →</span></a>
+        <a class="series-card" href="small-hours.html"><img src="../img/pf-gallery.jpg" alt="" width="1400" height="800" loading="lazy"><h3>Small Hours</h3><p>Five night paintings about city light, made between 1 and 4 in the morning. 2026.</p><span>Read the story →</span></a>
+      </div>
+    </section>
+
+    <section class="inquire" aria-labelledby="inquire-title">
+      <div>
+        <h2 id="inquire-title">Commissions and inquiries</h2>
+        <p>Ask about a painting, prices or a commission for your space.</p>
+      </div>
+      <a class="btn" href="about.html#inquire">Start an inquiry</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Theo Marsh Studio · Acrylic and ink paintings</span>
+    <nav aria-label="Footer"><a href="index.html">Work</a><a href="tidewater.html">Tidewater</a><a href="small-hours.html">Small Hours</a><a href="about.html">About &amp; commissions</a><a href="#" data-demo="Theo's Instagram">Instagram</a></nav>
+  </footer>
+</div>
+
+<dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-inner">
+    <div class="viewer-art"><img id="viewer-img" alt=""></div>
+    <div class="viewer-info">
+      <h2 id="viewer-title"></h2>
+      <p class="viewer-meta" id="viewer-meta"></p>
+      <p class="viewer-story" id="viewer-story"></p>
+      <p class="viewer-status" id="viewer-status"></p>
+      <div class="viewer-actions">
+        <a class="btn" id="viewer-ask" href="about.html#inquire">Ask about this piece</a>
+        <button type="button" id="viewer-prev" aria-label="Previous painting">←</button>
+        <button type="button" id="viewer-next" aria-label="Next painting">→</button>
+        <button type="button" id="viewer-close">Close</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="site.js"></script>
+
+</body>
+</html>

@@ -39,6 +39,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 61; heigh
 .demo-bar a.demo-cta { padding: 4px 11px; border-radius: 999px; background: #F3F4F7; color: #0D1117; font-weight: 600; }
 .demo-bar a.demo-cta:hover { background: #FFFFFF; color: #0D1117; }
 .demo-bar a:focus-visible { outline: 2px solid #8D9BFF; outline-offset: 2px; }
+.demo-bar:empty { min-height: 37px; }
+@media (max-width: 560px) { .demo-bar-scope { display: none; } }
+
+/* Menu button for phones. Each demo shows it, and styles its open menu, in its own stylesheet. */
+.menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid currentColor; border-radius: 10px; background: transparent; color: inherit; cursor: pointer; }
+.menu-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.menu-btn[aria-expanded="true"] .mb-open, .menu-btn:not([aria-expanded="true"]) .mb-close { display: none; }
 
 /* Preview dialog */
 .demo-dialog {

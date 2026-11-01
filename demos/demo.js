@@ -1,11 +1,42 @@
 /* Shared by every demo site. Nothing on a demo is really sent, so message buttons, forms and outside links
    show a preview of what would happen on a real site instead.
 
+   Load it right after <div class="demo-bar" data-package="small-business"></div> at the top of <body>: it fills in
+   that bar from the PACKAGES list below, so a price change here updates every demo page.
+
    In the page:
    - <button data-msg="text" data-to="(555) 014-2290" data-body="Hi! ...">  shows the text message a customer would send
      (data-msg="email" adds data-subject)
    - <a href="#" data-demo="your DoorDash page">                            shows a short note instead of leaving the page
+   - <button class="menu-btn" data-menu aria-controls="site-nav">           opens and closes the menu on phones
    - Demo.form(formElement, { title, note })                                shows what a form would send */
+(function () {
+  // Package name, price, its card on the home page, its number in the quote builder, and what the demo shows
+  var PACKAGES = {
+    "tune-up":         { name: "Tune-Up",           price: 60,  card: "pkg-tune-up",        pick: 1,  scope: "fixes to an existing site" },
+    "landing-page":    { name: "Landing Page",      price: 120, card: "pkg-landing-page",   pick: 3,  scope: "1 page, all 6 sections" },
+    "portfolio":       { name: "Portfolio",         price: 190, card: "pkg-portfolio",      pick: 4,  scope: "full 4-page site" },
+    "small-business":  { name: "Small Business",    price: 240, card: "pkg-small-business", pick: 5,  scope: "full 5-page site" },
+    "restaurant":      { name: "Restaurant & Café", price: 270, card: "pkg-restaurant",     pick: 6,  scope: "full 5-page site" },
+    "booking":         { name: "Booking Site",      price: 300, card: "pkg-booking",        pick: 7,  scope: "full 6-page site" },
+    "growth":          { name: "Growth",            price: 360, card: "pkg-growth",         pick: 8,  scope: "full 8-page site" },
+    "product-catalog": { name: "Product Catalog",   price: 480, card: "pkg-store",          pick: 9,  scope: "full 25-product shop" },
+    "masterpiece":     { name: "Masterpiece",       price: 600, card: "pkg-masterpiece",    pick: 10, scope: "full 12-page site" }
+  };
+  var bar = document.querySelector(".demo-bar[data-package]");
+  var pkg = bar && PACKAGES[bar.dataset.package];
+  if (!pkg) return;
+  var script = document.currentScript;
+  var home = script && script.src ? new URL("../index.html", script.src).href : "../../index.html";
+  bar.innerHTML =
+    '<div class="wrap">' +
+      '<span class="demo-bar-info"><span class="demo-tag">Demo</span><span>' + pkg.name.replace("&", "&amp;") + ' package · $' + pkg.price +
+      '<span class="demo-bar-scope"> · ' + pkg.scope + '</span></span></span>' +
+      '<span class="demo-bar-links"><a href="' + home + '#' + pkg.card + '">← All packages</a>' +
+      '<a class="demo-cta" href="' + home + '#pick-' + pkg.pick + '">Choose this package</a></span>' +
+    '</div>';
+})();
+
 (function () {
   var dialog = document.createElement("dialog");
   dialog.className = "demo-dialog";
@@ -134,6 +165,14 @@
   }
 
   document.addEventListener("click", function (e) {
+    var menuBtn = e.target.closest("[data-menu]");
+    if (menuBtn) {
+      var menu = document.getElementById(menuBtn.getAttribute("aria-controls"));
+      var isOpen = menuBtn.getAttribute("aria-expanded") !== "true";
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      if (menu) menu.classList.toggle("is-open", isOpen);
+      return;
+    }
     var msg = e.target.closest("[data-msg]");
     if (msg) {
       e.preventDefault();

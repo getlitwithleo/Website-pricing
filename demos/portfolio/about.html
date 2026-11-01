@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About and commissions | Theo Marsh</title>
+<meta name="description" content="About Theo Marsh, his exhibitions and residencies, and how to commission a painting or ask about a piece.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="portfolio"></div>
+<script src="../demo.js"></script>
+
+<div class="wrap page">
+  <header class="site-head">
+    <a class="site-name" href="index.html">Theo Marsh</a>
+    <nav class="site-nav" aria-label="Site"><a href="index.html">Work</a><a href="tidewater.html">Tidewater</a><a href="small-hours.html">Small Hours</a><a href="about.html" aria-current="page">About &amp; commissions</a></nav>
+  </header>
+
+  <main>
+    <section class="about" style="border-top:0" aria-labelledby="about-title">
+      <img class="portrait" src="../img/pf-portrait.jpg" alt="Theo Marsh" width="700" height="875">
+      <div class="about-text">
+        <h1 id="about-title" style="font:400 clamp(2.6rem,5vw + 1rem,4.2rem)/1.02 var(--display)">About Theo</h1>
+        <p>Theo pours, scrapes and layers acrylic and ink until a painting starts to look like the place it came from. Most pieces begin as a ten-minute sketch made outside at dusk and take a month to finish in the studio.</p>
+        <p>He grew up on the coast, studied printmaking, and spent eight years designing book covers before painting full time in 2022. The studio is a converted boat shed a few minutes from the estuary, which explains a lot about the paintings.</p>
+        <p>He takes a small number of commissions each year, usually for a specific room and a specific view.</p>
+      </div>
+    </section>
+
+    <section class="cv-cols" aria-label="Exhibitions, residencies and press">
+      <div><h2>Exhibitions</h2><ul class="cv">
+        <li><time>2026</time><span>Small Hours, solo show, Northlight Gallery</span></li>
+        <li><time>2025</time><span>Tidewater, two-person show, The Boathouse</span></li>
+        <li><time>2024</time><span>New Coastal Painting, group show, Harbor Arts Center</span></li>
+        <li><time>2023</time><span>Open Studios, Marsh Lane Studios</span></li>
+      </ul></div>
+      <div><h2>Residencies</h2><ul class="cv">
+        <li><time>2024</time><span>Coastal artist residency, six weeks</span></li>
+        <li><time>2023</time><span>Print studio fellowship, Riverside Press</span></li>
+      </ul></div>
+      <div><h2>Press</h2><ul class="cv">
+        <li><time>2026</time><span>"The painter of slack water," Harbor Weekly</span></li>
+        <li><time>2025</time><span>"Five artists to watch," Coastline Magazine</span></li>
+      </ul></div>
+    </section>
+
+    <section class="commission" aria-labelledby="commission-title">
+      <h2 id="commission-title">Commissions</h2>
+      <p>A commission starts with a room and a view: the place the painting will hang, and the place it's about. Theo takes four to six a year, and each one takes about two months.</p>
+      <ol class="process" style="padding:0">
+        <li><h3>Tell me about the space</h3><p>Send photos of the room, the wall and the light, and a place that matters to you.</p></li>
+        <li><h3>Sketches</h3><p>Three small studies on paper within two weeks. You pick one, or we try again.</p></li>
+        <li><h3>Painting</h3><p>About six weeks in the studio, with photos as it goes. A 50% deposit starts the work.</p></li>
+        <li><h3>Delivery</h3><p>Varnished, wired and ready to hang. Free delivery within 50 miles.</p></li>
+      </ol>
+      <div class="prices-guide">
+        <div><b>From $900</b><span>Small, up to 24 × 24 in</span></div>
+        <div><b>From $1,800</b><span>Medium, up to 36 × 36 in</span></div>
+        <div><b>From $3,200</b><span>Large, up to 48 × 60 in</span></div>
+      </div>
+    </section>
+
+    <section class="inquiry-wrap" id="inquire" aria-labelledby="inquire-title">
+      <div>
+        <h2 id="inquire-title">Start an inquiry</h2>
+        <p>About a painting, a print, a commission or press. Theo replies within two working days.</p>
+        <p>Or email <a href="mailto:studio@theomarsh.example.com" data-demo="the visitor's email app">studio@theomarsh.example.com</a></p>
+        <img src="../img/pf-brushes.jpg" alt="Paint-covered brushes in blue, red and yellow" width="900" height="900" loading="lazy">
+      </div>
+      <form class="form" id="inquiry" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="q-name">Name</label><input id="q-name" name="name" data-label="Name" autocomplete="name" required></div>
+          <div class="field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" data-label="Email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="q-about">I'm asking about</label><select id="q-about" name="about" data-label="About"><option>A commission</option><option>Buying a painting</option><option>A print of a sold painting</option><option>Press or exhibitions</option><option>Something else</option></select></div>
+        <fieldset class="field"><legend>Budget</legend><div class="choice">
+          <label><input type="radio" name="budget" value="Under $1,000" data-label="Budget"> Under $1,000</label>
+          <label><input type="radio" name="budget" value="$1,000 to $2,500" data-label="Budget"> $1,000 to $2,500</label>
+          <label><input type="radio" name="budget" value="$2,500 or more" data-label="Budget"> $2,500 or more</label>
+          <label><input type="radio" name="budget" value="Not sure yet" data-label="Budget" checked> Not sure yet</label>
+        </div></fieldset>
+        <div class="field"><label for="q-msg">Message</label><textarea id="q-msg" name="message" data-label="Message" required placeholder="The room, the wall, the view, or the painting you're interested in"></textarea></div>
+        <button class="btn" type="submit">Send inquiry</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© 2026 Theo Marsh Studio · Acrylic and ink paintings</span>
+    <nav aria-label="Footer"><a href="index.html">Work</a><a href="tidewater.html">Tidewater</a><a href="small-hours.html">Small Hours</a><a href="about.html">About &amp; commissions</a><a href="#" data-demo="Theo's Instagram">Instagram</a></nav>
+  </footer>
+</div>
+
+<dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-inner">
+    <div class="viewer-art"><img id="viewer-img" alt=""></div>
+    <div class="viewer-info">
+      <h2 id="viewer-title"></h2>
+      <p class="viewer-meta" id="viewer-meta"></p>
+      <p class="viewer-story" id="viewer-story"></p>
+      <p class="viewer-status" id="viewer-status"></p>
+      <div class="viewer-actions">
+        <a class="btn" id="viewer-ask" href="about.html#inquire">Ask about this piece</a>
+        <button type="button" id="viewer-prev" aria-label="Previous painting">←</button>
+        <button type="button" id="viewer-next" aria-label="Next painting">→</button>
+        <button type="button" id="viewer-close">Close</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Events and catering | Little Fig Café</title>
+<meta name="description" content="Live music brunch, kids&#x27; baking classes, the monthly supper club, private hire for up to 30 guests and catering trays from $45.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400..700&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="restaurant"></div>
+<script src="../demo.js"></script>
+
+<div class="special" role="note"><div class="wrap"><b id="special-day">Today's special:</b><span id="special-text">Fig and honey scones, warm from the oven, $4.50</span></div></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html" aria-current="page">Events &amp; catering</a><a href="visit.html">Visit us</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--fig" href="order.html#reserve">Reserve a table</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Events and catering</p>
+    <h1>More than <em>breakfast</em></h1>
+    <p>Live music on Fridays, baking classes for kids, a monthly supper club, the whole café for your party, and trays for the office.</p>
+    <img class="page-photo" src="../img/rc-dining.jpg" alt="A long table of friends sharing food and drinks at a supper club" width="1200" height="800">
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="upcoming-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Coming up</p><h2 id="upcoming-title">What's on</h2></div>
+    <ol class="upcoming" id="upcoming" aria-label="Upcoming events"></ol>
+  </div>
+</section>
+
+<section class="sec sec--white" id="private" aria-labelledby="private-title" style="scroll-margin-top:140px">
+  <div class="wrap split">
+    <img src="../img/rc-private.jpg" alt="The café set for an evening event, with a long table and low lights" width="1200" height="800" loading="lazy">
+    <div>
+      <p class="eyebrow">Private hire</p>
+      <h2 id="private-title" style="margin:0.6rem 0 1rem">Book the whole café</h2>
+      <p>After 4 pm the café is yours. Showers, birthdays, rehearsal dinners, book clubs and small work parties, for up to 30 guests seated or 45 standing.</p>
+      <ul class="ticks">
+        <li>Evenings from $350, food and drink extra</li>
+        <li>Set menus from $28 per guest</li>
+        <li>Bring your own playlist or book a musician</li>
+        <li>We set up, serve and clean up</li>
+      </ul>
+      <a class="btn btn--fig" href="#catering-form">Ask about a date</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="catering" aria-labelledby="catering-title" style="scroll-margin-top:140px">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Catering</p><h2 id="catering-title">Trays for the office</h2><p>Ready by 8 am for breakfast meetings or by noon for lunch. Free delivery within 2 miles on orders over $90.</p></div>
+    <ul class="trays">
+      <li class="item"><div class="item-top"><b>Pastry tray</b><i></i><span>$45</span></div><p>12 pastries: scones, croissants and cinnamon knots. Serves 10 to 12.</p></li>
+      <li class="item"><div class="item-top"><b>Breakfast sandwich tray</b><i></i><span>$80</span></div><p>10 breakfast sandwiches, halved, with a vegetarian option.</p></li>
+      <li class="item"><div class="item-top"><b>Lunch sandwich tray</b><i></i><span>$95</span></div><p>10 sandwiches, halved: roast chicken, grilled cheese and falafel.</p></li>
+      <li class="item"><div class="item-top"><b>Big salad bowl</b><i></i><span>$55</span></div><p>Fig and goat cheese or harvest grain. Serves 10 as a side.</p></li>
+      <li class="item"><div class="item-top"><b>Fruit and yogurt bar</b><i></i><span>$60</span></div><p>Yogurt, granola, honey and seasonal fruit. Serves 12.</p></li>
+      <li class="item"><div class="item-top"><b>Coffee to go box</b><i></i><span>$30</span></div><p>96 oz of hot coffee with cups, milk and sugar. Serves 10.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0" aria-label="Event and catering request">
+  <div class="wrap two" style="align-items:start">
+    <form class="form" id="catering-form" novalidate style="scroll-margin-top:140px">
+      <h3>Plan your event or order</h3>
+      <p>Tell us what you have in mind and we'll reply with a quote within a day.</p>
+      <div class="field-row field-row--2">
+        <div class="field"><label for="e-type">Looking for</label><select id="e-type" name="type" data-label="Looking for"><option>Office catering</option><option>Private hire of the café</option><option>Supper club seats</option><option>Something else</option></select></div>
+        <div class="field"><label for="e-date">Date</label><input id="e-date" name="date" type="date" data-label="Date" required></div>
+      </div>
+      <div class="field-row field-row--2">
+        <div class="field"><label for="e-guests">Number of guests</label><input id="e-guests" name="guests" type="number" min="1" max="200" data-label="Guests" required></div>
+        <div class="field"><label for="e-budget">Budget (optional)</label><input id="e-budget" name="budget" data-label="Budget" placeholder="$"></div>
+      </div>
+      <div class="field-row field-row--2">
+        <div class="field"><label for="e-name">Name</label><input id="e-name" name="name" data-label="Name" autocomplete="name" required></div>
+        <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" data-label="Email" autocomplete="email" required></div>
+      </div>
+      <div class="field"><label for="e-notes">Tell us more</label><textarea id="e-notes" name="notes" data-label="Details" placeholder="Occasion, dietary needs, delivery address…"></textarea></div>
+      <button class="btn btn--fig" type="submit">Send request</button>
+    </form>
+    <div class="panel panel--sage">
+      <h3>Rather talk it through?</h3>
+      <p>Mara runs our events and catering. Email or call her any weekday afternoon.</p>
+      <div class="panel-actions">
+        <button class="btn btn--fig" type="button" data-msg="email" data-to="events@littlefig.example.com" data-subject="Event or catering request" data-body="Hi Mara! I'm planning an event and would love to talk about catering. Date: ___  Number of guests: ___">Email Mara</button>
+        <a class="btn btn--line" href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">Call the café</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+      <p>Café, bakery and brunch on the corner of Orchard and Pine. Baked in-house every morning since 2017.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav></div>
+    <div><h2>Hours</h2><p>Mon–Thu 7 am – 3 pm</p><p>Fri 7 am – 4 pm</p><p>Sat 8 am – 4 pm</p><p>Sun 8 am – 2 pm</p></div>
+    <div><h2>Say hello</h2><p>27 Orchard Street</p><p><a href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">(555) 014-6688</a></p><p><a href="mailto:hello@littlefig.example.com" data-demo="the customer's email app">hello@littlefig.example.com</a></p><p><a href="#" data-demo="Little Fig's Instagram">Instagram</a> · <a href="#" data-demo="Little Fig's Facebook page">Facebook</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Little Fig Café</span><span>Allergy questions? Ask us before you order.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

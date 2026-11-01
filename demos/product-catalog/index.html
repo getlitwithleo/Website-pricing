@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiln &amp; Kettle | Handmade pottery</title>
+<meta name="description" content="Kiln &amp; Kettle: small-batch handmade pottery. Mugs, tableware, vases and planters, ordered by text or email.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="product-catalog"></div>
+<script src="../demo.js"></script>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html" aria-current="page">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a></nav>
+    <div class="head-actions">
+      <a class="bag" href="order.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><span>Order list</span><b data-bag-count>0</b></a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<section class="banner">
+  <img src="../img/pc-hero.jpg" alt="Handmade plates, bowls and cups on a wooden shelf" width="1600" height="900">
+  <div class="banner-text">
+    <p class="eyebrow">Handmade ceramics · 25 pieces in the shop</p>
+    <h1>Small-batch pottery for every day.</h1>
+  </div>
+</section>
+
+<p class="how"><b>How ordering works</b><span>Pick a piece, a size and a finish, then add it to your order list. When you're ready, send the list as one text or email and we'll reply with pickup or shipping details. No payment online.</span></p>
+
+<section id="shop" aria-label="Shop">
+  <div class="toolbar">
+    <div class="search">
+      <label class="sr-only" for="q">Search pieces</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="q" type="search" placeholder="Search mugs, vases, planters…" autocomplete="off">
+    </div>
+    <label class="sort" for="sort">Sort
+      <select id="sort">
+        <option value="featured">Featured</option>
+        <option value="new">Newest</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+        <option value="sale">On sale</option>
+      </select>
+    </label>
+  </div>
+  <div class="chips" role="group" aria-label="Filter by category" id="chips"></div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="studio" aria-labelledby="studio-title">
+  <img src="../img/pc-wheel.jpg" alt="Hands shaping a pot on the wheel" width="1200" height="800" loading="lazy">
+  <div class="studio-text">
+    <p class="eyebrow">The studio</p>
+    <h2 id="studio-title">Every piece starts on the wheel</h2>
+    <p>We throw, trim, glaze and fire everything ourselves, in batches of a few dozen at a time. No two pieces come out exactly alike, and that's the point.</p>
+    <p><a class="btn btn--light" href="studio.html">How it's made</a></p>
+  </div>
+</section>
+
+<section class="info" aria-label="Pickup and shipping">
+  <div><h3>Local pickup</h3><p>Free from the studio on Saturdays, 10 am to 2 pm. We'll text when your order is ready.</p></div>
+  <div><h3>Shipping</h3><p>$8 flat anywhere in the country, packed in recycled paper. Free over $75.</p></div>
+  <div><h3>Payment</h3><p>Pay at pickup, or by bank transfer before shipping. <a href="care.html">More about orders</a></p></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html">Kiln <span>&amp;</span> Kettle</a>
+      <p>Small-batch pottery, thrown, glazed and fired in our studio. Order by text or email, pick up on Saturdays or have it shipped.</p>
+    </div>
+    <div><h2>Shop</h2><nav aria-label="Shop categories"><a href="index.html?cat=Mugs%20and%20cups">Mugs and cups</a><a href="index.html?cat=Tableware">Tableware</a><a href="index.html?cat=Vases">Vases</a><a href="index.html?cat=Planters">Planters</a><a href="index.html?cat=Classes">Classes</a></nav></div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Shop</a><a href="studio.html">Studio</a><a href="care.html">Shipping &amp; care</a><a href="order.html">Order list</a></nav></div>
+    <div><h2>Studio</h2><p>14 Mill Yard, Unit 3</p><p>Open Saturdays, 10 am – 2 pm</p><p><a href="mailto:orders@kilnandkettle.example.com" data-demo="the visitor's email app">orders@kilnandkettle.example.com</a></p><p><a href="#" data-demo="Kiln &amp; Kettle's Instagram">Instagram</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Kiln &amp; Kettle Pottery</span><a href="guide.html">Shop owner? How to add a product →</a></div>
+</footer>
+
+<script src="products.js"></script>
+<script src="site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Order and reserve | Little Fig Café</title>
+<meta name="description" content="Order Little Fig for delivery or pickup, pre-order a bakery box, or reserve a table for brunch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400..700&display=swap">
+<link rel="stylesheet" href="../demo.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="demo-bar" data-package="restaurant"></div>
+<script src="../demo.js"></script>
+
+<div class="special" role="note"><div class="wrap"><b id="special-day">Today's special:</b><span id="special-text">Fig and honey scones, warm from the oven, $4.50</span></div></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+    <nav class="site-nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html" aria-current="page">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav>
+    <div class="head-actions">
+      <a class="btn btn--fig" href="order.html#reserve">Reserve a table</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="mb-open" d="M4 7h16M4 12h16M4 17h16"/><path class="mb-close" d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Order and reserve</p>
+    <h1>Delivery, pickup or <em>a table</em></h1>
+    <p>Order through the delivery apps, pre-order bakery boxes for the morning, or book a table for brunch.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="order-title" style="padding-top:2.5rem">
+  <div class="wrap two">
+    <div class="panel panel--fig">
+      <h2 id="order-title" style="color:#FFFFFF">Order online</h2>
+      <p>Breakfast and lunch delivered, or skip the line and pick up at the counter. Same menu, same prices as the café.</p>
+      <div class="apps">
+        <a class="app" href="#" data-demo="Little Fig's DoorDash page"><b>DoorDash</b><span>Delivery in about 30 min</span></a>
+        <a class="app" href="#" data-demo="Little Fig's Uber Eats page"><b>Uber Eats</b><span>Delivery in about 30 min</span></a>
+        <a class="app" href="#" data-demo="Little Fig's Grubhub page"><b>Grubhub</b><span>Delivery and pickup</span></a>
+      </div>
+    </div>
+    <div class="panel panel--sage">
+      <h2>Pickup by phone</h2>
+      <p>Call or text your order and we'll have it ready at the counter in 15 minutes. Pay when you pick up.</p>
+      <div class="panel-actions">
+        <button class="btn btn--fig" type="button" data-msg="text" data-to="(555) 014-6688" data-body="Hi Little Fig! Pickup order for ___ at ___: ">Text your order</button>
+        <a class="btn btn--line" href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">Call (555) 014-6688</a>
+      </div>
+      <p class="form-note">The full menu is on the <a href="menu.html">menu page</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--white" aria-labelledby="boxes-title">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Order a day ahead</p><h2 id="boxes-title">Bakery boxes</h2><p>Text us by 3 pm and we'll have it boxed and ready from 7 am the next morning.</p></div>
+    <div class="boxes">
+      <div class="box"><div class="box-top"><h3>Morning half dozen</h3><b>$24</b></div><p>Six pastries: two fig scones, two croissants and two cinnamon knots.</p><button class="btn btn--fig" type="button" data-msg="text" data-to="(555) 014-6688" data-body="Hi Little Fig! I'd like to pre-order a Morning half dozen ($24) for pickup on ___ at ___. Name: ___">Pre-order</button></div>
+      <div class="box"><div class="box-top"><h3>Office dozen</h3><b>$45</b></div><p>Twelve pastries in a mix of everything in the case that morning.</p><button class="btn btn--fig" type="button" data-msg="text" data-to="(555) 014-6688" data-body="Hi Little Fig! I'd like to pre-order an Office dozen ($45) for pickup on ___ at ___. Name: ___">Pre-order</button></div>
+      <div class="box"><div class="box-top"><h3>Loaf and butter</h3><b>$14</b></div><p>A seeded sourdough loaf with a tub of our whipped honey butter.</p><button class="btn btn--fig" type="button" data-msg="text" data-to="(555) 014-6688" data-body="Hi Little Fig! I'd like to pre-order a Loaf and butter ($14) for pickup on ___ at ___. Name: ___">Pre-order</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="reserve" aria-labelledby="reserve-title" style="scroll-margin-top:140px">
+  <div class="wrap split" style="align-items:start">
+    <div>
+      <p class="eyebrow">Reservations</p>
+      <h2 id="reserve-title" style="margin:0.6rem 0 1rem">Book a table</h2>
+      <p>We hold about half our tables for walk-ins, so you can always try your luck. For weekend brunch or groups of five or more, book ahead.</p>
+      <ul class="ticks">
+        <li>Tables for 1 to 8 people</li>
+        <li>We hold your table for 15 minutes</li>
+        <li>High chairs and a step-free entrance</li>
+        <li>Groups over 8: <a href="events.html#private">book the whole café</a></li>
+      </ul>
+      <img src="../img/rc-interior.jpg" alt="The café's coffee bar under a lit CAFE sign and hanging lamps" width="1600" height="900" loading="lazy">
+    </div>
+    <form class="form" id="reserve-form" novalidate>
+      <h3>Request a table</h3>
+      <p>Pick a day and time. Times already booked are crossed out.</p>
+      <div class="field-row">
+        <div class="field"><label for="r-date">Date</label><input id="r-date" name="date" type="date" data-label="Date" required></div>
+        <div class="field"><label for="r-size">Guests</label><select id="r-size" name="guests" data-label="Guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+        <div class="field"><label for="r-seat">Seating</label><select id="r-seat" name="seating" data-label="Seating"><option>No preference</option><option>Window</option><option>Patio, weather permitting</option><option>Counter</option></select></div>
+      </div>
+      <fieldset class="field" style="border:0;margin:0;padding:0">
+        <legend style="font-weight:700;font-size:14.5px;margin-bottom:0.3rem">Time</legend>
+        <div class="slots">
+          <label><input type="radio" name="time" value="7:30 am" data-h="7.5" data-label="Time" required><span>7:30</span></label>
+          <label><input type="radio" name="time" value="8:00 am" data-h="8" data-label="Time"><span>8:00</span></label>
+          <label><input type="radio" name="time" value="8:30 am" data-h="8.5" data-label="Time"><span>8:30</span></label>
+          <label><input type="radio" name="time" value="9:00 am" data-h="9" data-label="Time"><span>9:00</span></label>
+          <label><input type="radio" name="time" value="9:30 am" data-h="9.5" data-label="Time"><span>9:30</span></label>
+          <label><input type="radio" name="time" value="10:00 am" data-h="10" data-label="Time"><span>10:00</span></label>
+          <label><input type="radio" name="time" value="10:30 am" data-h="10.5" data-label="Time"><span>10:30</span></label>
+          <label><input type="radio" name="time" value="11:00 am" data-h="11" data-label="Time"><span>11:00</span></label>
+          <label><input type="radio" name="time" value="11:30 am" data-h="11.5" data-label="Time"><span>11:30</span></label>
+          <label><input type="radio" name="time" value="12:00 pm" data-h="12" data-label="Time"><span>12:00</span></label>
+          <label><input type="radio" name="time" value="12:30 pm" data-h="12.5" data-label="Time"><span>12:30</span></label>
+          <label><input type="radio" name="time" value="1:00 pm" data-h="13" data-label="Time"><span>1:00</span></label>
+          <label><input type="radio" name="time" value="1:30 pm" data-h="13.5" data-label="Time"><span>1:30</span></label>
+          <label><input type="radio" name="time" value="2:00 pm" data-h="14" data-label="Time"><span>2:00</span></label>
+          <label><input type="radio" name="time" value="2:30 pm" data-h="14.5" data-label="Time"><span>2:30</span></label>
+        </div>
+      </fieldset>
+      <div class="field-row field-row--2">
+        <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" data-label="Name" autocomplete="name" required></div>
+        <div class="field"><label for="r-phone">Mobile</label><input id="r-phone" name="phone" type="tel" data-label="Mobile" autocomplete="tel" required></div>
+      </div>
+      <div class="field"><label for="r-notes">Anything we should know?</label><textarea id="r-notes" name="notes" data-label="Notes" placeholder="Birthday, high chair, allergies…"></textarea></div>
+      <button class="btn btn--fig" type="submit">Request this table</button>
+      <p class="form-note">You'll get a text to confirm. Need to cancel? Just reply to it.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="index.html"><i aria-hidden="true"></i>Little Fig</a>
+      <p>Café, bakery and brunch on the corner of Orchard and Pine. Baked in-house every morning since 2017.</p>
+    </div>
+    <div><h2>Pages</h2><nav aria-label="Footer"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="order.html">Order &amp; reserve</a><a href="events.html">Events &amp; catering</a><a href="visit.html">Visit us</a></nav></div>
+    <div><h2>Hours</h2><p>Mon–Thu 7 am – 3 pm</p><p>Fri 7 am – 4 pm</p><p>Sat 8 am – 4 pm</p><p>Sun 8 am – 2 pm</p></div>
+    <div><h2>Say hello</h2><p>27 Orchard Street</p><p><a href="tel:+15550146688" data-demo="the phone app, ready to call (555) 014-6688">(555) 014-6688</a></p><p><a href="mailto:hello@littlefig.example.com" data-demo="the customer's email app">hello@littlefig.example.com</a></p><p><a href="#" data-demo="Little Fig's Instagram">Instagram</a> · <a href="#" data-demo="Little Fig's Facebook page">Facebook</a></p></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Little Fig Café</span><span>Allergy questions? Ask us before you order.</span></div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>
