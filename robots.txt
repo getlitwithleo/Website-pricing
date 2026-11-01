@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://website-pricing.getlitwithleo.workers.dev/sitemap.xml
+Sitemap: https://lmwebdesignws.getlitwithleo.workers.dev/sitemap.xml

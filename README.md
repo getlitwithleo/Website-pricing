@@ -49,7 +49,7 @@ A site that has its own GitHub repository can be linked in instead of copied, so
 
 ## Putting it online for free
 
-The site is also published on Cloudflare at https://website-pricing.getlitwithleo.workers.dev/, which rebuilds automatically from this branch.
+The site is also published on Cloudflare at https://lmwebdesignws.getlitwithleo.workers.dev/, which rebuilds automatically from this branch.
 
 `google60d5ed61a0d0d22a.html` proves to Google Search Console that you own the site. Don't delete it, or the site stops being verified.
 
