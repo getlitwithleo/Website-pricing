@@ -30,6 +30,13 @@
 */
 window.PROJECTS = [
   {
+    name: "CB.Lawn",
+    type: "Small Business",
+    link: "https://cb-lawn.getlitwithleo.workers.dev/",
+    about: "Carter and Brayden's lawn mowing and yard work business in Oconomowoc, with services and prices, before-and-after photos, reviews, an FAQ and a free estimate form.",
+    image: "work/cb-lawn-banner.jpg"
+  },
+  {
     name: "Summit Window Cleaning",
     type: "Small Business",
     link: "work/summit-window-cleaning/index.html",
